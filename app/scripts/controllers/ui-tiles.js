@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name minovateApp.controller:UitilesCtrl
+ * @name getnearApp.controller:UitilesCtrl
  * @description
  * # UitilesCtrl
- * Controller of the minovateApp
+ * Controller of the getnearApp
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .controller('TilesCtrl', function ($scope) {
     $scope.page = {
       title: 'Tiles',

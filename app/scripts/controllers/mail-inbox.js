@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name minovateApp.controller:MailInboxCtrl
+ * @name getnearApp.controller:MailInboxCtrl
  * @description
  * # MailInboxCtrl
- * Controller of the minovateApp
+ * Controller of the getnearApp
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .controller('MailInboxCtrl', function ($scope, $resource) {
     $scope.mails = $resource('scripts/jsons/mails.json').query();
 

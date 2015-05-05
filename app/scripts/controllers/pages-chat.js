@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name minovateApp.controller:PagesChatCtrl
+ * @name getnearApp.controller:PagesChatCtrl
  * @description
  * # PagesChatCtrl
- * Controller of the minovateApp
+ * Controller of the getnearApp
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .controller('ChatCtrl', function ($scope, $resource) {
     $scope.inbox = $resource('scripts/jsons/chats.json').query();
 

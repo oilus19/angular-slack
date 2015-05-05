@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc directive
- * @name minovateApp.directive:toastrInject
+ * @name getnearApp.directive:toastrInject
  * @description
  * # toastrInject - fontawesome support for angular-toastr plugin
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   /* jshint ignore:start */
   .run(['$templateCache', function($templateCache) {
     'use strict';

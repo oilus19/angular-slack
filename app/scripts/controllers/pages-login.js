@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name minovateApp.controller:PagesLoginCtrl
+ * @name getnearApp.controller:PagesLoginCtrl
  * @description
  * # PagesLoginCtrl
- * Controller of the minovateApp
+ * Controller of the getnearApp
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .controller('LoginCtrl', function ($scope, $state) {
     $scope.login = function() {
       $state.go('app.dashboard');

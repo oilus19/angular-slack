@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name minovateApp.controller:PagesProfileCtrl
+ * @name getnearApp.controller:PagesProfileCtrl
  * @description
  * # PagesProfileCtrl
- * Controller of the minovateApp
+ * Controller of the getnearApp
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .controller('ProfileCtrl', function ($scope) {
     $scope.page = {
       title: 'Profile Page',

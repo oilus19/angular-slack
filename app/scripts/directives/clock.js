@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc directive
- * @name minovateApp.directive:clock
+ * @name getnearApp.directive:clock
  * @description
  * # clock
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .directive('clock', function () {
     return {
       restrict: 'EA',

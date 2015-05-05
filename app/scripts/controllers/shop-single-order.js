@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name minovateApp.controller:ShopSingleOrderCtrl
+ * @name getnearApp.controller:ShopSingleOrderCtrl
  * @description
  * # ShopSingleOrderCtrl
- * Controller of the minovateApp
+ * Controller of the getnearApp
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .controller('SingleOrderCtrl', function ($scope) {
     $scope.page = {
       title: 'Single Order',

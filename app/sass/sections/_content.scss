@@ -49,7 +49,7 @@
 
 }
 
-#minovate.header-fixed.aside-fixed {
+#getnear.header-fixed.aside-fixed {
   #content {
     position: absolute;
     top: 45px;
@@ -64,21 +64,21 @@
 }
 
 
-#minovate.header-static {
+#getnear.header-static {
   #content {
     padding-left: 250px;
     padding-top: 0;
   }
 }
 
-#minovate.aside-static {
+#getnear.aside-static {
   #content {
     padding-left: 250px;
   }
 }
 
 @media only screen and (max-width: 992px) {
-  #minovate {
+  #getnear {
     &.header-fixed.aside-fixed {
       &:not(.sidebar-sm):not(.sidebar-xs) {
         #content {
@@ -90,7 +90,7 @@
 }
 
 @media only screen and (max-width: 768px) {
-  #minovate {
+  #getnear {
     &.header-fixed.aside-fixed {
       #content {
         top: 90px;

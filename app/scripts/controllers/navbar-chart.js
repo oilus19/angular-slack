@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name minovateApp.controller:SparklineCtrl
+ * @name getnearApp.controller:SparklineCtrl
  * @description
  * # sparklineCtrl navbar
- * Controller of the minovateApp
+ * Controller of the getnearApp
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .controller('SparklineCtrl', function ($scope) {
     $scope.navChart1 = {
       data: [5, 8, 3, 4, 6, 2, 1, 9, 7],

@@ -1,4 +1,4 @@
-#minovate.header-fixed {
+#getnear.header-fixed {
   #header {
     position: fixed;
     left: 0;
@@ -6,7 +6,7 @@
     right: 0;
   }
 }
-#minovate:not(.header-fixed) {
+#getnear:not(.header-fixed) {
   #header {
     padding-left: 250px;
 
@@ -16,7 +16,7 @@
     }
   }
 }
-#minovate:not(.header-fixed):not(.aside-fixed) {
+#getnear:not(.header-fixed):not(.aside-fixed) {
   #header {
     padding-left: 0;
     position: relative;
@@ -26,7 +26,7 @@
     }
   }
 }
-#minovate:not(.sidebar-offcanvas) {
+#getnear:not(.sidebar-offcanvas) {
   #header .branding .offcanvas-toggle {
     display: none!important;
   }
@@ -52,7 +52,7 @@
       padding-left: 30px;
       height: 45px;
       line-height: 45px;
-      background: url(../images/minovate-logo.png) no-repeat 0 10px;
+      background: url(../images/getnear-logo.png) no-repeat 0 10px;
       float: left;
       @include transition(none);
 
@@ -191,7 +191,7 @@
 }
 
 @media only screen and (max-width: 992px) {
-  #minovate {
+  #getnear {
     &.sidebar-sm,
     &:not(.sidebar-sm):not(.sidebar-xs) {
       #header {
@@ -223,7 +223,7 @@
 }
 
 @media only screen and (max-width: 768px) {
-  #minovate {
+  #getnear {
     &.sidebar-xs {
       #header {
         position: relative;
@@ -357,7 +357,7 @@
 }
 
 @media only screen and (max-width: 480px) {
-  #minovate {
+  #getnear {
     &.sidebar-xs {
       #header {
         .branding {
@@ -394,7 +394,7 @@
 }
 
 @media only screen and (max-width: 420px) {
-  #minovate {
+  #getnear {
     &.sidebar-xs {
       #header {
         .nav-right {
@@ -424,7 +424,7 @@
 }
 
 
-#minovate {
+#getnear {
   &.sidebar-xs {
     .sidebar-collapse i:before {
       content: "\f03c";

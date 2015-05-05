@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc directive
- * @name minovateApp.directive:todoEscape
+ * @name getnearApp.directive:todoEscape
  * @description
  * # todoEscape
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .directive('todoEscape', function() {
     var ESCAPE_KEY = 27;
 

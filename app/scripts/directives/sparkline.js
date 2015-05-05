@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc directive
- * @name minovateApp.directive:sparkline
+ * @name getnearApp.directive:sparkline
  * @description
  * # sparkline
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .directive('sparkline', [
   function() {
     return {

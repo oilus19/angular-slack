@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name minovateApp.controller:FormsValidateCtrl
+ * @name getnearApp.controller:FormsValidateCtrl
  * @description
  * # FormsValidateCtrl
- * Controller of the minovateApp
+ * Controller of the getnearApp
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .controller('FormsValidateCtrl', function ($scope) {
     $scope.page = {
       title: 'Validation Elements',

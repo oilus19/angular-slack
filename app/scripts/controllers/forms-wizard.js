@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name minovateApp.controller:FormsWizardCtrl
+ * @name getnearApp.controller:FormsWizardCtrl
  * @description
  * # FormsWizardCtrl
- * Controller of the minovateApp
+ * Controller of the getnearApp
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .controller('FormWizardCtrl', function ($scope) {
     $scope.page = {
       title: 'Form Wizard',

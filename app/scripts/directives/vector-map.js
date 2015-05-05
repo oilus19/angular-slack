@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc directive
- * @name minovateApp.directive:vectorMap
+ * @name getnearApp.directive:vectorMap
  * @description
  * # vectorMap
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .directive('vectorMap', function () {
     return {
       restrict: 'AE',

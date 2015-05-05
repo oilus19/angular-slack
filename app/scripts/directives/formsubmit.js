@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc directive
- * @name minovateApp.directive:formSubmit
+ * @name getnearApp.directive:formSubmit
  * @description
  * # formSubmit
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .directive('submit', function() {
     return {
       restrict: 'A',

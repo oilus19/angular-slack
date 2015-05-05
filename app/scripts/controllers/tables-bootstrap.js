@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name minovateApp.controller:TablesBootstrapCtrl
+ * @name getnearApp.controller:TablesBootstrapCtrl
  * @description
  * # TablesBootstrapCtrl
- * Controller of the minovateApp
+ * Controller of the getnearApp
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .controller('TablesBootstrapCtrl', function ($scope) {
      $scope.page = {
       title: 'Bootstrap Tables',

@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc directive
- * @name minovateApp.directive:activateButton
+ * @name getnearApp.directive:activateButton
  * @description
  * # activateButton
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .directive('activateButton', function () {
     return {
       restrict: 'A',

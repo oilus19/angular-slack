@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc directive
- * @name minovateApp.directive:prettyprint
+ * @name getnearApp.directive:prettyprint
  * @description
  * # prettyprint
  */
 /* jshint ignore:start */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .directive('prettyprint', function () {
     return {
       restrict: 'C',

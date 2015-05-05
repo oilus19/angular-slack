@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name minovateApp.controller:SidebarxslayoutCtrl
+ * @name getnearApp.controller:SidebarxslayoutCtrl
  * @description
  * # SidebarxslayoutCtrl
- * Controller of the minovateApp
+ * Controller of the getnearApp
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .controller('SidebarxslayoutCtrl', function ($scope) {
     $scope.page = {
       title: 'Extra-small Sidebar Layout',

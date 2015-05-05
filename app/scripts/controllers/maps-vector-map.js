@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name minovateApp.controller:MapsVectorMapCtrl
+ * @name getnearApp.controller:MapsVectorMapCtrl
  * @description
  * # MapsVectorMapCtrl
- * Controller of the minovateApp
+ * Controller of the getnearApp
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .controller('VectorMapCtrl', function ($scope) {
 
     $scope.page = {

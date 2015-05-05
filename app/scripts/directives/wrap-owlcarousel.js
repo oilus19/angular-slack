@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc directive
- * @name minovateApp.directive:wrapOwlcarousel
+ * @name getnearApp.directive:wrapOwlcarousel
  * @description
  * # wrapOwlcarousel
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .directive('wrapOwlcarousel', function () {
     return {
       restrict: 'E',

@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name minovateApp.controller:OffcanvaslayoutCtrl
+ * @name getnearApp.controller:OffcanvaslayoutCtrl
  * @description
  * # OffcanvaslayoutCtrl
- * Controller of the minovateApp
+ * Controller of the getnearApp
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .controller('OffcanvaslayoutCtrl', function ($scope) {
     $scope.page = {
       title: 'Off-canvas sidebar',

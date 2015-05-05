@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc directive
- * @name minovateApp.directive:nativeTab
+ * @name getnearApp.directive:nativeTab
  * @description
  * # nativeTab
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .directive('nativeTab', function () {
     return {
       restrict: 'A',

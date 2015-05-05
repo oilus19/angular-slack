@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name minovateApp.controller:ListsCtrl
+ * @name getnearApp.controller:ListsCtrl
  * @description
  * # ListsCtrl
- * Controller of the minovateApp
+ * Controller of the getnearApp
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .controller('ListsCtrl', function ($scope) {
 
     $scope.page = {

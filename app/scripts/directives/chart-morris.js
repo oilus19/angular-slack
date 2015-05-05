@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc directive
- * @name minovateApp.directive:chartMorris
+ * @name getnearApp.directive:chartMorris
  * @description
  * # chartMorris
  * https://github.com/jasonshark/ng-morris/blob/master/src/ngMorris.js
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .directive('morrisLineChart', function(){
 
     return {

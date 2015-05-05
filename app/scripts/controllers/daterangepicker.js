@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name minovateApp.controller:DaterangepickerCtrl
+ * @name getnearApp.controller:DaterangepickerCtrl
  * @description
  * # DaterangepickerCtrl
- * Controller of the minovateApp
+ * Controller of the getnearApp
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .controller('DaterangepickerCtrl', function ($scope, $moment) {
     $scope.startDate = $moment().subtract(1, 'days').format('MMMM D, YYYY');
     $scope.endDate = $moment().add(31, 'days').format('MMMM D, YYYY');

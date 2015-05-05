@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name minovateApp.controller:UiNavsCtrl
+ * @name getnearApp.controller:UiNavsCtrl
  * @description
  * # UiNavsCtrl
- * Controller of the minovateApp
+ * Controller of the getnearApp
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .controller('NavsCtrl', function ($scope) {
     $scope.page = {
       title: 'Navigation & Accordions',

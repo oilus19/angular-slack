@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name minovateApp.controller:DashboardCtrl
+ * @name getnearApp.controller:DashboardCtrl
  * @description
  * # DashboardCtrl
- * Controller of the minovateApp
+ * Controller of the getnearApp
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .controller('DashboardCtrl', function($scope,$http){
     $scope.page = {
       title: 'Dashboard',

@@ -2,17 +2,17 @@
 
 /**
  * @ngdoc directive
- * @name minovateApp.directive:offcanvasSidebar
+ * @name getnearApp.directive:offcanvasSidebar
  * @description
  * # offcanvasSidebar
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .directive('offcanvasSidebar', function () {
     return {
       restrict: 'A',
       link: function postLink(scope, element) {
 
-        var app = angular.element('#minovate'),
+        var app = angular.element('#getnear'),
             $window = angular.element(window),
             width = $window.width();
 

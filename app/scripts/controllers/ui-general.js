@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name minovateApp.controller:UiGeneralCtrl
+ * @name getnearApp.controller:UiGeneralCtrl
  * @description
  * # UiGeneralCtrl
- * Controller of the minovateApp
+ * Controller of the getnearApp
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .controller('GeneralCtrl', function ($scope) {
     $scope.page = {
       title: 'General Elements',

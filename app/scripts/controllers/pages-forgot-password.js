@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name minovateApp.controller:PagesForgotPasswordCtrl
+ * @name getnearApp.controller:PagesForgotPasswordCtrl
  * @description
  * # PagesForgotPasswordCtrl
- * Controller of the minovateApp
+ * Controller of the getnearApp
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .controller('ForgotPasswordCtrl', function ($scope) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',

@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name minovateApp.controller:UiGridCtrl
+ * @name getnearApp.controller:UiGridCtrl
  * @description
  * # UiGridCtrl
- * Controller of the minovateApp
+ * Controller of the getnearApp
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .controller('GridCtrl', function ($scope) {
     $scope.page = {
       title: 'Grid',

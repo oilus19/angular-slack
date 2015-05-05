@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name minovateApp.controller:BoxedlayoutCtrl
+ * @name getnearApp.controller:BoxedlayoutCtrl
  * @description
  * # BoxedlayoutCtrl
- * Controller of the minovateApp
+ * Controller of the getnearApp
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .controller('BoxedlayoutCtrl', function ($scope) {
     $scope.page = {
       title: 'Boxed Layout',

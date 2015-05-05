@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name minovateApp.controller:ChartsCtrl
+ * @name getnearApp.controller:ChartsCtrl
  * @description
  * # ChartsCtrl
- * Controller of the minovateApp
+ * Controller of the getnearApp
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .controller('ChartsCtrl', function ($scope) {
 
     $scope.page = {

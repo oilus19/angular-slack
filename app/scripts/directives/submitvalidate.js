@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc directive
- * @name minovateApp.directive:submitValidate
+ * @name getnearApp.directive:submitValidate
  * @description
  * # submitValidate
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .directive('submitValidate', function () {
     return {
       require: 'form',

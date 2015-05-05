@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc directive
- * @name minovateApp.directive:todoFocus
+ * @name getnearApp.directive:todoFocus
  * @description
  * # todoFocus
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .directive('todoFocus', function ($timeout) {
     return {
       restrict: 'A',

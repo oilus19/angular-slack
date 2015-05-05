@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc directive
- * @name minovateApp.directive:ripple
+ * @name getnearApp.directive:ripple
  * @description
  * # ripple
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .directive('ripple', function () {
     return {
       restrict: 'A',

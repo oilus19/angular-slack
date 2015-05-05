@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name minovateApp.controller:FormsCommonCtrl
+ * @name getnearApp.controller:FormsCommonCtrl
  * @description
  * # FormsCommonCtrl
- * Controller of the minovateApp
+ * Controller of the getnearApp
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .controller('FormsCommonCtrl', function ($scope) {
     $scope.page = {
       title: 'Common Elements',

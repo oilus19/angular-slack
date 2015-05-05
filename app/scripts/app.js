@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc overview
- * @name minovateApp
+ * @name getnearApp
  * @description
- * # minovateApp
+ * # getnearApp
  *
  * Main module of the application.
  */
 angular
-  .module('minovateApp', [
+  .module('getnearApp', [
     'ngAnimate',
     'ngCookies',
     'ngResource',

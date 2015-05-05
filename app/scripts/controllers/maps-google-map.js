@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name minovateApp.controller:MapsGoogleMapCtrl
+ * @name getnearApp.controller:MapsGoogleMapCtrl
  * @description
  * # MapsGoogleMapCtrl
- * Controller of the minovateApp
+ * Controller of the getnearApp
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .controller('GoogleMapCtrl', function ($scope) {
     $scope.page = {
       title: 'Google Maps',

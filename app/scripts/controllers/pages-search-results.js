@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name minovateApp.controller:PagesSearchResultsCtrl
+ * @name getnearApp.controller:PagesSearchResultsCtrl
  * @description
  * # PagesSearchResultsCtrl
- * Controller of the minovateApp
+ * Controller of the getnearApp
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .controller('SearchResultsCtrl', function ($scope) {
     $scope.page = {
       title: 'Search Results',

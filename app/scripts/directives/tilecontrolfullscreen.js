@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc directive
- * @name minovateApp.directive:tileControlFullscreen
+ * @name getnearApp.directive:tileControlFullscreen
  * @description
  * # tileControlFullscreen
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .directive('tileControlFullscreen', function () {
     return {
       restrict: 'A',

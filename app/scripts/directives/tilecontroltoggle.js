@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc directive
- * @name minovateApp.directive:tileControlToggle
+ * @name getnearApp.directive:tileControlToggle
  * @description
  * # tileControlToggle
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .directive('tileControlToggle', function () {
     return {
       restrict: 'A',

@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc directive
- * @name minovateApp.directive:onBlurValidation
+ * @name getnearApp.directive:onBlurValidation
  * @description
  * # onBlurValidation
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .directive('onBlurValidation', function () {
     return {
       restrict: 'A',

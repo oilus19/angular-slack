@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name minovateApp.controller:MailSingleCtrl
+ * @name getnearApp.controller:MailSingleCtrl
  * @description
  * # MailSingleCtrl
- * Controller of the minovateApp
+ * Controller of the getnearApp
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .controller('MailSingleCtrl', function ($scope) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',

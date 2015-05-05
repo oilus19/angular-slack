@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name minovateApp.controller:HelpCtrl
+ * @name getnearApp.controller:HelpCtrl
  * @description
  * # HelpCtrl
- * Controller of the minovateApp
+ * Controller of the getnearApp
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .controller('HelpCtrl', function ($scope) {
      $scope.page = {
       title: 'Documentation',

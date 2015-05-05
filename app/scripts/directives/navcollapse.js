@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc directive
- * @name minovateApp.directive:navCollapse
+ * @name getnearApp.directive:navCollapse
  * @description
  * # navCollapse
  * # sidebar navigation dropdown collapse
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .directive('navCollapse', function () {
     return {
       restrict: 'A',
@@ -17,7 +17,7 @@ angular.module('minovateApp')
             $a = $dropdowns.children('a'),
             $notDropdowns = $el.children('li').not($dropdowns),
             $notDropdownsLinks = $notDropdowns.children('a'),
-            app = angular.element('#minovate'),
+            app = angular.element('#getnear'),
             sidebar = angular.element('#sidebar'),
             controls = angular.element('#controls');
 

@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc directive
- * @name minovateApp.directive:anchorScroll
+ * @name getnearApp.directive:anchorScroll
  * @description
  * # anchorScroll
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .directive('anchorScroll', ['$location', '$anchorScroll', function($location, $anchorScroll) {
     return {
       restrict: 'AC',

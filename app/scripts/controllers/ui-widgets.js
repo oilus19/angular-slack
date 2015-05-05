@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name minovateApp.controller:UiWidgetsCtrl
+ * @name getnearApp.controller:UiWidgetsCtrl
  * @description
  * # UiWidgetsCtrl
- * Controller of the minovateApp
+ * Controller of the getnearApp
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .controller('WidgetsCtrl', function ($scope) {
     $scope.page = {
       title: 'Widgets',

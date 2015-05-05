@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc directive
- * @name minovateApp.directive:activeToggle
+ * @name getnearApp.directive:activeToggle
  * @description
  * # activeToggle
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .directive('activeToggle', function () {
     return {
       restrict: 'A',

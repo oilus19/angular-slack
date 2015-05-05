@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc directive
- * @name minovateApp.directive:TileControlClose
+ * @name getnearApp.directive:TileControlClose
  * @description
  * # TileControlClose
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .directive('tileControlClose', function () {
     return {
       restrict: 'A',

@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name minovateApp.controller:FormImgCropCtrl
+ * @name getnearApp.controller:FormImgCropCtrl
  * @description
  * # FormImgCropCtrl
- * Controller of the minovateApp
+ * Controller of the getnearApp
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .controller('FormImgCropCtrl', function ($scope) {
     $scope.myImage='';
     $scope.myCroppedImage='';

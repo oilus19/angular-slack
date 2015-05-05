@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name minovateApp.controller:PagesSignupCtrl
+ * @name getnearApp.controller:PagesSignupCtrl
  * @description
  * # PagesSignupCtrl
- * Controller of the minovateApp
+ * Controller of the getnearApp
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .controller('SignupCtrl', function ($scope) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',

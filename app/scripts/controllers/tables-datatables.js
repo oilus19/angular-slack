@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name minovateApp.controller:TablesDatatablesCtrl
+ * @name getnearApp.controller:TablesDatatablesCtrl
  * @description
  * # TablesDatatablesCtrl
- * Controller of the minovateApp
+ * Controller of the getnearApp
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
 
   .controller('TablesDatatablesCtrl', function ($scope) {
 

@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc directive
- * @name minovateApp.directive:daterangepicker
+ * @name getnearApp.directive:daterangepicker
  * @description
  * # daterangepicker
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .directive('daterangepicker', function() {
     return {
       restrict: 'A',

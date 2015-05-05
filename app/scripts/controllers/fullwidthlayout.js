@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name minovateApp.controller:FullwidthlayoutCtrl
+ * @name getnearApp.controller:FullwidthlayoutCtrl
  * @description
  * # FullwidthlayoutCtrl
- * Controller of the minovateApp
+ * Controller of the getnearApp
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .controller('FullwidthlayoutCtrl', function ($scope) {
     $scope.page = {
       title: 'Full-width Layout',

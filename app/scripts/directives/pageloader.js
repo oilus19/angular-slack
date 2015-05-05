@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc directive
- * @name minovateApp.directive:pageLoader
+ * @name getnearApp.directive:pageLoader
  * @description
  * # pageLoader
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .directive('pageLoader', [
     '$timeout',
     function ($timeout) {

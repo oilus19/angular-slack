@@ -1,11 +1,11 @@
-#minovate.rightbar-hidden {
+#getnear.rightbar-hidden {
   #rightbar {
     right: -250px;
   }
 }
 
-#minovate.header-fixed,
-#minovate.aside-fixed {
+#getnear.header-fixed,
+#getnear.aside-fixed {
   &.rightbar-show {
     #rightbar {
       right: 0;
@@ -19,7 +19,7 @@
   }
 }
 
-#minovate.header-static {
+#getnear.header-static {
   &.rightbar-show {
     #rightbar {
       right: 0;
@@ -33,7 +33,7 @@
   }
 }
 
-#minovate.aside-static {
+#getnear.aside-static {
   &.rightbar-show {
     #content {
       padding-right: 250px;
@@ -210,7 +210,7 @@
     top: 45px;
   }
 
-  #minovate:not(.rtl) {
+  #getnear:not(.rtl) {
     &.rightbar-show {
       #rightbar {
         right: 0;
@@ -238,7 +238,7 @@
     width: 100%;
   }
 
-  #minovate {
+  #getnear {
     &.rightbar-hidden {
       #rightbar {
         right: -100%;

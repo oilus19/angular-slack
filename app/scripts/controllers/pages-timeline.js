@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name minovateApp.controller:PagesTimelineCtrl
+ * @name getnearApp.controller:PagesTimelineCtrl
  * @description
  * # PagesTimelineCtrl
- * Controller of the minovateApp
+ * Controller of the getnearApp
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .controller('TimelineCtrl', function ($scope) {
     $scope.page = {
       title: 'Timeline',

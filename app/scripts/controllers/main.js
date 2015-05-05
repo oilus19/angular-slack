@@ -2,16 +2,16 @@
 
 /**
  * @ngdoc function
- * @name minovateApp.controller:MainCtrl
+ * @name getnearApp.controller:MainCtrl
  * @description
  * # MainCtrl
- * Controller of the minovateApp
+ * Controller of the getnearApp
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .controller('MainCtrl', function ($scope, $http) {
 
     $scope.main = {
-      title: 'Minovate',
+      title: 'getnear',
       settings: {
         navbarHeaderColor: 'scheme-default',
         sidebarColor: 'scheme-default',

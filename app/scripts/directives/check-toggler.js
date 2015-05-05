@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc directive
- * @name minovateApp.directive:checkToggler
+ * @name getnearApp.directive:checkToggler
  * @description
  * # checkToggler
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .directive('checkToggler', function () {
     return {
       restrict: 'E',

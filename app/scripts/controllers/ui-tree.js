@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name minovateApp.controller:UiTreeCtrl
+ * @name getnearApp.controller:UiTreeCtrl
  * @description
  * # UiTreeCtrl
- * Controller of the minovateApp
+ * Controller of the getnearApp
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   /* jshint ignore:start */
   .controller('AbnTestController', function($scope, $timeout) {
     var apple_selected, tree, treedata_avm, treedata_geography;

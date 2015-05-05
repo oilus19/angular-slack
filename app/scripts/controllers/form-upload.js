@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name minovateApp.controller:FormUploadCtrl
+ * @name getnearApp.controller:FormUploadCtrl
  * @description
  * # FormUploadCtrl
- * Controller of the minovateApp
+ * Controller of the getnearApp
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .controller('FormUploadCtrl', ['$scope', 'FileUploader', function($scope, FileUploader) {
     var uploader = $scope.uploader = new FileUploader({
       //url: 'scripts/modules/fileupload/upload.php' //enable this option to get f

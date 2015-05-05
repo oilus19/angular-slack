@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc directive
- * @name minovateApp.directive:slimScroll
+ * @name getnearApp.directive:slimScroll
  * @description
  * # slimScroll
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .directive('slimscroll', function () {
     return {
       restrict: 'A',

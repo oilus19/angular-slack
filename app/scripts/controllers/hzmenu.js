@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name minovateApp.controller:HzmenuCtrl
+ * @name getnearApp.controller:HzmenuCtrl
  * @description
  * # HzmenuCtrl
- * Controller of the minovateApp
+ * Controller of the getnearApp
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .controller('HzmenuCtrl', function ($scope) {
      $scope.page = {
       title: 'Horizontal menu Layout',

@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc directive
- * @name minovateApp.directive:setNgAnimate
+ * @name getnearApp.directive:setNgAnimate
  * @description
  * # setNgAnimate
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .directive('setNgAnimate', ['$animate', function ($animate) {
     return {
       link: function ($scope, $element, $attrs) {

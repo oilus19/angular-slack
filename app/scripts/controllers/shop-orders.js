@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name minovateApp.controller:ShopOrdersCtrl
+ * @name getnearApp.controller:ShopOrdersCtrl
  * @description
  * # ShopOrdersCtrl
- * Controller of the minovateApp
+ * Controller of the getnearApp
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .controller('OrdersCtrl', function ($scope) {
     $scope.page = {
       title: 'Orders',

@@ -134,14 +134,14 @@
   }
 }
 
-#minovate.header-fixed.sidebar-sm {
+#getnear.header-fixed.sidebar-sm {
   #content {
     left: 80px;
     padding-left: 0;
   }
 }
 
-#minovate:not(.header-fixed).sidebar-sm {
+#getnear:not(.header-fixed).sidebar-sm {
   #header {
     padding-left: 80px;
 
@@ -162,13 +162,13 @@
   }
 }
 
-#minovate:not(.aside-fixed).sidebar-sm {
+#getnear:not(.aside-fixed).sidebar-sm {
   #content {
     padding-left: 80px;
   }
 }
 
-#minovate:not(.header-fixed):not(.aside-fixed).sidebar-sm {
+#getnear:not(.header-fixed):not(.aside-fixed).sidebar-sm {
   #header {
     padding-left: 0;
   }
@@ -236,13 +236,13 @@
   }
 }
 
-#minovate.header-fixed.sidebar-xs {
+#getnear.header-fixed.sidebar-xs {
   #content {
    left: 40px;
    padding-left: 0;
   }
 }
-#minovate:not(.header-fixed).sidebar-xs {
+#getnear:not(.header-fixed).sidebar-xs {
   #header {
     padding-left: 40px;
 
@@ -254,18 +254,18 @@
     padding-left: 40px;
   }
 }
-#minovate:not(.aside-fixed).sidebar-xs {
+#getnear:not(.aside-fixed).sidebar-xs {
   #content {
     padding-left: 40px;
   }
 }
-#minovate:not(.header-fixed):not(.aside-fixed).sidebar-xs {
+#getnear:not(.header-fixed):not(.aside-fixed).sidebar-xs {
   #header {
     padding-left: 0;
   }
 }
 
-#minovate.sidebar-xs.sidebar-offcanvas {
+#getnear.sidebar-xs.sidebar-offcanvas {
   #sidebar {
     left: -40px;
     @include transition(left .2s);
@@ -284,7 +284,7 @@
 }
 
 @media only screen and (max-width: 768px) {
-  #minovate {
+  #getnear {
     &.sidebar-xs{
       &.aside-fixed {
         #sidebar {

@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name minovateApp.controller:CalendarCtrl
+ * @name getnearApp.controller:CalendarCtrl
  * @description
  * # CalendarCtrl
- * Controller of the minovateApp
+ * Controller of the getnearApp
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .controller('CalendarCtrl', function ($scope,$compile,uiCalendarConfig) {
 
     var date = new Date();

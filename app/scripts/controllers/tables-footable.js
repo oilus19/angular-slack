@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name minovateApp.controller:TablesFootableCtrl
+ * @name getnearApp.controller:TablesFootableCtrl
  * @description
  * # TablesFootableCtrl
- * Controller of the minovateApp
+ * Controller of the getnearApp
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .controller('TablesFootableCtrl', function ($scope) {
     $scope.page = {
       title: 'FooTable',

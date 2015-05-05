@@ -56,25 +56,25 @@ $scheme-light-color: $transparent-white-8;
 #sidebar.scheme-black #navigation,
 #sidebar.scheme-black #sidebar-wrap:before,
 #header.scheme-black li.toggle-right-sidebar > a,
-#minovate.scheme-black .page-breadcrumb > li:first-child {
+#getnear.scheme-black .page-breadcrumb > li:first-child {
   background-color: darken($scheme-black, 5%)!important;
 }
 
-#minovate.black-scheme-color #navigation > li.active > a,
-#minovate.black-scheme-color #loading-bar .bar {
+#getnear.black-scheme-color #navigation > li.active > a,
+#getnear.black-scheme-color #loading-bar .bar {
   background-color: $scheme-black!important;
 }
 
-#minovate.black-scheme-color #loading-bar-spinner .spinner-icon {
+#getnear.black-scheme-color #loading-bar-spinner .spinner-icon {
   border-top-color: $scheme-black;
   border-left-color: $scheme-black;
 }
 
-#minovate.black-scheme-color #loading-bar .peg {
+#getnear.black-scheme-color #loading-bar .peg {
   @include box-shadow($scheme-black 1px 0 6px 1px);
 }
 
-#minovate.black-scheme-color  {
+#getnear.black-scheme-color  {
   #navigation {
     .dropdown {
       >ul li {
@@ -123,25 +123,25 @@ $scheme-light-color: $transparent-white-8;
 #sidebar.scheme-drank #navigation,
 #sidebar.scheme-drank #sidebar-wrap:before,
 #header.scheme-drank li.toggle-right-sidebar > a,
-#minovate.scheme-drank .page-breadcrumb > li:first-child {
+#getnear.scheme-drank .page-breadcrumb > li:first-child {
   background-color: $sidebar-default!important;
 }
 
-#minovate.drank-scheme-color #navigation > li.active > a,
-#minovate.drank-scheme-color #loading-bar .bar {
+#getnear.drank-scheme-color #navigation > li.active > a,
+#getnear.drank-scheme-color #loading-bar .bar {
   background-color: $scheme-drank!important;
 }
 
-#minovate.drank-scheme-color #loading-bar-spinner .spinner-icon {
+#getnear.drank-scheme-color #loading-bar-spinner .spinner-icon {
   border-top-color: $scheme-drank;
   border-left-color: $scheme-drank;
 }
 
-#minovate.drank-scheme-color #loading-bar .peg {
+#getnear.drank-scheme-color #loading-bar .peg {
   @include box-shadow($scheme-drank 1px 0 6px 1px);
 }
 
-#minovate.drank-scheme-color  {
+#getnear.drank-scheme-color  {
   #navigation {
     .dropdown {
       >ul li {
@@ -190,25 +190,25 @@ $scheme-light-color: $transparent-white-8;
 #sidebar.scheme-greensea #navigation,
 #sidebar.scheme-greensea #sidebar-wrap:before,
 #header.scheme-greensea li.toggle-right-sidebar > a,
-#minovate.scheme-greensea .page-breadcrumb > li:first-child {
+#getnear.scheme-greensea .page-breadcrumb > li:first-child {
   background-color: darken($scheme-greensea, 5%)!important;
 }
 
-#minovate.greensea-scheme-color #navigation > li.active > a,
-#minovate.greensea-scheme-color #loading-bar .bar {
+#getnear.greensea-scheme-color #navigation > li.active > a,
+#getnear.greensea-scheme-color #loading-bar .bar {
   background-color: $active-default!important;
 }
 
-#minovate.greensea-scheme-color #loading-bar-spinner .spinner-icon {
+#getnear.greensea-scheme-color #loading-bar-spinner .spinner-icon {
   border-top-color: $active-default;
   border-left-color: $active-default;
 }
 
-#minovate.greensea-scheme-color #loading-bar .peg {
+#getnear.greensea-scheme-color #loading-bar .peg {
   @include box-shadow($active-default 1px 0 6px 1px);
 }
 
-#minovate.greensea-scheme-color  {
+#getnear.greensea-scheme-color  {
   #navigation {
     .dropdown {
       >ul li {
@@ -257,25 +257,25 @@ $scheme-light-color: $transparent-white-8;
 #sidebar.scheme-cyan #navigation,
 #sidebar.scheme-cyan #sidebar-wrap:before,
 #header.scheme-cyan li.toggle-right-sidebar > a,
-#minovate.scheme-cyan .page-breadcrumb > li:first-child {
+#getnear.scheme-cyan .page-breadcrumb > li:first-child {
   background-color: darken($scheme-cyan, 5%)!important;
 }
 
-#minovate.cyan-scheme-color #navigation > li.active > a,
-#minovate.cyan-scheme-color #loading-bar .bar {
+#getnear.cyan-scheme-color #navigation > li.active > a,
+#getnear.cyan-scheme-color #loading-bar .bar {
   background-color: $scheme-cyan!important;
 }
 
-#minovate.cyan-scheme-color #loading-bar-spinner .spinner-icon {
+#getnear.cyan-scheme-color #loading-bar-spinner .spinner-icon {
   border-top-color: $scheme-cyan;
   border-left-color: $scheme-cyan;
 }
 
-#minovate.cyan-scheme-color #loading-bar .peg {
+#getnear.cyan-scheme-color #loading-bar .peg {
   @include box-shadow($scheme-cyan 1px 0 6px 1px);
 }
 
-#minovate.cyan-scheme-color  {
+#getnear.cyan-scheme-color  {
   #navigation {
     .dropdown {
       >ul li {
@@ -324,25 +324,25 @@ $scheme-light-color: $transparent-white-8;
 #sidebar.scheme-lightred #navigation,
 #sidebar.scheme-lightred #sidebar-wrap:before,
 #header.scheme-lightred li.toggle-right-sidebar > a,
-#minovate.scheme-lightred .page-breadcrumb > li:first-child {
+#getnear.scheme-lightred .page-breadcrumb > li:first-child {
   background-color: darken($scheme-lightred, 5%)!important;
 }
 
-#minovate.lightred-scheme-color #navigation > li.active > a,
-#minovate.lightred-scheme-color #loading-bar .bar {
+#getnear.lightred-scheme-color #navigation > li.active > a,
+#getnear.lightred-scheme-color #loading-bar .bar {
   background-color: $scheme-lightred!important;
 }
 
-#minovate.lightred-scheme-color #loading-bar-spinner .spinner-icon {
+#getnear.lightred-scheme-color #loading-bar-spinner .spinner-icon {
   border-top-color: $scheme-lightred;
   border-left-color: $scheme-lightred;
 }
 
-#minovate.lightred-scheme-color #loading-bar .peg {
+#getnear.lightred-scheme-color #loading-bar .peg {
   @include box-shadow($scheme-lightred 1px 0 6px 1px);
 }
 
-#minovate.lightred-scheme-color  {
+#getnear.lightred-scheme-color  {
   #navigation {
     .dropdown {
       >ul li {
@@ -394,7 +394,7 @@ $scheme-light-color: $transparent-white-8;
   background-color: $scheme-light!important;
 }
 
-#minovate.scheme-light .page-breadcrumb > li:first-child {
+#getnear.scheme-light .page-breadcrumb > li:first-child {
   background-color: $transparent-black-7;
 }
 
@@ -441,7 +441,7 @@ $scheme-light-color: $transparent-white-8;
   border-right: 1px solid $transparent-black-1;
   .brand {
     color: $font-color-dark;
-    background-image: url(../images/minovate-logo-color.png);
+    background-image: url(../images/getnear-logo-color.png);
   }
 }
 
@@ -560,24 +560,24 @@ $scheme-light-color: $transparent-white-8;
   }
 }
 
-#minovate.light-scheme-color #navigation > li.active > a {
+#getnear.light-scheme-color #navigation > li.active > a {
   background-color: $transparent-white-1;
 }
 
-#minovate.light-scheme-color #loading-bar .bar {
+#getnear.light-scheme-color #loading-bar .bar {
   background-color: $active-el;
 }
 
-#minovate.light-scheme-color #loading-bar-spinner .spinner-icon {
+#getnear.light-scheme-color #loading-bar-spinner .spinner-icon {
   border-top-color: $active-el;
   border-left-color: $active-el;
 }
 
-#minovate.light-scheme-color #loading-bar .peg {
+#getnear.light-scheme-color #loading-bar .peg {
   @include box-shadow($active-el 1px 0 6px 1px);
 }
 
-#minovate.light-scheme-color  {
+#getnear.light-scheme-color  {
   #navigation .dropdown>ul li {
     &:hover,
     &.active {

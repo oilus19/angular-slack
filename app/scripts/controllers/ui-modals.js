@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name minovateApp.controller:UiModalsCtrl
+ * @name getnearApp.controller:UiModalsCtrl
  * @description
  * # UiModalsCtrl
- * Controller of the minovateApp
+ * Controller of the getnearApp
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .controller('ModalsCtrl', function ($scope) {
     $scope.page = {
       title: 'Modals',

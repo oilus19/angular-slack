@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name minovateApp.controller:PagesGalleryCtrl
+ * @name getnearApp.controller:PagesGalleryCtrl
  * @description
  * # PagesGalleryCtrl
- * Controller of the minovateApp
+ * Controller of the getnearApp
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .controller('GalleryCtrl', function ($scope) {
 
     $scope.page = {

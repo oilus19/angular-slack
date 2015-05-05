@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name minovateApp.controller:ButtonsiconsCtrl
+ * @name getnearApp.controller:ButtonsiconsCtrl
  * @description
  * # ButtonsiconsCtrl
- * Controller of the minovateApp
+ * Controller of the getnearApp
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .controller('ButtonsIconsCtrl', function ($scope) {
      $scope.page = {
       title: 'Buttons & Icons',

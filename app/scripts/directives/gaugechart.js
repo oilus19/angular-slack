@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc directive
- * @name minovateApp.directive:gaugeChart
+ * @name getnearApp.directive:gaugeChart
  * @description
  * # gaugeChart
 */
 
-angular.module('minovateApp')
+angular.module('getnearApp')
   .directive('gaugeChart', [
   function() {
     return {

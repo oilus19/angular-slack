@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name minovateApp.controller:TypographyCtrl
+ * @name getnearApp.controller:TypographyCtrl
  * @description
  * # TypographyCtrl
- * Controller of the minovateApp
+ * Controller of the getnearApp
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .controller('TypographyCtrl', function ($scope) {
     $scope.page = {
       title: 'Typography',

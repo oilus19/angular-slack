@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name minovateApp.controller:NavCtrl
+ * @name getnearApp.controller:NavCtrl
  * @description
  * # NavCtrl
- * Controller of the minovateApp
+ * Controller of the getnearApp
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .controller('NavCtrl', function ($scope) {
     $scope.oneAtATime = false;
 

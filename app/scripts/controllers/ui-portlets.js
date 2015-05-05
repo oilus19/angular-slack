@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name minovateApp.controller:UiPortletsCtrl
+ * @name getnearApp.controller:UiPortletsCtrl
  * @description
  * # UiPortletsCtrl
- * Controller of the minovateApp
+ * Controller of the getnearApp
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .controller('PortletsCtrl', function ($scope) {
     $scope.page = {
       title: 'Portlets',

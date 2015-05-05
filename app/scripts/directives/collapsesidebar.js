@@ -2,17 +2,17 @@
 
 /**
  * @ngdoc directive
- * @name minovateApp.directive:collapseSidebarSm
+ * @name getnearApp.directive:collapseSidebarSm
  * @description
  * # collapseSidebarSm
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .directive('collapseSidebar', function ($rootScope) {
     return {
       restrict: 'A',
       link: function postLink(scope, element) {
 
-        var app = angular.element('#minovate'),
+        var app = angular.element('#getnear'),
             $window = angular.element(window),
             width = $window.width();
 

@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name minovateApp.controller:MailCtrl
+ * @name getnearApp.controller:MailCtrl
  * @description
  * # MailCtrl
- * Controller of the minovateApp
+ * Controller of the getnearApp
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .controller('MailCtrl', function ($scope) {
 
   });

@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name minovateApp.controller:UiAlertsCtrl
+ * @name getnearApp.controller:UiAlertsCtrl
  * @description
  * # UiAlertsCtrl
- * Controller of the minovateApp
+ * Controller of the getnearApp
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .controller('AlertsCtrl', function ($scope) {
      $scope.page = {
       title: 'Alerts & Notifications',

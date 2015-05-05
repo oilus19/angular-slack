@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc directive
- * @name minovateApp.directive:tileControlRefresh
+ * @name getnearApp.directive:tileControlRefresh
  * @description
  * # tileControlRefresh
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .directive('tileControlRefresh', function () {
     return {
       restrict: 'A',

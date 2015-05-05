@@ -1,4 +1,4 @@
-#minovate.rtl {
+#getnear.rtl {
 
  /*******************************************************************************
  *              bootstrap-rtl (Version 3.2.0-rc7)
@@ -451,7 +451,7 @@
 }
 
 @media only screen and (max-width: 1200px) {
-  #minovate.rtl {
+  #getnear.rtl {
     &.rightbar-show {
       #rightbar {
         left: 0;
@@ -470,7 +470,7 @@
 
 
 @media only screen and (max-width: 992px) {
-  #minovate.rtl {
+  #getnear.rtl {
     &.sidebar-sm,
     &:not(.sidebar-sm):not(.sidebar-xs) {
       #header {
@@ -504,7 +504,7 @@
 }
 
 @media only screen and (max-width: 768px) {
-  #minovate.rtl {
+  #getnear.rtl {
     &.sidebar-xs {
       #header {
 
@@ -616,7 +616,7 @@
 }
 
 @media only screen and (max-width: 480px) {
-  #minovate.rtl {
+  #getnear.rtl {
     &.sidebar-xs {
       #header {
         .branding {
@@ -651,7 +651,7 @@
 }
 
 @media only screen and (max-width: 360px) {
-  #minovate.rtl {
+  #getnear.rtl {
     &.rightbar-hidden {
       #rightbar {
         right: auto;

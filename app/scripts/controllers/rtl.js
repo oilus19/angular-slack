@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name minovateApp.controller:RtlCtrl
+ * @name getnearApp.controller:RtlCtrl
  * @description
  * # RtlCtrl
- * Controller of the minovateApp
+ * Controller of the getnearApp
  */
-angular.module('minovateApp')
+angular.module('getnearApp')
   .controller('RtlCtrl', function ($scope) {
     $scope.page = {
       title: 'RTL Layout',
