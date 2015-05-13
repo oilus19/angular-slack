@@ -19,7 +19,7 @@ angular.module('getnearApp')
         activeColor: 'default-scheme-color',
         headerFixed: true,
         asideFixed: true,
-        rightbarShow: false
+        rightbarShow: true
       }
     };
 

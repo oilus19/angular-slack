@@ -87,6 +87,12 @@ angular
       url: '/app',
       templateUrl: 'views/tmpl/app.html'
     })
+    //group channel
+    .state('app.channel', {
+      url: '/channel',
+      controller: 'GroupChannelCtrl',
+      templateUrl: 'views/tmpl/group/channel.html'
+    })
     //dashboard
     .state('app.dashboard', {
       url: '/dashboard',

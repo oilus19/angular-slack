@@ -2,7 +2,7 @@
 
 <div id="controls">
 
-  <aside ng-include="'views/nav.html'" id="sidebar" class="{{main.settings.sidebarColor}}" ng-class="{'aside-fixed':main.settings.asideFixed}"></aside>
+  <aside ng-include="'views/nav.html'" id="sidebar" class="{{main.settings.sidebarColor}}" ng-class="{'aside-fixed':main.settings.asideFixed}" ng-init="main.settings.sidebarColor='scheme-black'"></aside>
 
   <aside ng-include="'views/rightbar.html'" id="rightbar"></aside>
 

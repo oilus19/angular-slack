@@ -44,10 +44,10 @@ module.exports = function (grunt) {
         files: ['test/spec/{,*/}*.js'],
         tasks: ['newer:jshint:test', 'karma']
       },
-      styles: {
-        files: ['<%= yeoman.app %>/sass/{,*/}*.scss'],
-        tasks: ['sass', 'newer:copy:styles', 'autoprefixer']
-      },
+      //styles: {
+      //  files: ['<%= yeoman.app %>/sass/{,*/}*.scss'],
+      //  tasks: ['sass', 'newer:copy:styles', 'autoprefixer']
+      //},
       gruntfile: {
         files: ['Gruntfile.js']
       },
@@ -61,7 +61,14 @@ module.exports = function (grunt) {
           '.tmp/styles/{,*/}*.css',
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
-      }
+      },
+      styles: {
+        options: {
+          livereload: '<%= connect.options.livereload %>'
+        },
+        files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
+        tasks: ['newer:copy:styles']
+      },
     },
 
     // The actual grunt server settings
@@ -414,7 +421,7 @@ module.exports = function (grunt) {
       'clean:server',
       'wiredep',
       'concurrent:server',
-      'sass',
+      //'sass',
       'autoprefixer',
       'connect:livereload',
       'watch'
@@ -438,7 +445,7 @@ module.exports = function (grunt) {
     'clean:dist',
     'wiredep',
     'useminPrepare',
-    'sass',
+    //'sass',
     'concurrent:dist',
     'autoprefixer',
     'concat',
