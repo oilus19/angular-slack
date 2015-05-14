@@ -18,82 +18,94 @@
 
   <!-- page content -->
   <div class="pagecontent">
+    <div class="streamline mt-20">
 
-    <ul class="channels p-0 list-unstyled">
-      <li>
-        <div class="media">
-          <div class="pull-left thumb">
-            <img class="media-object img-circle" src="images/random-avatar1.jpg" alt="">
+      <article class="streamline-post" ng-repeat="post in posts">
+
+
+        <aside>
+          <div class="thumb thumb-sm">
+            <img class="img-circle" src="{{post.user.avatar}}" alt="">
           </div>
-          <div class="media-body">
-            <p class="media-heading mb-0">
-              <a href="#" class="name mr-5">Wood Walton</a><span class="label bg-primary">Question</span>
-              <span class="datetime pull-right"><i class="glyphicon glyphicon-time mr-10"/>Just now</span>
-            </p>
-            <div class="body">
-              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue.</p>
-              <p class="mb-0">
-                <button type="button" class="btn btn-default btn-xs active"><i class="fa fa-thumb-tack"/>Pinned</button>
-                <button type="button" class="btn btn-default btn-xs"><i class="fa fa-eye"/>Show Answers</button>
-                <button type="button" class="btn btn-default btn-xs"><i class="fa fa-mail-reply"/>Reply</button>
+        </aside>
+
+        <div class="post-container">
+
+          <div class="panel panel-default">
+            <div class="panel-heading bg-white">
+              {{post.user.firstname + ' ' + post.user.lastname}} 
+              <span class="label bg-primary" ng-if="post.type=='q'">Question</span>
+              <span class="label bg-drank" ng-if="post.type=='p'">Poll</span>
+              <span class="label bg-success" ng-if="post.type=='e'">Event</span>
+              <span class="label bg-warning" ng-if="post.type=='@'">Mention</span>
+              <span class="text-muted pull-right"><i class="fa fa-clock-o mr-5"></i> {{post.timeline}}</span>
+            </div>
+            <div class="panel-body">
+              {{post.body}}
+
+              <p class="mt-10 mb-0">
+                <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumb-tack"/> Pinned</button>
+                <button type="button" class="btn btn-default btn-xs" ng-if="post.type=='q'" ng-click="showQuestion(post)"><i class="fa fa-eye"/> Show Answers</button>
+                <button type="button" class="btn btn-default btn-xs" ng-if="post.type=='q'" ng-click="replyQuestion(post)"><i class="fa fa-mail-reply"/> Reply</button>
+                <button type="button" class="btn btn-default btn-xs" ng-if="post.type=='p'" ng-click="showPoll(post)"><i class="fa fa-bar-chart-o"/> Answer Poll</button>
+                <button type="button" class="btn btn-default btn-xs" ng-if="post.type=='p'" ng-click="showPoll(post)"><i class="fa fa-bar-chart-o"/> View Poll</button>
+                <button type="button" class="btn btn-default btn-xs" ng-if="post.type=='e'"><i class="fa fa-calendar"/> View Event Details</button>
               </p>
             </div>
           </div>
-        </div>
-      </li>
 
-      <li>
-        <div class="media">
-          <div class="pull-left thumb">
-            <img class="media-object img-circle" src="images/random-avatar2.jpg" alt="">
-          </div>
-          <div class="media-body">
-            <p class="media-heading mb-0">
-              <a href="#" class="name mr-5">Mike Stuart</a><span class="label bg-drank">Poll</span>
-              <span class="datetime pull-right"><i class="glyphicon glyphicon-time mr-10"/>39 minutes ago</span>
-            </p>
-            <div class="body">
-              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue.</p>
-              <p class="mb-0">
-                <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumb-tack"/>Pinned</button>
-                <button type="button" class="btn btn-default btn-xs"><i class="fa fa-bar-chart-o"/>Answer Poll</button>
-                <button type="button" class="btn btn-default btn-xs"><i class="fa fa-bar-chart-o"/>View Poll</button>
-              </p>
-            </div>
-          </div>
-        </div>
-      </li>
+          <ul class="list-unstyled post-replies">
 
-      <li>
-        <div class="media">
-          <div class="pull-left thumb">
-            <img class="media-object img-circle" src="images/random-avatar3.jpg" alt="">
-          </div>
-          <div class="media-body">
-            <p class="media-heading mb-0">
-              <a href="#" class="name mr-5">Robin Wills</a><span class="label bg-success">Event</span>
-              <span class="datetime pull-right"><i class="glyphicon glyphicon-time mr-10"/>1 hour ago</span>
-            </p>
-            <div class="body">
-              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue.</p>
-              <p class="mb-0">
-                <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumb-tack"/>Pin This</button>
-                <button type="button" class="btn btn-default btn-xs"><i class="fa fa-calendar"/>View Event Details</button>
-              </p>
-            </div>
-          </div>
+            <li>
+
+              <aside>
+                <div class="thumb thumb-sm">
+                  <img class="img-circle" src="images/random-avatar4.jpg" alt="">
+                </div>
+              </aside>
+
+              <div class="reply-container">
+                <div class="panel panel-default">
+                  <div class="panel-body">
+                    <p>
+                      <strong>James Bend</strong>
+                      <span class="text-muted pull-right"><i class="fa fa-clock-o mr-5"></i> 6 minutes ago</span>
+                    </p>
+
+                    <p class="mb-0 text-small">These cases are perfectly simple and easy to distinguish.</p>
+
+                    <p class="mt-10 mb-0">
+                      <a href="" active-toggle="" class="btn btn-default btn-xs">
+                        <i class="fa fa-heart-o text-inactive"></i><i class="fa fa-heart text-danger text-active"></i> Like (5)
+                      </a>
+                      <a href="" class="btn btn-default btn-xs">
+                        <i class="fa fa-mail-reply"></i> Reply
+                      </a>
+                    </p>
+
+                  </div>
+                </div>
+              </div>
+
+            </li>
+
+            
+
+          </ul>
         </div>
-      </li>
-    </ul>
+
+      </article>
+    </div>
     
-    <div class="new-post">
+    <div class="new-post mb-40">
+
       <div class="media">
         <div class="pull-left thumb">
           <img class="media-object img-circle" src="images/profile-photo.jpg" alt="">
         </div>
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Write your comment here">
-          <span class="input-group-btn"><button class="btn btn-default" type="button">POST</button></span>
+        <div class="input-group">          
+          <input type="text" id="new_post_input" class="form-control" placeholder="Write your comment here" ng-model="newPost" auto-complete ui-items="suggestions">
+          <span class="input-group-btn"><button class="btn btn-default" type="button" ng-click="submitPost()">Post</button></span>
         </div>
       </div>
     </div>

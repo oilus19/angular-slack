@@ -75,8 +75,8 @@ angular
   .config(['uiSelectConfig', function (uiSelectConfig) {
     uiSelectConfig.theme = 'bootstrap';
   }])
-  
-  .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+
+  .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
 
     $urlRouterProvider.otherwise('/app/dashboard');
 
@@ -652,3 +652,4 @@ angular
       templateUrl: 'views/tmpl/help.html'
     });
   }]);
+

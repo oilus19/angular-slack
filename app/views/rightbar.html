@@ -237,64 +237,118 @@
       <fa name="bar-chart-o"></fa>
     </tab-heading>
 
-    <h6>Polls</h6>
+    <h6>Polls
+      <a class="pull-right" ng-click="newPoll()" ng-if="!pollsScope.pollShowed"><i class="icon-plus"/></a>
+      <a class="pull-right" ng-click="hidePoll()" ng-if="pollsScope.pollShowed"><i class="icon-close"/></a>
+    </h6>
 
-    <ul class="mentions">
-      <li class="online">
-        <div class="media">
-          <a class="pull-left thumb thumb-sm" href="javascript:;">
-            <img class="media-object img-circle" src="images/random-avatar2.jpg" alt>
-          </a>
-          <div class="media-body">
-            <span class="media-heading">Ing. Imrich <strong>Kamarel</strong></span>
-            <small>Best Javascript framework</small><br/>
-            <a class="read-more">View more</a>
+    <div ng-if="!pollsScope.pollShowed">
+      <ul class="polls" ng-init="pollsScope.filter={type:'p'};pollsScope.empty=true">
+        <li ng-repeat="post in posts | filter:pollsScope.filter">
+          <div class="media" ng-init="pollsScope.empty=false">
+            <a class="pull-left thumb thumb-sm" href="javascript:;">
+              <img class="media-object img-circle" src="{{post.user.avatar}}" alt>
+            </a>
+            <div class="media-body">
+              <span class="media-heading">{{post.user.firstname}} <strong>{{post.user.lastname}}</strong></span>
+              <small>{{post.body}}</small><br/>
+              <a class="read-more" ng-click="showPoll(post)">View more</a>
+            </div>
           </div>
-        </div>
-      </li>
-      <li class="online">
-        <div class="media">
-          <a class="pull-left thumb thumb-sm" href="javascript:;">
-            <img class="media-object img-circle" src="images/random-avatar2.jpg" alt>
-          </a>
-          <div class="media-body">
-            <span class="media-heading">Ing. Imrich <strong>Kamarel</strong></span>
-            <small>Best Javascript framework</small><br/>
-            <a class="read-more">View more</a>
-          </div>
-        </div>
-      </li>
-      <li class="online">
-        <div class="media">
-          <a class="pull-left thumb thumb-sm" href="javascript:;">
-            <img class="media-object img-circle" src="images/random-avatar2.jpg" alt>
-          </a>
-          <div class="media-body">
-            <span class="media-heading">Ing. Imrich <strong>Kamarel</strong></span>
-            <small>Best Javascript framework</small><br/>
-            <a class="read-more">View more</a>
-          </div>
-        </div>
-      </li>
-      <li class="online">
-        <div class="media">
-          <a class="pull-left thumb thumb-sm" href="javascript:;">
-            <img class="media-object img-circle" src="images/random-avatar2.jpg" alt>
-          </a>
-          <div class="media-body">
-            <span class="media-heading">Ing. Imrich <strong>Kamarel</strong></span>
-            <small>Best Javascript framework</small><br/>
-            <a class="read-more">View more</a>
-          </div>
-        </div>
-      </li>
-    </ul>
+        </li>
+      </ul>
+
+      <span ng-if="pollsScope.empty">There's no polls yet.</span>
+      <div class="new-post" ng-if="pollsScope.empty"><button type="button" class="btn btn-greensea" ng-click="newPoll()">Click here to create your first poll</button></div>
+    </div>
+
+    <div ng-if="pollsScope.pollShowed">
+      <h5><strong>Question:</strong> {{poll.body}}</h5>
+      <span ng-repeat="option in poll.options">
+        <input type="radio" name="option" ng-model="pollsScope.selectedPollOption" ng-value="$index" class="mr-10"/>{{option.title}}<br/>
+      </span>
+      <hr/>
+
+      <h5 class="text-danger">Result of User Votes:</h5>
+      <span ng-repeat="option in poll.options" ng-init="pollsScope.progressbarColorSet=['greensea','warning','danger'];">
+        {{option.title}} ({{Math.round(10000*option.votes/pollsScope.pollTotalVotes)/100}}%)<br/>
+        <progressbar class="progress-xs not-rounded mt-5" value="Math.round(100*option.votes/pollsScope.pollTotalVotes)" type="{{pollsScope.progressbarColorSet[$index%3]}}"></progressbar>
+      </span>
+      <hr/>
+      <button type="button" class="btn btn-success btn-rounded btn-sm" ng-click="submitVote(poll)"><i class="fa fa-bell mr-5"/>Mark Your Vote</button>
+    </div>  
+
+
   </tab>
 
   <tab id="questions">
     <tab-heading>
       <fa name="question"></fa>
     </tab-heading>
+
+    <h6>Questions
+      <a class="pull-right" ng-click="newQuestion()" ng-if="!questionsScope.questionShowed"><i class="icon-plus"/></a>
+      <a class="pull-right" ng-click="hideQuestion()" ng-if="questionsScope.questionShowed"><i class="icon-close"/></a>
+    </h6>
+
+    <div ng-if="!questionsScope.questionShowed">
+      <ul class="questions" ng-init="questionsScope.filter={type:'q'};questionsScope.empty=true">
+        <li ng-repeat="post in posts | filter:questionsScope.filter">
+          <div class="media" ng-init="questionsScope.empty=false">
+            <a class="pull-left thumb thumb-sm" href="javascript:;">
+              <img class="media-object img-circle" src="{{post.user.avatar}}" alt>
+            </a>
+            <div class="media-body">
+              <span class="media-heading">{{post.user.firstname}} <strong>{{post.user.lastname}}</strong></span>
+              <small>{{post.body}}</small><br/>
+              <a class="read-more" ng-click="showQuestion(post)">View more</a>
+            </div>
+          </div>
+        </li>
+      </ul>
+
+      <span ng-if="questionsScope.empty">There's no questions yet.</span>
+      <div class="new-post" ng-if="questionsScope.empty"><button type="button" class="btn btn-greensea" ng-click="newQuestion()">Click here to create your first question</button></div>
+    </div>
+
+    <div ng-if="questionsScope.questionShowed">
+      <ul class="q-a">
+        <li>
+          <div class="media">
+            <a class="pull-left thumb thumb-sm" href="javascript:;">
+              <img class="media-object img-circle" src="{{question.user.avatar}}" alt>
+            </a>
+            <div class="media-body">
+              <span class="media-heading">{{question.user.firstname}} <strong>{{question.user.lastname}}</strong></span>
+              <span>{{question.body}}</span>
+            </div>
+          </div>
+        </li>
+        <li>
+          <span>Answers</span>
+        </li>
+        <li ng-repeat="post in question.answers">
+          <div class="media">
+            <a class="pull-left thumb thumb-sm" href="javascript:;">
+              <img class="media-object img-circle" src="{{post.user.avatar}}" alt>
+            </a>
+            <div class="media-body">
+              <span class="media-heading">{{post.user.firstname}} <strong>{{post.user.lastname}}</strong></span>
+              <span>{{post.body}}</span>
+            </div>
+          </div>
+        </li>
+      </ul>
+
+      <div class="new-answer">
+        <div class="input-group">
+          <input type="text" id="new_answer_input" class="form-control" placeholder="Write your answer here..." ng-model="newAnswer">
+          <span class="input-group-btn"><button class="btn btn-default" type="button" ng-click="submitAnswer()">Answer</button></span>
+        </div>
+      </div>
+
+    </div>
+
   </tab>
 
   <tab id="pinned_items">
