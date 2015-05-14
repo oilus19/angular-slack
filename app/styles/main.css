@@ -11629,16 +11629,16 @@ hr.line-full {
   background-color: #344D6B;
 }
 
-#header #group_nav ul {
+#header #group_nav>ul {
   margin-bottom: 0px;
   margin-left: 2px;
 }
 
-#header #group_nav ul li {
+#header #group_nav>ul>li {
   padding: 0;
 }
 
-#header #group_nav ul li a {
+#header #group_nav>ul>li>a {
   line-height: 44px;
   width: 60px;
   font-size: 26px;
@@ -11647,7 +11647,7 @@ hr.line-full {
   display: inline-block;
 }
 
-#header #group_nav ul li.active a {
+#header #group_nav>ul>li.active>a {
   background-color: #16A085;
 }
 
@@ -11672,4 +11672,8 @@ hr.line-full {
   border: 1px solid #DDD;
   margin-left: 85px;
   background-color: white;
+}
+
+.page-group .group-filter>*{
+  vertical-align: top;
 }

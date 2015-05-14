@@ -349,7 +349,27 @@
 
 <div id="group_nav">
   <ul class="list-inline">
-    <li><a href="#">+</a></li>
+
+    <li class="dropdown messages" dropdown on-toggle="toggled(open)">
+
+      <a href class="dropdown-toggle" dropdown-toggle>
+        <fa name="plus"></fa>
+      </a>
+
+      <div class="dropdown-menu pull-left with-arrow panel panel-default animated littleFadeInDown" style="margin-top: 7px; left: 7px; min-width: 160px; ">
+
+        <div class="panel-heading pt-10 pb-10 pl-20">
+          You have <strong>2</strong> options
+        </div>
+
+        <ul class="list-group">
+          <li class="list-group-item p-20"><a>Join a Group</a></li>
+          <li class="list-group-item p-20"><a>Create a Group</a></li>
+        </ul>
+
+      </div>
+
+    </li>
     <li><a href="#">A</a></li>
     <li><a href="#">M</a></li>
     <li class="active"><a href="#">P</a></li>

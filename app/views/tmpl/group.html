@@ -1,0 +1,83 @@
+<div class="page page-group">
+
+  <!-- page content -->
+  <div class="pagecontent">
+    
+    <div class="mb-40 group-filter">
+      <span class="mr-10 mt-5 inline-block">Filters:</span>
+      
+      <ui-select ng-model="filter.status"  ng-disabled="disabled" class="w-sm inline-block mb-10">
+        <ui-select-match placeholder="Select a status...">{{$select.selected.title}}</ui-select-match>
+        <ui-select-choices repeat="status in groupStatus | filter: $select.search">
+          <span ng-bind-html="status.title | highlight: $select.search"></span>
+        </ui-select-choices>
+      </ui-select>
+
+      <span class="mr-20"/>
+      <ui-select ng-model="filter.category"  ng-disabled="disabled" class="w-md inline-block mb-10">
+        <ui-select-match placeholder="Select a category...">{{$select.selected.title}}</ui-select-match>
+        <ui-select-choices repeat="category in groupCategories | filter: $select.search">
+          <span ng-bind-html="category.title | highlight: $select.search"></span>
+        </ui-select-choices>
+      </ui-select>
+    </div>
+
+    <!-- cards row -->
+    <div class="row">
+
+      <!-- col -->
+      <div class="card-container col-lg-3 col-md-4 col-sm-6 col-xs-12" ng-repeat="group in groups">
+        <div class="card" ng-if="(!filter.status || group.status==filter.status.title) && (!filter.category || group.category==filter.category.title)">
+          <div class="front bg-greensea">
+
+            <!-- row -->
+            <div class="row">
+              <!-- col -->
+              <div class="col-xs-4">
+                <i class="fa {{group.icon}} fa-4x"></i>
+              </div>
+              <!-- /col -->
+              <!-- col -->
+              <div class="col-xs-8">
+                <p class="text-lg text-strong mb-0">{{group.title}}</p>
+              </div>
+              <!-- /col -->
+            </div>
+            <!-- /row -->
+
+          </div>
+          <div class="back bg-greensea">
+
+            <!-- row -->
+            <div class="row">
+              <!-- col -->
+              <div class="col-xs-4">
+                <a href=javascript:; class="disabled"><i class="fa fa-users fa-2x"></i> {{group.membercount}} Memebers</a>
+              </div>
+              <!-- /col -->
+              <!-- col -->
+              <div class="col-xs-4">
+                <a href=javascript:;><i class="fa fa-chain-broken fa-2x"></i> {{group.channelcount}} Channels</a>
+              </div>
+              <!-- /col -->
+              <!-- col -->
+              <div class="col-xs-4">
+                <a href=javascript:;><i class="fa fa-plus fa-2x"></i> Join Group</a>
+              </div>
+              <!-- /col -->
+            </div>
+            <!-- /row -->
+
+          </div>
+        </div>
+      </div>
+      <!-- /col -->
+
+    </div>
+  </div>
+  <!-- /page content -->
+
+
+
+
+</div>
