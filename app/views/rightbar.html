@@ -5,8 +5,8 @@
     </tab-heading>
 
     <h6>ABOUT THIS GROUP</h6>
-    <p><small>Welcome to Feds On stack, this channel is for general talk. Please don't span.</small></p>
-    <p><small>Created by Alex Volkov on<br/>December 31st, 2014.</small></p>
+    <p>Welcome to Feds On stack, this channel is for general talk. Please don't span.</p>
+    <p>Created by Alex Volkov on<br/>December 31st, 2014.</p>
 
     <h6><strong>ONLINE</strong> USERS</h6>
 
@@ -176,29 +176,96 @@
       <fa name="at"></fa>
     </tab-heading>
 
-    <h6>Mentions</h6>
+    <h6>Mentions
+      <a class="pull-right" ng-click="hideMention()" ng-if="mentionsScope.mentionShowed"><i class="icon-close"/></a>
+    </h6>
 
-    <ul class="mentions" ng-init="mentionsScope.filter={type:'@'};mentionsScope.empty=true">
-      <li ng-repeat="post in posts | filter:mentionsScope.filter">
-        <div class="media" ng-init="mentionsScope.empty=false">
-          <a class="pull-left thumb thumb-sm" href="javascript:;">
-            <img class="media-object img-circle" src="{{post.user.avatar}}" alt>
-          </a>
-          <div class="media-body">
-            <span class="media-heading">{{post.user.firstname}} <strong>{{post.user.lastname}}</strong></span>
-            <small>{{post.body}}</small><br/>
+    <div ng-if="!mentionsScope.mentionShowed">
+      <ul class="mentions" ng-init="mentionsScope.filter={type:'@'};mentionsScope.empty=true">
+        <li ng-repeat="post in posts | filter:mentionsScope.filter">
+          <div class="media" ng-init="mentionsScope.empty=false">
+            <a class="pull-left thumb thumb-sm" href="javascript:;">
+              <img class="media-object img-circle" src="{{post.user.avatar}}" alt>
+            </a>
+            <div class="media-body">
+              <span class="media-heading">{{post.user.firstname}} <strong>{{post.user.lastname}}</strong></span>
+              <small>{{post.body}}</small><br/>
+              <a class="read-more" ng-click="showMention(post)">View more</a>
+            </div>
           </div>
-        </div>
-      </li>
-    </ul>
+        </li>
+      </ul>
 
-    <span ng-if="mentionsScope.empty">There's no mentions about you yet.</span>
+      <span ng-if="mentionsScope.empty">There's no mentions about you yet.</span>
+    </div>
+
+    <div ng-if="mentionsScope.mentionShowed">
+      <ul>
+        <li>
+          <div class="media">
+            <a class="pull-left thumb thumb-sm" href="javascript:;">
+              <img class="media-object img-circle" src="{{mention.user.avatar}}" alt>
+            </a>
+            <div class="media-body">
+              <span class="media-heading">{{mention.user.firstname}} <strong>{{mention.user.lastname}}</strong></span>
+              <span>{{mention.body}}</span>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
   </tab>
 
   <tab id="events">
     <tab-heading>
       <fa name="calendar"></fa>
     </tab-heading>
+
+    <h6>Events
+      <a class="pull-right" ng-click="newEvent()" ng-if="!eventsScope.eventShowed"><i class="icon-plus"/></a>
+      <a class="pull-right" ng-click="hideEvent()" ng-if="eventsScope.eventShowed"><i class="icon-close"/></a>
+    </h6>
+
+    <div ng-if="!eventsScope.eventShowed">
+      <ul class="events" ng-init="eventsScope.filter={type:'e'};eventsScope.empty=true">
+        <li ng-repeat="post in posts | filter:eventsScope.filter">
+          <div class="media" ng-init="eventsScope.empty=false">
+            <a class="pull-left thumb thumb-sm" href="javascript:;">
+              <img class="media-object img-circle" src="{{post.user.avatar}}" alt>
+            </a>
+            <div class="media-body">
+              <span class="media-heading">{{post.user.firstname}} <strong>{{post.user.lastname}}</strong></span>
+              <small>{{post.body}}</small><br/>
+              <a class="read-more" ng-click="showEvent(post)">View more</a>
+            </div>
+          </div>
+        </li>
+      </ul>
+
+      <span ng-if="eventsScope.empty">There's no events yet.</span>
+      <div class="new-post" ng-if="eventsScope.empty"><button type="button" class="btn btn-greensea" ng-click="newEvent()">Click here to create your first event</button></div>
+    </div>
+
+    <div ng-if="eventsScope.eventShowed">
+      <ul>
+        <li>
+          <div class="media">
+            <a class="pull-left thumb thumb-sm" href="javascript:;">
+              <img class="media-object img-circle" src="{{event.user.avatar}}" alt>
+            </a>
+            <div class="media-body">
+              <span class="media-heading">{{event.user.firstname}} <strong>{{event.user.lastname}}</strong></span>
+              <span><strong>Title:</strong> {{event.body}}</span><br/><br/>
+              <span ng-if="event.info"><strong>Info:</strong> {{event.info}}</span><br/><br/>
+              <span ng-if="event.location"><strong>Location:</strong> {{event.location}}</span><br/><br/>
+              <span ng-if="event.date"><strong>Date:</strong> {{event.date}}</span><br/><br/>
+              <span ng-if="event.time"><strong>Time:</strong> {{event.time}}</span><br/><br/>
+              <span ng-if="event.price"><strong>Price:</strong> {{event.price}}</span><br/>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
   </tab>
 
   <tab id="polls">
@@ -245,9 +312,7 @@
       </span>
       <hr/>
       <button type="button" class="btn btn-success btn-rounded btn-sm" ng-click="submitVote(poll)"><i class="fa fa-bell mr-5"/>Mark Your Vote</button>
-    </div>  
-
-
+    </div>
   </tab>
 
   <tab id="questions">
@@ -327,52 +392,16 @@
 
     <h6>Pinned Items</h6>
 
-    <ul class="mentions">
-      <li class="online">
-        <div class="media">
+    <ul class="pinned-items" ng-init="pinnedItemsScope.filter={pinned:true};pinnedItemsScope.empty=true">
+      <li ng-repeat="post in posts | filter:pinnedItemsScope.filter">
+        <div class="media" ng-init="pinnedItemsScope.empty=false">
           <a class="pull-left thumb thumb-sm" href="javascript:;">
-            <img class="media-object img-circle" src="images/random-avatar1.jpg" alt>
+            <img class="media-object img-circle" src="{{post.user.avatar}}" alt>
           </a>
           <div class="media-body">
-            <span class="media-heading">Anna <strong>Opichia</strong></span>
-            <small>Meetup next friday at 19:00 with...</small><br/>
-            <a class="read-more">View more</a>
-          </div>
-        </div>
-      </li>
-      <li class="online">
-        <div class="media">
-          <a class="pull-left thumb thumb-sm" href="javascript:;">
-            <img class="media-object img-circle" src="images/random-avatar1.jpg" alt>
-          </a>
-          <div class="media-body">
-            <span class="media-heading">Anna <strong>Opichia</strong></span>
-            <small>Meetup next friday at 19:00 with...</small><br/>
-            <a class="read-more">View more</a>
-          </div>
-        </div>
-      </li>
-      <li class="online">
-        <div class="media">
-          <a class="pull-left thumb thumb-sm" href="javascript:;">
-            <img class="media-object img-circle" src="images/random-avatar1.jpg" alt>
-          </a>
-          <div class="media-body">
-            <span class="media-heading">Anna <strong>Opichia</strong></span>
-            <small>Meetup next friday at 19:00 with...</small><br/>
-            <a class="read-more">View more</a>
-          </div>
-        </div>
-      </li>
-      <li class="online">
-        <div class="media">
-          <a class="pull-left thumb thumb-sm" href="javascript:;">
-            <img class="media-object img-circle" src="images/random-avatar1.jpg" alt>
-          </a>
-          <div class="media-body">
-            <span class="media-heading">Anna <strong>Opichia</strong></span>
-            <small>Meetup next friday at 19:00 with...</small><br/>
-            <a class="read-more">View more</a>
+            <span class="media-heading">{{post.user.firstname}} <strong>{{post.user.lastname}}</strong></span>
+            <small>{{post.body}}</small><br/>
+            <a class="read-more" ng-click="showPinnedItem(post)">View more</a>
           </div>
         </div>
       </li>

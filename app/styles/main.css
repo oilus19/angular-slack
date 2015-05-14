@@ -2656,6 +2656,7 @@ header {
 #rightbar {
   width: 250px;
   position: fixed;
+  font-size: 12px;
   top: 90px;
   bottom: 0;
   z-index: 9999;
@@ -2736,6 +2737,7 @@ header {
               #rightbar .tab-content .tab-pane ul > li .media .media-body .media-heading {
                 font-family: "Lato", "Arial", sans-serif;
                 font-weight: 300;
+                font-size: 14px;
                 color: #bfc7cb;
                 margin: 0 0 3px;
                 display: block; }
@@ -2752,8 +2754,6 @@ header {
                 position: absolute;
                 right: 0px;
                 top: 18px; }
-              #rightbar .tab-content .tab-pane ul > li .media .media-body .read-more {
-                font-size: 12px;}
           #rightbar .tab-content .tab-pane ul > li.online .status {
             border-color: #16a085; }
           #rightbar .tab-content .tab-pane ul > li.busy .status {

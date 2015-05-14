@@ -12,11 +12,16 @@ angular.module('getnearApp')
     $scope.$parent.suggestions = ['@John Douey: '];
     $scope.$parent.questionsScope = {};
     $scope.$parent.pollsScope = {};
+    $scope.$parent.eventsScope = {};
+    $scope.$parent.mentionsScope = {};
     $scope.$parent.Math = window.Math;
+
+
     $scope.$parent.posts = [{
       type: "q",
       body: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue.",
       timeline: "Just Now",
+      pinned: true,
       user: {
         firstname: 'Wood',
         lastname: 'Walton',
@@ -58,7 +63,12 @@ angular.module('getnearApp')
         }
     },{
       type: "e",
-      body: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue.",
+      body: "Meetup next friday at 19:00",
+      info: "Good news, everyone! Office hours has a new home at http://learn.nycphyhon.org/. We'll stop posting events to the main NYC phython page after next month. To RSVP for this event, please go here: http://getnear.co/k23124.",
+      location: "34 W. 3rd Ave. 4th floor",
+      date: "Friday 12 of May",
+      time: "19:00",
+      price: "free",
         timeline: "2 hours ago",
         user: {
             firstname: 'Robin',
@@ -96,6 +106,10 @@ angular.module('getnearApp')
             avatar: 'images/random-avatar4.jpg'
         }
     }];
+
+    $scope.$parent.getPostBody = function(post){
+        return post.body;
+    }
 
     $scope.$parent.submitPost = function(){
         function getPostType(post){
@@ -146,6 +160,20 @@ angular.module('getnearApp')
         }
 
         reset();
+    }
+
+    /*  Mentions     */
+
+    $scope.$parent.showMention = function(mention){
+        $scope.$parent.mention = mention;
+        $scope.$parent.mentionsScope.mentionShowed = true;
+        $timeout(function(){
+            angular.element($("#rightbar .nav-tabs li#mentions a")).triggerHandler("click");
+        },0);
+    }
+
+    $scope.$parent.hideMention = function(mention){
+        $scope.$parent.mentionsScope.mentionShowed = false;
     }
 
     /*  Question and Answer     */
@@ -229,36 +257,7 @@ angular.module('getnearApp')
         $scope.$parent.pollsScope.pollShowed = false;
     }
 
-    $scope.$parent.replyPoll = function(poll){
-    }
-
     $scope.$parent.submitPoll = function(){
-        function getPostBody(post){
-            return jQuery('#new_answer_input').val().trim();
-        }
-
-        function getPostAuthor(){
-            var author = {
-                firstname: 'John',
-                lastname: 'Douey',
-                avatar: 'images/profile-photo.jpg'
-            }
-            return author;
-        }
-
-        function reset(){
-            jQuery('#new_answer_input').val('');
-        }
-        
-        var postBody = getPostBody();
-        var postAuthor = getPostAuthor();
-        var answer = {
-            body: postBody,
-            user: postAuthor
-        }
-
-        $scope.$parent.question.answers.push(answer);
-        reset();
     }
 
     $scope.$parent.submitVote = function(poll){
@@ -266,6 +265,56 @@ angular.module('getnearApp')
         poll.options[$scope.$parent.pollsScope.selectedPollOption].votes ++;
         $scope.$parent.pollsScope.pollTotalVotes ++;
         $scope.$parent.pollsScope.selectedPollOption = null;
+    }
+
+    /*  Events     */
+
+    $scope.$parent.newEvent = function(){
+    }
+
+    $scope.$parent.showEvent = function(event){
+        $scope.$parent.event = event;
+        $scope.$parent.eventsScope.eventShowed = true;
+        $timeout(function(){
+            angular.element($("#rightbar .nav-tabs li#events a")).triggerHandler("click");
+        },0);
+    }
+
+    $scope.$parent.hideEvent = function(event){
+        $scope.$parent.eventsScope.eventShowed = false;
+    }
+
+    $scope.$parent.submitEvent = function(){
+    }
+
+    /*  Pinned Items     */
+
+    $scope.$parent.showPinnedItem = function(pinnedItem){
+        switch(pinnedItem.type){
+            case '@':
+                $scope.$parent.showMention(pinnedItem);
+                break;
+            case 'e':
+                $scope.$parent.showEvent(pinnedItem);
+                break;
+            case 'p':
+                $scope.$parent.showPoll(pinnedItem);
+                break;
+            case 'q':
+                $scope.$parent.showQuestion(pinnedItem);
+                break;
+        }
+    }
+
+    $scope.$parent.setPinned = function(pinnedItem){
+        pinnedItem.pinned = true;
+        $timeout(function(){
+            angular.element($("#rightbar .nav-tabs li#pinned_items a")).triggerHandler("click");
+        },0);
+    }
+
+    $scope.$parent.unsetPinned = function(pinnedItem){
+        delete pinnedItem.pinned;
     }
 
   });
