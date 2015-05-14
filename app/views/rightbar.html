@@ -178,52 +178,21 @@
 
     <h6>Mentions</h6>
 
-    <ul class="mentions">
-      <li class="online">
-        <div class="media">
+    <ul class="mentions" ng-init="mentionsScope.filter={type:'@'};mentionsScope.empty=true">
+      <li ng-repeat="post in posts | filter:mentionsScope.filter">
+        <div class="media" ng-init="mentionsScope.empty=false">
           <a class="pull-left thumb thumb-sm" href="javascript:;">
-            <img class="media-object img-circle" src="images/random-avatar8.jpg" alt>
+            <img class="media-object img-circle" src="{{post.user.avatar}}" alt>
           </a>
           <div class="media-body">
-            <span class="media-heading">Anna <strong>Opichia</strong></span>
-            <small>@JohnDoe: Last week I read an article about the injection of...</small><br/>
-          </div>
-        </div>
-      </li>
-      <li class="online">
-        <div class="media">
-          <a class="pull-left thumb thumb-sm" href="javascript:;">
-            <img class="media-object img-circle" src="images/random-avatar8.jpg" alt>
-          </a>
-          <div class="media-body">
-            <span class="media-heading">Anna <strong>Opichia</strong></span>
-            <small>@JohnDoe: Last week I read an article about the injection of...</small><br/>
-          </div>
-        </div>
-      </li>
-      <li class="online">
-        <div class="media">
-          <a class="pull-left thumb thumb-sm" href="javascript:;">
-            <img class="media-object img-circle" src="images/random-avatar8.jpg" alt>
-          </a>
-          <div class="media-body">
-            <span class="media-heading">Anna <strong>Opichia</strong></span>
-            <small>@JohnDoe: Last week I read an article about the injection of...</small><br/>
-          </div>
-        </div>
-      </li>
-      <li class="online">
-        <div class="media">
-          <a class="pull-left thumb thumb-sm" href="javascript:;">
-            <img class="media-object img-circle" src="images/random-avatar8.jpg" alt>
-          </a>
-          <div class="media-body">
-            <span class="media-heading">Anna <strong>Opichia</strong></span>
-            <small>@JohnDoe: Last week I read an article about the injection of...</small><br/>
+            <span class="media-heading">{{post.user.firstname}} <strong>{{post.user.lastname}}</strong></span>
+            <small>{{post.body}}</small><br/>
           </div>
         </div>
       </li>
     </ul>
+
+    <span ng-if="mentionsScope.empty">There's no mentions about you yet.</span>
   </tab>
 
   <tab id="events">
