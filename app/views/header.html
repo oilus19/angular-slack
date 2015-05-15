@@ -57,40 +57,6 @@
           </ul>
 
         </li>
-
-        <li>
-          <div class="form-group ng-scope">
-            <div class="row">
-              <label class="col-xs-8 control-label">Fixed header</label>
-              <div class="col-xs-4 control-label">
-                <div class="onoffswitch lightred small" ng-click="$event.stopPropagation()">
-                  <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="fixed-header" checked="" ng-model="main.settings.headerFixed">
-                  <label class="onoffswitch-label" for="fixed-header">
-                    <span class="onoffswitch-inner"></span>
-                    <span class="onoffswitch-switch"></span>
-                  </label>
-                </div>
-              </div>
-            </div>
-          </div>
-        </li>
-
-        <li>
-          <div class="form-group ng-scope">
-            <div class="row">
-              <label class="col-xs-8 control-label">Fixed aside</label>
-              <div class="col-xs-4 control-label">
-                <div class="onoffswitch lightred small" ng-click="$event.stopPropagation()">
-                  <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="fixed-aside" checked="" ng-model="main.settings.asideFixed">
-                  <label class="onoffswitch-label" for="fixed-aside">
-                    <span class="onoffswitch-inner"></span>
-                    <span class="onoffswitch-switch"></span>
-                  </label>
-                </div>
-              </div>
-            </div>
-          </div>
-        </li>
       </ul>
     </li>
   </ul>
@@ -363,15 +329,13 @@
         </div>
 
         <ul class="list-group">
-          <li class="list-group-item p-20"><a>Join a Group</a></li>
+          <li class="list-group-item p-20"><a ui-sref="grouplist">Join a Group</a></li>
           <li class="list-group-item p-20"><a>Create a Group</a></li>
         </ul>
 
       </div>
 
     </li>
-    <li><a href="#">A</a></li>
-    <li><a href="#">M</a></li>
-    <li class="active"><a href="#">P</a></li>
+    <li ng-repeat="group in joinedGroup" ng-class="{active: group==currentGroup}"><a ui-sref="group.channel({group: '{{group.title}}', channel: 'General'})">{{group.initial}}</a></li>
   </ul>
 </div>

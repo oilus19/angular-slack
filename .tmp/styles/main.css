@@ -1812,6 +1812,9 @@ html.boxed-layout {
   padding-top: 0;
   z-index: 1; }
 
+  #getnear.header-fixed.aside-fixed.rightbar-hidden #content {
+    right: 0 !important; }
+
 #getnear.header-static #content {
   padding-left: 250px;
   padding-top: 0; }
@@ -1991,6 +1994,11 @@ header {
           background-color: #493d55;
           line-height: 45px;
           padding: 0 15px; }
+      #getnear.rightbar-disabled #header .nav-right > li.toggle-right-sidebar,
+      #getnear.rightbar-disabled #header .nav-left > li.toggle-right-sidebar {
+        display: none;
+      }
+
   #header .nav-left {
     margin-left: 0; }
     #header .nav-left > li.divided-right {
@@ -2631,7 +2639,7 @@ header {
   .pageheader .page-bar .page-toolbar {
     display: none; } }
 #getnear.rightbar-hidden #rightbar {
-  right: -250px; }
+  display: none; }
 
 #getnear.header-fixed.rightbar-show #rightbar,
 #getnear.aside-fixed.rightbar-show #rightbar {
@@ -2665,7 +2673,8 @@ header {
   -webkit-transition: all 0.25s cubic-bezier(0.6, 0.04, 0.98, 0.335);
   -moz-transition: all 0.25s cubic-bezier(0.6, 0.04, 0.98, 0.335);
   transition: all 0.25s cubic-bezier(0.6, 0.04, 0.98, 0.335);
-  overflow: auto; }
+  overflow: auto;
+  z-index: 100; }
   #rightbar .nav.nav-tabs {
     padding: 0;
     max-height: 45px;
@@ -4180,8 +4189,7 @@ check-toggler,
 .dropdown.settings .color-schemes {
   padding: 5px 10px;
   background-color: #f2f2f2;
-  border-bottom: 1px solid #e2e2e2;
-  margin-bottom: 10px; }
+  border-bottom: 1px solid #e2e2e2; }
   .dropdown.settings .color-schemes li:not(.title) {
     padding: 3px; }
     .dropdown.settings .color-schemes li:not(.title) > a {

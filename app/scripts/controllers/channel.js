@@ -2,13 +2,14 @@
 
 /**
  * @ngdoc function
- * @name getnearApp.controller:GroupChannelCtrl
+ * @name getnearApp.controller:ChannelCtrl
  * @description
- * # GroupChannelCtrl
+ * # ChannelCtrl
  * Controller of the getnearApp
  */
 angular.module('getnearApp')
-    .controller('GroupChannelCtrl', function ($scope, $timeout, $modal) {
+    .controller('ChannelCtrl', function ($scope, $timeout, $stateParams, $modal) {
+    $scope.$parent.currentChannel = $scope.$parent.getChannel($stateParams.channel);
     $scope.$parent.suggestions = ['@John Douey: '];
     $scope.$parent.questionsScope = {};
     $scope.$parent.pollsScope = {};
@@ -135,10 +136,10 @@ angular.module('getnearApp')
         }
 
         function reset(){
-            $scope.newPost = '';
+            $("#new_post_input").val('');
         }
         
-        var post_input = $scope.newPost.trim();
+        var post_input = $("#new_post_input").val().trim();
         var postType = getPostType(post_input);
         var postBody = getPostBody(post_input);
         var postAuthor = getPostAuthor(post_input);

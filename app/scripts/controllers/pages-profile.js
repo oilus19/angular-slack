@@ -10,7 +10,11 @@
 angular.module('getnearApp')
   .controller('ProfileCtrl', function ($scope) {
     $scope.page = {
-      title: 'Profile Page',
-      subtitle: 'Place subtitle here...'
+      title: 'Profile Page'
     };
+
+	$scope.setLayout = function() {
+	    $('body').removeClass('rightbar-show').addClass('rightbar-hidden').addClass('rightbar-disabled');
+	    $('#content').css('left','0');
+	}
   });

@@ -78,26 +78,67 @@ angular
 
   .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
 
-
-    $urlRouterProvider.otherwise('/app/channel');
+    $urlRouterProvider.otherwise('');
 
     $stateProvider
 
-    .state('app', {
-      url: '/app',
-      templateUrl: 'views/tmpl/app.html'
+    //login
+    .state('login', {
+      url: '/login',
+      controller: 'LoginCtrl',
+      templateUrl: 'views/tmpl/pages/login.html'
     })
-    //group channel
-    .state('app.channel', {
-      url: '/channel',
-      controller: 'GroupChannelCtrl',
-      templateUrl: 'views/tmpl/group/channel.html'
+    //signup
+    .state('signup', {
+      url: '/signup',
+      controller: 'SignupCtrl',
+      templateUrl: 'views/tmpl/pages/signup.html'
     })
-    //documentation
-    .state('app.group', {
-      url: '/group',
+    //forgotpass
+    .state('forgotpass', {
+      url: '/forgotpass',
+      controller: 'ForgotPasswordCtrl',
+      templateUrl: 'views/tmpl/pages/forgotpass.html'
+    })
+    //offline
+    .state('page-offline', {
+      url: '/page-offline',
+      templateUrl: 'views/tmpl/pages/page-offline.html'
+    })
+    //404
+    .state('page404', {
+      url: '/page404',
+      templateUrl: 'views/tmpl/pages/page404.html'
+    })
+    //500
+    .state('page500', {
+      url: '/page500',
+      templateUrl: 'views/tmpl/pages/page500.html'
+    })
+    //profile
+    .state('profile', {
+      url: '/profile',
+      controller: 'ProfileCtrl',
+      templateUrl: 'views/tmpl/pages/profile.html'
+    })
+    //grouplist
+    .state('grouplist', {
+      url: '',
+      controller: 'GroupListCtrl',
+      templateUrl: 'views/tmpl/group_list.html'
+    })
+    //group
+    .state('group', {
+      url: '/:group',
       controller: 'GroupCtrl',
       templateUrl: 'views/tmpl/group.html'
+    })
+    //channel
+    .state('group.channel', {
+      url: '/:channel',
+      controller: 'ChannelCtrl',
+      templateUrl: 'views/tmpl/channel.html'
     });
+
   }]);
 

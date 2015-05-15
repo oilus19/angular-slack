@@ -5,29 +5,36 @@
       <accordion-heading>
         Python Developers <i class="fa" ng-class="{'fa-angle-up': status.isFirstOpen, 'fa-angle-down': !status.isFirstOpen}"></i>
       </accordion-heading>
-      <h3 class="group-title">Python Developers</h4>
+      <h3 class="group-title">{{currentGroup.title}}</h4>
       <span class="heading">CHANNELS</span>
       <ul id="navigation" nav-collapse ripple>
-        <li ui-sref-active="active"><a><span>#General</span></a></li>
-        <li ui-sref-active="active" class="active"><a><span>#Nightlife</span></a></li>
-        <li ui-sref-active="active"><a><span>#Grocery Shopping</span></a></li>
-        <li ui-sref-active="active"><a><span>#Shopping</span></a></li>
-        <li ui-sref-active="active"><a><span>#JustGirls</span></a></li>
-        <li ui-sref-active="active"><a><span>#JustGuys</span></a></li>
-        <li ui-sref-active="active"><a><span>#Restaurants</span></a></li>
-        <li ui-sref-active="active"><a><span>#Deals</span></a></li>
+        <li ui-sref-active="active" ng-repeat="channel in channels" ng-class="{active: channel==currentChannel}"><a ui-sref="group.channel({group: '{{currentGroup.title}}', channel: '{{channel.title}}'})"><span>#{{channel.title}}</span></a></li>
+
+        <li class="dropdown messages" dropdown on-toggle="toggled(open)">
+
+          <a href class="dropdown-toggle" dropdown-toggle>
+            <span>Suggest a channel
+          </a>
+
+          <div class="dropdown-menu pull-left with-arrow panel panel-default animated littleFadeInDown" style="margin-top: 7px; left: 7px; min-width: 160px; ">
+
+            <div class="panel-heading pt-10 pb-10 pl-20">
+              You have <strong>2</strong> options
+            </div>
+
+            <ul class="list-group">
+              <li class="list-group-item p-20"><a ui-sref="group">Join a Group</a></li>
+              <li class="list-group-item p-20"><a>Create a Group</a></li>
+            </ul>
+
+          </div>
+
+        </li>
       </ul>
-      <span>Suggest a channel</span>
 
       <span class="heading">DIRECT MESSAGES</span>
       <ul id="navigation" class="direct-messages" nav-collapse ripple>
-        <li><a><span class="status"></span><span class="">benjamin</span></a></li>
-        <li><a><span class="status"></span><span>bntzio</span></a></li>
-        <li><a><span class="status"></span><span>fullfathomv</span></a></li>
-        <li><a><span class="status"></span><span>ianc</span></a></li>
-        <li><a><span class="status"></span><span>joe</span></a></li>
-        <li><a><span class="status"></span><span>kellyctalley</span></a></li>
-        <li><a><span class="status"></span><span>samhealy</span></a></li>
+        <li ng-repeat="user in users"><a><span class="status"></span><span>{{user.id}}</span></a></li>
       </ul>
       <span>+16 More...</span>
     </accordion-group>
