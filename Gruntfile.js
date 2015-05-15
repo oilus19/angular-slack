@@ -44,10 +44,6 @@ module.exports = function (grunt) {
         files: ['test/spec/{,*/}*.js'],
         tasks: ['newer:jshint:test', 'karma']
       },
-      //styles: {
-      //  files: ['<%= yeoman.app %>/sass/{,*/}*.scss'],
-      //  tasks: ['sass', 'newer:copy:styles', 'autoprefixer']
-      //},
       gruntfile: {
         files: ['Gruntfile.js']
       },
@@ -138,24 +134,6 @@ module.exports = function (grunt) {
       }
     },
 
-    // compile sass files
-    sass: {
-      dist: {
-        files: [{
-          expand: true,
-          cwd: '<%= yeoman.app %>/sass',
-          src: ['*.scss'],
-          dest: '<%= yeoman.app %>/styles',
-          ext: '.css'
-        }],
-
-        options: {
-          loadPath: [
-            './bower_components/bourbon/dist'
-          ]
-        }
-      }
-    },
 
     // Empties folders to start fresh
     clean: {
@@ -421,7 +399,6 @@ module.exports = function (grunt) {
       'clean:server',
       'wiredep',
       'concurrent:server',
-      //'sass',
       'autoprefixer',
       'connect:livereload',
       'watch'
@@ -445,7 +422,6 @@ module.exports = function (grunt) {
     'clean:dist',
     'wiredep',
     'useminPrepare',
-    //'sass',
     'concurrent:dist',
     'autoprefixer',
     'concat',

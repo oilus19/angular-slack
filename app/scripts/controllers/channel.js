@@ -9,104 +9,10 @@
  */
 angular.module('getnearApp')
     .controller('ChannelCtrl', function ($scope, $timeout, $stateParams, $modal) {
+
     $scope.$parent.currentChannel = $scope.$parent.getChannel($stateParams.channel);
-    $scope.$parent.suggestions = ['@John Douey: '];
-    $scope.$parent.questionsScope = {};
-    $scope.$parent.pollsScope = {};
-    $scope.$parent.eventsScope = {};
-    $scope.$parent.mentionsScope = {};
-    $scope.$parent.Math = window.Math;
 
-
-    $scope.$parent.posts = [{
-      type: "q",
-      body: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue.",
-      timeline: "Just Now",
-      pinned: true,
-      user: {
-        firstname: 'Wood',
-        lastname: 'Walton',
-        avatar: 'images/random-avatar1.jpg'
-      },
-      answers: [{
-        body: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue.",
-        user: {
-          firstname: 'John',
-          lastname: 'Douey',
-          avatar: 'images/profile-photo.jpg'
-        }
-      },{
-        body: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue.",
-        user: {
-          firstname: 'John',
-          lastname: 'Douey',
-          avatar: 'images/profile-photo.jpg'
-        }
-      }]
-    },{
-      type: "p",
-      body: "Which is the best responsive freamework to start web designing?",
-      options: [{
-        title: 'Bootstrap Framework',
-        votes: 10
-      },{
-        title: 'Foundation',
-        votes: 5
-      },{
-        title: 'Kune',
-        votes: 3
-      }],
-        timeline: "39 minutes ago",
-        user: {
-            firstname: 'Mike',
-            lastname: 'Stuart',
-            avatar: 'images/random-avatar2.jpg'
-        }
-    },{
-      type: "e",
-      body: "Meetup next friday at 19:00",
-      info: "Good news, everyone! Office hours has a new home at http://learn.nycphyhon.org/. We'll stop posting events to the main NYC phython page after next month. To RSVP for this event, please go here: http://getnear.co/k23124.",
-      location: "34 W. 3rd Ave. 4th floor",
-      date: "Friday 12 of May",
-      time: "19:00",
-      price: "free",
-        timeline: "2 hours ago",
-        user: {
-            firstname: 'Robin',
-            lastname: 'Wills',
-            avatar: 'images/random-avatar3.jpg'
-        }
-    },{
-      type: "@",
-      to: 'John Douey',
-      body: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue.",
-        timeline: "2 hours ago",
-        user: {
-            firstname: 'Imrich',
-            lastname: 'Kamarel',
-            avatar: 'images/random-avatar4.jpg'
-        }
-    },{
-      type: "@",
-      to: 'John Douey',
-      body: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue.",
-        timeline: "2 hours ago",
-        user: {
-            firstname: 'Imrich',
-            lastname: 'Kamarel',
-            avatar: 'images/random-avatar4.jpg'
-        }
-    },{
-      type: "@",
-      to: 'John Douey',
-      body: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue.",
-        timeline: "2 hours ago",
-        user: {
-            firstname: 'Imrich',
-            lastname: 'Kamarel',
-            avatar: 'images/random-avatar4.jpg'
-        }
-    }];
+    $scope.$parent.resize();
 
     $scope.$parent.getPostBody = function(post){
         return post.body;
@@ -116,6 +22,8 @@ angular.module('getnearApp')
         function getPostType(post){
             if(post.indexOf('q:') === 0) return 'q';
             if(post.indexOf('@') === 0) return '@';
+            if(post.indexOf('e:') === 0) return 'e';
+            if(post.indexOf('p:') === 0) return 'p';
         }
 
         function getPostBody(post){
@@ -157,6 +65,12 @@ angular.module('getnearApp')
             case '@':
                 post.to = getPostTo(post_input);
                 $scope.$parent.posts.push(post);
+                break;
+            case 'e':
+                $scope.$parent.newEvent();
+                break;
+            case 'p':
+                $scope.$parent.newPoll();
                 break;
         }
 
@@ -237,7 +151,38 @@ angular.module('getnearApp')
 
     /*  Poll     */
 
+
+
+
     $scope.$parent.newPoll = function(){
+      var modalInstance = $modal.open({
+        templateUrl: 'createPollModalContent.html',
+        controller: 'CreatePollModalInstanceCtrl',
+        size: 'lg'
+      });
+
+      modalInstance.result.then(function (result) {
+
+        function getPostAuthor(){
+            var author = {
+                firstname: 'John',
+                lastname: 'Douey',
+                avatar: 'images/profile-photo.jpg'
+            }
+            return author;
+        }
+
+        var poll = {
+          type: "p",
+          body: result.question,
+          options: result.options,
+          timeline: "Just now",
+          user: getPostAuthor()
+        }
+        $scope.$parent.posts.push(poll);
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
     }
 
     $scope.$parent.showPoll = function(poll){
@@ -258,9 +203,6 @@ angular.module('getnearApp')
         $scope.$parent.pollsScope.pollShowed = false;
     }
 
-    $scope.$parent.submitPoll = function(){
-    }
-
     $scope.$parent.submitVote = function(poll){
         if($scope.$parent.pollsScope.selectedPollOption==undefined) return;
         poll.options[$scope.$parent.pollsScope.selectedPollOption].votes ++;
@@ -271,6 +213,38 @@ angular.module('getnearApp')
     /*  Events     */
 
     $scope.$parent.newEvent = function(){
+      var modalInstance = $modal.open({
+        templateUrl: 'createEventModalContent.html',
+        controller: 'CreateEventModalInstanceCtrl',
+        size: 'lg'
+      });
+
+      modalInstance.result.then(function (result) {
+
+        function getPostAuthor(){
+            var author = {
+                firstname: 'John',
+                lastname: 'Douey',
+                avatar: 'images/profile-photo.jpg'
+            }
+            return author;
+        }
+
+        var event = {
+          type: "e",
+          body: result.title,
+          info: result.info,
+          location: result.location,
+          date: result.date,
+          time: result.time,
+          price: result.price,
+          timeline: "Just now",
+          user: getPostAuthor()
+        }
+        $scope.$parent.posts.push(event);
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
     }
 
     $scope.$parent.showEvent = function(event){
@@ -347,3 +321,108 @@ angular.module('getnearApp')
         });
     };
 });
+
+
+angular.module('getnearApp')
+  .controller('CreatePollModalInstanceCtrl', function ($scope, $modalInstance) {
+
+    $scope.options = [{
+        title: "",
+        votes: 0
+    },{
+        title: "",
+        votes: 0
+    }];
+
+    $scope.create = function () {
+      $modalInstance.close({question: $scope.question, options: $scope.options});
+    };
+
+    $scope.addQuestion = function() {
+        $scope.options.push({title: "", votes: 0});
+    }
+  })
+
+  .controller('CreateEventModalInstanceCtrl', function ($scope, $modalInstance) {
+    
+    $scope.price = "$ ";
+    $scope.free = true;
+    $scope.dt = new Date();
+    $scope.mytime = new Date();
+
+    $scope.create = function () {
+      var date = $scope.dt.toLocaleDateString();
+      var time = $scope.mytime.toLocaleTimeString();
+      $modalInstance.close({title: $scope.title, info: $scope.info, location: $scope.location, date: date, time: time, price: (($scope.free==true)?'free':$scope.price)});
+    };
+  })
+
+  .controller('DatepickerCtrl', function ($scope) {
+
+    $scope.today = function() {
+      $scope.dt = new Date();
+    };
+
+    $scope.today();
+
+    $scope.clear = function () {
+      $scope.dt = null;
+    };
+
+    // Disable weekend selection
+    $scope.disabled = function(date, mode) {
+      return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
+    };
+
+    $scope.toggleMin = function() {
+      $scope.minDate = $scope.minDate ? null : new Date();
+    };
+    $scope.toggleMin();
+
+    $scope.open = function($event) {
+      $event.preventDefault();
+      $event.stopPropagation();
+
+      $scope.opened = true;
+    };
+
+    $scope.dateOptions = {
+      formatYear: 'yy',
+      startingDay: 1,
+      'class': 'datepicker'
+    };
+
+    $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+    $scope.format = $scope.formats[0];
+  })
+  .controller('TimepickerCtrl', function ($scope) {
+    $scope.mytime = new Date();
+
+    $scope.hstep = 1;
+    $scope.mstep = 15;
+
+    $scope.options = {
+      hstep: [1, 2, 3],
+      mstep: [1, 5, 10, 15, 25, 30]
+    };
+
+    $scope.ismeridian = true;
+    $scope.toggleMode = function() {
+      $scope.ismeridian = ! $scope.ismeridian;
+    };
+
+    $scope.update = function() {
+      var d = new Date();
+      d.setHours( 14 );
+      d.setMinutes( 0 );
+      $scope.mytime = d;
+    };
+
+    $scope.changed = function () {
+      console.log('Time changed to: ' + $scope.mytime);
+    };
+
+    $scope.clear = function() {
+      $scope.mytime = null;
+    };
+  });

@@ -4,13 +4,13 @@ angular
   .module('getnearApp')
   .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
 
-    $urlRouterProvider.otherwise('');
+    $urlRouterProvider.otherwise('/');
 
     $stateProvider
 
     //login
     .state('login', {
-      url: '/login',
+      url: '/',
       controller: 'LoginCtrl',
       templateUrl: 'views/tmpl/pages/login.html'
     })
@@ -47,15 +47,9 @@ angular
       controller: 'ProfileCtrl',
       templateUrl: 'views/tmpl/pages/profile.html'
     })
-    //chat
-    .state('chat', {
-      url: '/chat',
-      controller: 'ChatCtrl',
-      templateUrl: 'views/tmpl/chat.html'
-    })
     //grouplist
     .state('grouplist', {
-      url: '',
+      url: 'groups',
       controller: 'GroupListCtrl',
       templateUrl: 'views/tmpl/group_list.html'
     })
@@ -64,6 +58,12 @@ angular
       url: '/:group',
       controller: 'GroupCtrl',
       templateUrl: 'views/tmpl/group.html'
+    })
+    //chat
+    .state('group.chat', {
+      url: '/chat/:user',
+      controller: 'ChatCtrl',
+      templateUrl: 'views/tmpl/chat.html'
     })
     //channel
     .state('group.channel', {

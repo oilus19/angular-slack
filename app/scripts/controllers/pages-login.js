@@ -10,6 +10,6 @@
 angular.module('getnearApp')
   .controller('LoginCtrl', function ($scope, $state) {
     $scope.login = function() {
-      $state.go('group');
+      $state.go('grouplist');
     };
   });

@@ -2239,6 +2239,18 @@ header {
   margin-top: 0px;
 }
 
+#sidebar .group-title .initial {
+  display: none;
+}
+
+#sidebar a.with-icon i,
+#sidebar a.with-icon i {
+  display: none; }
+
+#sidebar a.with-icon span,
+#sidebar a.with-icon span {
+  display: block; }
+
 #sidebar .direct-messages .status {
   line-height: 1;
   width: 10px;
@@ -2258,7 +2270,7 @@ header {
   list-style: none;
   background-color: #493d55; }
   #navigation > li > a > i {
-    display: inline-block;
+    display: none;
     margin-right: 10px;
     text-align: center;
     font-size: 14px;
@@ -2267,6 +2279,22 @@ header {
     -webkit-transition: all 0.1s linear;
     -moz-transition: all 0.1s linear;
     transition: all 0.1s linear; }
+  #navigation > li > a.cog {
+    position: absolute;
+    right: 0px;
+    top: 5px; }
+  #navigation > li > a.cog > i {
+    display: block;
+    margin-right: 0; }
+  #navigation > li:hover > a.cog {
+    background: none; }
+  #navigation > li > a.cog:hover {
+    cursor: pointer;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s; }
+  #navigation > li> a.cog:hover  > i {
+    font-size: 15px; }
   #navigation > li {
     position: relative;
     margin: 0;
@@ -2390,9 +2418,11 @@ header {
   .sidebar-sm #sidebar accordion .panel-heading,
   .sidebar-sm #sidebar accordion .charts,
   .sidebar-sm #sidebar accordion .settings,
+  .sidebar-sm #sidebar accordion .heading,
   .sidebar-xs #sidebar accordion .panel-heading,
   .sidebar-xs #sidebar accordion .charts,
-  .sidebar-xs #sidebar accordion .settings {
+  .sidebar-xs #sidebar accordion .settings,
+  .sidebar-xs #sidebar accordion .heading {
     display: none; }
   .sidebar-sm #sidebar accordion .panel-body,
   .sidebar-xs #sidebar accordion .panel-body {
@@ -2412,8 +2442,7 @@ header {
       height: 100% !important; }
   .sidebar-sm #sidebar #navigation,
   .sidebar-xs #sidebar #navigation {
-    margin: 0 -10px;
-    height: 100%; }
+    margin: 0 -10px; }
     .sidebar-sm #sidebar #navigation > li,
     .sidebar-xs #sidebar #navigation > li {
       overflow: visible; }
@@ -2427,6 +2456,9 @@ header {
           display: block;
           margin: 0 auto 3px;
           font-size: 22px; }
+      .sidebar-sm #sidebar #navigation > li > a.cog,
+      .sidebar-xs #sidebar #navigation > li > a.cog {
+        display: none; }
         .sidebar-sm #sidebar #navigation > li > a > .label,
         .sidebar-xs #sidebar #navigation > li > a > .label {
           display: none; }
@@ -2463,6 +2495,25 @@ header {
       .sidebar-sm #sidebar #navigation > li li.submenu:hover > ul,
       .sidebar-xs #sidebar #navigation > li li.submenu:hover > ul {
         display: block !important; }
+
+  .sidebar-sm #sidebar .group-title .title,
+  .sidebar-xs #sidebar .group-title .title {
+    display: none; }
+
+  .sidebar-sm #sidebar .group-title .initial,
+  .sidebar-xs #sidebar .group-title .initial {
+    display: block;
+    text-align: center;
+    margin-top: 10px; }
+
+  .sidebar-sm #sidebar a.with-icon i,
+  .sidebar-xs #sidebar a.with-icon i {
+    display: block;
+    text-align: center; }
+
+  .sidebar-sm #sidebar a.with-icon span,
+  .sidebar-xs #sidebar a.with-icon span {
+    display: none; }
 
 #getnear.header-fixed.sidebar-sm #content {
   left: 80px;
@@ -2660,7 +2711,8 @@ header {
   padding-right: 250px; }
 
 #rightbar {
-  width: 250px;
+  width: 280px;
+  min-width: 280px;
   position: fixed;
   font-size: 12px;
   top: 90px;

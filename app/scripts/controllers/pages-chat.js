@@ -8,10 +8,9 @@
  * Controller of the getnearApp
  */
 angular.module('getnearApp')
-  .controller('ChatCtrl', function ($scope, $resource) {
-    $scope.inbox = $resource('scripts/jsons/chats.json').query();
+  .controller('ChatCtrl', function ($scope, $resource, $stateParams) {
 
-    $scope.archive = function(index) {
-      $scope.inbox.splice(index, 1);
-    };
+    $scope.chatWith = $scope.$parent.getUser($stateParams.user);
+
+    $scope.$parent.resize();
   });

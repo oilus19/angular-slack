@@ -13,7 +13,7 @@
         <div class="mb-40 group-filter">
           <span class="mr-10 mt-5 inline-block">Filters:</span>
           
-          <ui-select ng-model="filter.status"  ng-disabled="disabled" class="w-sm inline-block mb-10">
+          <ui-select ng-model="groupfilter.status"  ng-disabled="disabled" class="w-sm inline-block mb-10">
             <ui-select-match placeholder="Select a status...">{{$select.selected.title}}</ui-select-match>
             <ui-select-choices repeat="status in groupStatus | filter: $select.search">
               <span ng-bind-html="status.title | highlight: $select.search"></span>
@@ -21,7 +21,7 @@
           </ui-select>
 
           <span class="mr-20"/>
-          <ui-select ng-model="filter.category"  ng-disabled="disabled" class="w-md inline-block mb-10">
+          <ui-select ng-model="groupfilter.category"  ng-disabled="disabled" class="w-md inline-block mb-10">
             <ui-select-match placeholder="Select a category...">{{$select.selected.title}}</ui-select-match>
             <ui-select-choices repeat="category in groupCategories | filter: $select.search">
               <span ng-bind-html="category.title | highlight: $select.search"></span>
@@ -34,7 +34,7 @@
 
           <!-- col -->
           <div class="card-container col-lg-3 col-md-4 col-sm-6 col-xs-12" ng-repeat="group in groups">
-            <div class="card" ng-if="(!filter.status || group.status==filter.status.title) && (!filter.category || group.category==filter.category.title)">
+            <div class="card" ng-if="(!groupfilter.status || group.status==groupfilter.status.title) && (!groupfilter.category || group.category==groupfilter.category.title)">
               <div class="front bg-greensea">
 
                 <!-- row -->

@@ -244,6 +244,52 @@
 
       <span ng-if="eventsScope.empty">There's no events yet.</span>
       <div class="new-post" ng-if="eventsScope.empty"><button type="button" class="btn btn-greensea" ng-click="newEvent()">Click here to create your first event</button></div>
+
+      <script type="text/ng-template" id="createEventModalContent.html">
+                <div class="modal-header p-30 pb-0">
+                  <h3 class="modal-title custom-font">Create your event</h3>
+                </div>
+                <div class="modal-body p-30">
+                    <div class="mb-10">
+                      <span>Title</span><br/>
+                      <input type="text" class="form-control" ng-model="title">
+                    </div>
+                    <div class="mb-10">
+                      <span>Information about the event</span><br/>
+                      <textarea class="form-control" ng-model="info"></textarea>
+                    </div>
+                    <div class="mb-10">
+                      <span>Location</span><br/>
+                      <input type="text" class="form-control" ng-model="location">
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-4 col-xs-12 mt-5 pt-10" ng-controller="DatepickerCtrl">
+
+                            <span>Date & Time</span><br/>
+                            <p class="input-group">
+                              <input type="text" id="event_date" class="form-control" datepicker-popup="{{format}}" ng-model="$parent.dt" is-open="opened" min-date="minDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                              <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="fa fa-calendar"></i></button>
+                              </span>
+                            </p>
+                      </div>
+
+                      <div class="col-sm-4 col-xs-12" ng-controller="TimepickerCtrl" id="event_timepicker">
+
+                        <timepicker ng-model="$parent.mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+                      </div>
+
+                      <div class="col-sm-4 col-xs-12 mt-5 pt-10">
+                        <span>Price</span><br/>
+                        <button type="button" class="btn btn-default mr-10 mb-10" ng-click="free=(free==true)?false:true"><i class="fa fa-check" ng-if="free==true"/><i class="fa fa-check" ng-if="free==false" style="opacity:0"/></span></button><span class="mr-10 mb-10">Free</span>
+                        <input type="text" class="form-control inline-block" ng-model="price" ng-disabled="free==true" style="width:100px"/>
+                      </div>
+                    </div>
+                </div>
+                <div class="modal-footer pr-30">
+                  <button class="btn btn-greensea btn-lg" ng-click="create()">Create event</button>
+                </div>
+              </script>
     </div>
 
     <div ng-if="eventsScope.eventShowed">
@@ -296,6 +342,28 @@
 
       <span ng-if="pollsScope.empty">There's no polls yet.</span>
       <div class="new-post" ng-if="pollsScope.empty"><button type="button" class="btn btn-greensea" ng-click="newPoll()">Click here to create your first poll</button></div>
+
+      <script type="text/ng-template" id="createPollModalContent.html">
+                <div class="modal-header p-30 pb-0">
+                  <h3 class="modal-title custom-font">Create your poll</h3>
+                </div>
+                <div class="modal-body p-30">
+                  <ul class="list-unstyled">
+                    <li class="mb-10">
+                      <span>Question</span><br/>
+                      <input type="text" class="form-control" ng-model="question">
+                    </li>
+                    <li ng-repeat="option in options" class="mb-10">
+                      <span>Option {{$index+1}}</span><br/>
+                      <input type="text" class="form-control" ng-model="option.title">
+                    </li>
+                  </ul>
+                  <span class="pull-right">add question<a class="icon icon-default trasparent icon-ef-1 icon-ef-1a" ng-click="addQuestion()"><i class="fa fa-plus"/></a></span>
+                </div>
+                <div class="modal-footer pr-30" style="clear:both">
+                  <button class="btn btn-greensea btn-lg" ng-click="create()">Create poll</button>
+                </div>
+              </script>
     </div>
 
     <div ng-if="pollsScope.pollShowed">

@@ -5,16 +5,21 @@
       <accordion-heading>
         Python Developers <i class="fa" ng-class="{'fa-angle-up': status.isFirstOpen, 'fa-angle-down': !status.isFirstOpen}"></i>
       </accordion-heading>
-      <h3 class="group-title">{{currentGroup.title}}</h4>
+      <h3 class="group-title">
+        <span class="initial">
+          <span ng-if="!currentGroup.icon || currentGroup.icon==''">{{currentGroup.initial}}</span><i class="fa {{currentGroup.icon}}" ng-if="currentGroup.icon"/>
+        </span>
+        <span class="title">{{currentGroup.title}}</span>
+      </h3>
       <span class="heading">CHANNELS</span>
       <ul id="navigation" nav-collapse ripple>
-        <li ui-sref-active="active" ng-repeat="channel in channels" ng-class="{active: channel==currentChannel}"><a ui-sref="group.channel({group: '{{currentGroup.title}}', channel: '{{channel.title}}'})"><span>#{{channel.title}}</span></a></li>
+        <li ui-sref-active="active" ng-repeat="channel in channels" ng-class="{active: channel==currentChannel}"><a ui-sref="group.channel({group: '{{currentGroup.title}}', channel: '{{channel.title}}'})"><i class="fa {{channel.icon}}"/><span>#{{channel.title}}</span></a><a class="cog" ng-click="selectChannelIcon(channel)"><i class="fa fa-cog"/></a></li>
       </ul>
 
-      <div class="dropdown suggest-channel">
+      <div class="dropdown suggest-channel mt-10">
 
-        <a href class="dropdown-toggle text-default" onclick="$(this).next().toggle()">
-          <span class="mt-5 mb-5 inline-block">Suggest a channel</span>
+        <a href class="dropdown-toggle text-default with-icon" onclick="$(this).next().toggle()">
+          <i class="fa fa-cog"/><span class="mt-5 mb-5">Suggest a channel</span>
         </a>
 
         <div class="dropdown-menu pull-left with-arrow panel panel-default animated littleFadeInDown" style="margin-top: 15px;  min-width: 220px; ">
@@ -34,7 +39,7 @@
 
       <span class="heading">DIRECT MESSAGES</span>
       <ul id="navigation" class="direct-messages" nav-collapse ripple>
-        <li ng-repeat="user in users"><a><span class="status"></span><span>{{user.id}}</span></a></li>
+        <li ng-repeat="user in users"><a ui-sref="group.chat({group:'{{currentGroup.title}}', user:'{{user.id}}'})"><span class="status"></span><span>{{user.id}}</span></a></li>
       </ul>
       <span>+16 More...</span>
     </accordion-group>
