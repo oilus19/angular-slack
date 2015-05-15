@@ -10,11 +10,6 @@
 angular.module('getnearApp')
     .controller('GroupListCtrl', function ($scope, $timeout, $modal, $state) {
 
-        $scope.setLayout = function() {
-            $('body').removeClass('rightbar-show').addClass('rightbar-hidden').addClass('rightbar-disabled');
-            $('#content').css('left','0');
-        }
-
         $scope.joinGroup = function(group) {
             $scope.$parent.joinedGroup.push(group);
             $state.go("group.channel",{group: group.title, channel: 'General'});

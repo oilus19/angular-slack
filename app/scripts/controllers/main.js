@@ -9,7 +9,7 @@
  */
 angular.module('getnearApp')
   .controller('MainCtrl', function ($scope, $http) {
-alert('1');
+
     $scope.main = {
       title: 'getnear',
       settings: {

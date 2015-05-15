@@ -9,28 +9,28 @@
       <span class="heading">CHANNELS</span>
       <ul id="navigation" nav-collapse ripple>
         <li ui-sref-active="active" ng-repeat="channel in channels" ng-class="{active: channel==currentChannel}"><a ui-sref="group.channel({group: '{{currentGroup.title}}', channel: '{{channel.title}}'})"><span>#{{channel.title}}</span></a></li>
+      </ul>
 
-        <li class="dropdown messages" dropdown on-toggle="toggled(open)">
+      <div class="dropdown suggest-channel">
 
-          <a href class="dropdown-toggle" dropdown-toggle>
-            <span>Suggest a channel
-          </a>
+        <a href class="dropdown-toggle text-default" onclick="$(this).next().toggle()">
+          <span class="mt-5 mb-5 inline-block">Suggest a channel</span>
+        </a>
 
-          <div class="dropdown-menu pull-left with-arrow panel panel-default animated littleFadeInDown" style="margin-top: 7px; left: 7px; min-width: 160px; ">
+        <div class="dropdown-menu pull-left with-arrow panel panel-default animated littleFadeInDown" style="margin-top: 15px;  min-width: 220px; ">
 
-            <div class="panel-heading pt-10 pb-10 pl-20">
-              You have <strong>2</strong> options
-            </div>
-
-            <ul class="list-group">
-              <li class="list-group-item p-20"><a ui-sref="group">Join a Group</a></li>
-              <li class="list-group-item p-20"><a>Create a Group</a></li>
-            </ul>
-
+          <div class="panel-heading pt-10 pb-10 pl-20">
+            Write the channel that you want
           </div>
 
-        </li>
-      </ul>
+          <div class="input-group">
+            <input type="text" id="new_channel_input" class="form-control" placeholder="write here..." ng-model="newChannel">
+            <span class="input-group-btn"><button class="btn btn-default" type="button" ng-click="submitChannel(newChannel)"><i class="fa fa-arrow-right"/></button></span>
+          </div>
+
+        </div>
+
+      </div>
 
       <span class="heading">DIRECT MESSAGES</span>
       <ul id="navigation" class="direct-messages" nav-collapse ripple>

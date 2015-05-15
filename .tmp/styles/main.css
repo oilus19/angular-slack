@@ -2164,11 +2164,12 @@ header {
         background-color: transparent;
         -webkit-box-shadow: none;
         box-shadow: none; }
-        #sidebar accordion .panel-group .panel > .panel-heading {
+        #sidebar accordion > .panel-group > .panel > .panel-heading {
           background-color: transparent;
           border: 0;
           text-transform: uppercase;
-          padding: 0 15px; }
+          padding: 0 15px;
+          display: none; }
           #sidebar accordion .panel-group .panel > .panel-heading .panel-title {
             border-bottom: 1px solid rgba(255, 255, 255, 0.2); }
             #sidebar accordion .panel-group .panel > .panel-heading .panel-title > a {
@@ -2233,9 +2234,6 @@ header {
   padding: 5px 0px;
 }
 
-#sidebar .panel-heading {
-  display: none;
-}
 #sidebar .group-title {
   color: white;
   margin-top: 0px;
@@ -11657,29 +11655,6 @@ hr.line-full {
 
 #header #group_nav>ul>li.active>a {
   background-color: #16A085;
-}
-
-.page-channel .pageheader {
-  margin: -20px -20px 70px -20px;
-  background-color: white;
-  padding: 15px 20px;
-}
-
-.page-channel .pageheader h3 {
-  margin: 0;
-  font-size: 22px;
-  color: #565656;
-}
-
-.page-channel .new-post .thumb {
-  padding-right: 20px;
-}
-
-.page-channel .new-post .media-body {
-  text-align: left;
-  border: 1px solid #DDD;
-  margin-left: 85px;
-  background-color: white;
 }
 
 .page-group .group-filter>*{

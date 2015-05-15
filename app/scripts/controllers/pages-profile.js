@@ -12,9 +12,4 @@ angular.module('getnearApp')
     $scope.page = {
       title: 'Profile Page'
     };
-
-	$scope.setLayout = function() {
-	    $('body').removeClass('rightbar-show').addClass('rightbar-hidden').addClass('rightbar-disabled');
-	    $('#content').css('left','0');
-	}
   });

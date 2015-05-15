@@ -5,7 +5,7 @@
   <section ui-view id="content" autoscroll="false" class="full-width">
 
 
-    <div class="page page-group" ng-init="setLayout()">
+    <div class="page page-group">
 
       <!-- page content -->
       <div class="pagecontent">
@@ -90,5 +90,12 @@
   </section>
 </div>
 
+<style>
+#header .nav-right > li.toggle-right-sidebar, #header .nav-left > li.toggle-right-sidebar {
+  display: none; }
 
+#content {
+  left: 0 !important;
+  right: 0 !important; }
+</style>
 

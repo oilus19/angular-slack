@@ -318,6 +318,18 @@ angular.module('getnearApp')
         delete pinnedItem.pinned;
     }
 
+
+    /* Channel */
+
+    $scope.$parent.submitChannel = function(title){
+        var channel = {
+            title: title,
+            initial: title.charAt(0).toUpperCase()
+        }
+        $scope.$parent.channels.push(channel);
+        $('.suggest-channel .dropdown-menu').toggle();
+    }
+
   });
 
 

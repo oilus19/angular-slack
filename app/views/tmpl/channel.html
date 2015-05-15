@@ -1,15 +1,15 @@
-<div class="page page-channel">
+<div class="page page-channel page-full">
 
   <!-- page header -->
-  <div class="pageheader">
+  <div class="pageheader p-15 bg-white b-b">
 
-    <h3>#{{currentChannel.title}}</h3>
+    <h3 class="custom-font m-0">#{{currentChannel.title}}</h3>
 
   </div>
   <!-- /page header -->
 
   <!-- page content -->
-  <div class="pagecontent">
+  <div class="pagecontent p-30">
     <div class="streamline mt-20">
 
       <article class="streamline-post" ng-repeat="post in posts">
@@ -49,18 +49,15 @@
         </div>
 
       </article>
-    </div>
-    
-    <div class="new-post mb-40">
 
-      <div class="media">
-        <div class="pull-left thumb">
-          <img class="media-object img-circle" src="images/profile-photo.jpg" alt="">
-        </div>
-        <div class="input-group">          
-          <input type="text" id="new_post_input" class="form-control" placeholder="Write your comment here" ng-model="newPost" auto-complete ui-items="suggestions">
-          <span class="input-group-btn"><button class="btn btn-default" type="button" ng-click="submitPost()">Post</button></span>
-        </div>
+      <div class="streamline-form pb-30">
+        <div class="thumb thumb-sm"><img class="img-circle" src="images/profile-photo.jpg" alt=""></div>
+        <form>
+          <div class="input-group">
+            <input type="text" id="new_post_input" class="form-control" placeholder="Write your comment here" ng-model="newPost" auto-complete ui-items="suggestions">
+            <span class="input-group-btn"><button class="btn btn-default" type="button" ng-click="submitPost()">Post</button></span>
+          </div>
+        </form>
       </div>
     </div>
 
