@@ -2415,11 +2415,11 @@ header {
     right: auto !important;
     left: 1px !important;
     width: 4px !important; }
-  .sidebar-sm #sidebar accordion .panel-heading,
+  .sidebar-sm #sidebar accordion > .panel-heading,
   .sidebar-sm #sidebar accordion .charts,
   .sidebar-sm #sidebar accordion .settings,
   .sidebar-sm #sidebar accordion .heading,
-  .sidebar-xs #sidebar accordion .panel-heading,
+  .sidebar-xs #sidebar accordion > .panel-heading,
   .sidebar-xs #sidebar accordion .charts,
   .sidebar-xs #sidebar accordion .settings,
   .sidebar-xs #sidebar accordion .heading {
@@ -2496,6 +2496,10 @@ header {
       .sidebar-xs #sidebar #navigation > li li.submenu:hover > ul {
         display: block !important; }
 
+      .sidebar-sm #sidebar #navigation.direct-messages > li > a,
+      .sidebar-xs #sidebar #navigation.direct-messages > li > a {
+        text-align: left;
+        white-space: nowrap; }
   .sidebar-sm #sidebar .group-title .title,
   .sidebar-xs #sidebar .group-title .title {
     display: none; }
@@ -2536,7 +2540,7 @@ header {
 #getnear:not(.header-fixed):not(.aside-fixed).sidebar-sm #header {
   padding-left: 0; }
 
-.sidebar-sm #sidebar,
+.sidebar-sm #sidebar accordion > .panel-group,
 .sidebar-sm #navigation {
   width: 80px; }
 .sidebar-sm #content {
@@ -2550,7 +2554,7 @@ header {
     width: 40px; }
     .sidebar-xs #header .branding > a > span {
       display: none; }
-.sidebar-xs #sidebar,
+.sidebar-xs #sidebar accordion > .panel-group,
 .sidebar-xs #navigation {
   width: 40px; }
 .sidebar-xs #sidebar #navigation > li > a {
