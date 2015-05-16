@@ -7,6 +7,7 @@
  * # NavCtrl
  * Controller of the getnearApp
  */
+
 angular.module('getnearApp')
   .controller('NavCtrl', function ($scope) {
     $scope.oneAtATime = false;
@@ -16,4 +17,12 @@ angular.module('getnearApp')
       isSecondOpen: true,
       isThirdOpen: true
     };
+
+    $('html').click(function(){
+    	$('.suggest-channel .dropdown-menu').hide();
+    });
+
+    $('.suggest-channel .dropdown-menu').click(function(event){
+    	event.stopPropagation();
+    })
   });
