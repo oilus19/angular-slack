@@ -16,9 +16,9 @@
         <li ui-sref-active="active" ng-repeat="channel in channels" ng-class="{active: channel==currentChannel}"><a ui-sref="group.channel({group: '{{currentGroup.title}}', channel: '{{channel.title}}'})"><i class="fa {{channel.icon}}"/><span>#{{channel.title}}</span></a><a class="cog" ng-click="selectChannelIcon(channel)"><i class="fa fa-cog"/></a></li>
       </ul>
 
-      <div class="dropdown suggest-channel mt-10">
+      <div class="dropdown suggest-channel mt-10" dropdown on-toggle="toggled(open)" auto-close="outsideClick">
 
-        <a href class="dropdown-toggle text-default with-icon" onclick="$(this).next().toggle()">
+        <a href class="dropdown-toggle text-default with-icon" dropdown-toggle>
           <i class="fa fa-cog"/><span class="mt-5 mb-5">Suggest a channel</span>
         </a>
 
