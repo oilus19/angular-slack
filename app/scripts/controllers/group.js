@@ -8,8 +8,6 @@
  * Controller of the getnearApp
  */
 angular.module('getnearApp')
-  .controller('GroupCtrl', function ($scope, $timeout, $stateParams, $modal) {
-    $scope.$parent.currentGroup = $scope.$parent.getGroup($stateParams.group);
-        
+  .controller('GroupCtrl', function ($scope, $timeout, $stateParams, $modal) {  
   });
 

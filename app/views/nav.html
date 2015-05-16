@@ -13,10 +13,12 @@
       </h3>
       <span class="heading">CHANNELS</span>
       <ul id="navigation" nav-collapse ripple>
-        <li ui-sref-active="active" ng-repeat="channel in channels" ng-class="{active: channel==currentChannel}"><a ui-sref="group.channel({group: '{{currentGroup.title}}', channel: '{{channel.title}}'})"><i class="fa {{channel.icon}}"/><span>#{{channel.title}}</span></a><a class="cog" ng-click="selectChannelIcon(channel)"><i class="fa fa-cog"/></a></li>
+        <li ui-sref-active="active" ng-repeat="channel in channels" ng-class="{active: channel==currentChannel}">
+          <a ui-sref="app.group.channel({group: '{{currentGroup.title}}', channel: '{{channel.title}}'})"><i class="fa {{channel.icon}}"/><span>#{{channel.title}}</span></a><a class="cog" ng-click="selectChannelIcon(channel)"><i class="fa fa-cog"/></a>
+        </li>
       </ul>
 
-      <div class="dropdown suggest-channel mt-10 mb-40" dropdown on-toggle="toggled(open)" auto-close="outsideClick">
+      <div class="dropdown suggest-channel mt-10 mb-40" dropdown on-toggle="toggled(open);navtoggle(open)" auto-close="outsideClick">
 
         <a href class="dropdown-toggle text-default with-icon" dropdown-toggle>
           <i class="fa fa-cog"/><span class="mt-5 mb-5">Suggest a channel</span>
@@ -39,7 +41,7 @@
 
       <span class="heading">DIRECT MESSAGES</span>
       <ul id="navigation" class="direct-messages" nav-collapse ripple>
-        <li ng-repeat="user in users"><a ui-sref="group.chat({group:'{{currentGroup.title}}', user:'{{user.id}}'})"><span class="status"></span><span>{{user.id}}</span></a></li>
+        <li ng-repeat="user in users"><a ui-sref="app.group.chat({group:'{{currentGroup.title}}', user:'{{user.id}}'})"><span class="status"></span><span>{{user.id}}</span></a></li>
       </ul>
       <span>+16 More...</span>
     </accordion-group>

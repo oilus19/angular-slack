@@ -16,5 +16,14 @@ angular.module('getnearApp')
       isFirstOpen: true,
       isSecondOpen: true,
       isThirdOpen: true
+    };      
+
+    $scope.$parent.resize();
+
+    $scope.navtoggle = function(open){
+    	if(open) 
+    		$("#sidebar").addClass('dropdown-open');
+    	else
+    		$("#sidebar").removeClass('dropdown-open');
     };
   });

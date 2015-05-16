@@ -9,8 +9,7 @@
  */
 angular.module('getnearApp')
   .controller('ChatCtrl', function ($scope, $resource, $stateParams) {
-
+	$scope.$parent.currentGroup = $scope.$parent.getGroup($stateParams.group);
     $scope.chatWith = $scope.$parent.getUser($stateParams.user);
 
-    $scope.$parent.resize();
   });

@@ -10,9 +10,8 @@
 angular.module('getnearApp')
     .controller('ChannelCtrl', function ($scope, $timeout, $stateParams, $modal) {
 
+    $scope.$parent.currentGroup = $scope.$parent.getGroup($stateParams.group);
     $scope.$parent.currentChannel = $scope.$parent.getChannel($stateParams.channel);
-
-    $scope.$parent.resize();
 
     $scope.$parent.getPostBody = function(post){
         return post.body;

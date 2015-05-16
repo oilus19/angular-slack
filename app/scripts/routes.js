@@ -10,7 +10,7 @@ angular
 
     //login
     .state('login', {
-      url: '/',
+      url: '',
       controller: 'LoginCtrl',
       templateUrl: 'views/tmpl/pages/login.html'
     })
@@ -41,35 +41,39 @@ angular
       url: '/page500',
       templateUrl: 'views/tmpl/pages/page500.html'
     })
+    //app
+    .state('app', {
+      url: '',
+      templateUrl: 'views/tmpl/app.html'
+    })
     //profile
-    .state('profile', {
+    .state('app.profile', {
       url: '/profile',
       controller: 'ProfileCtrl',
       templateUrl: 'views/tmpl/pages/profile.html'
     })
     //grouplist
-    .state('grouplist', {
-      url: 'groups',
+    .state('app.grouplist', {
+      url: '/groups',
       controller: 'GroupListCtrl',
       templateUrl: 'views/tmpl/group_list.html'
     })
     //group
-    .state('group', {
-      url: '/:group',
+    .state('app.group', {
+      url: '',
       controller: 'GroupCtrl',
       templateUrl: 'views/tmpl/group.html'
     })
     //chat
-    .state('group.chat', {
-      url: '/chat/:user',
+    .state('app.group.chat', {
+      url: '/:group/chat/:user',
       controller: 'ChatCtrl',
       templateUrl: 'views/tmpl/chat.html'
     })
     //channel
-    .state('group.channel', {
-      url: '/:channel',
+    .state('app.group.channel', {
+      url: '/:group/:channel',
       controller: 'ChannelCtrl',
       templateUrl: 'views/tmpl/channel.html'
     });
-
   }]);

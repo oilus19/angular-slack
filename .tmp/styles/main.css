@@ -2540,8 +2540,8 @@ header {
 #getnear:not(.header-fixed):not(.aside-fixed).sidebar-sm #header {
   padding-left: 0; }
 
-.sidebar-sm #sidebar accordion > .panel-group,
-.sidebar-sm #navigation {
+.sidebar-sm #sidebar,
+.sidebar-sm #sidebar accordion .panel-group {
   width: 80px; }
 .sidebar-sm #content {
   padding-left: 80px; }
@@ -2554,8 +2554,8 @@ header {
     width: 40px; }
     .sidebar-xs #header .branding > a > span {
       display: none; }
-.sidebar-xs #sidebar accordion > .panel-group,
-.sidebar-xs #navigation {
+.sidebar-xs #sidebar,
+.sidebar-xs #sidebar accordion .panel-group {
   width: 40px; }
 .sidebar-xs #sidebar #navigation > li > a {
   padding: 10px 5px; }
