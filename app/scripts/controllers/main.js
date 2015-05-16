@@ -355,7 +355,7 @@ angular.module('getnearApp')
 
 
 function resize(){
-  var width = ($(window).width()-$('#sidebar').width())*0.4;
+  var width = ($(window).width()-$('#sidebar accordion > .panel-group').width())*0.4;
   $("#rightbar").width(width);
   $("#content").css('right',width.toString()+"px");
 }
