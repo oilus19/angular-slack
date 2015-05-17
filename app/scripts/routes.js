@@ -74,6 +74,13 @@ angular
     .state('app.group.channel', {
       url: '/:group/:channel',
       controller: 'ChannelCtrl',
-      templateUrl: 'views/tmpl/channel.html'
+      templateUrl: 'views/tmpl/channel.html',
+      resolve: {
+        plugins: ['$ocLazyLoad', function($ocLazyLoad) {
+          return $ocLazyLoad.load([
+            'scripts/vendor/filestyle/bootstrap-filestyle.min.js'
+          ]);
+        }]
+      }
     });
   }]);

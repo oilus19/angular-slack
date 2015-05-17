@@ -509,7 +509,7 @@
                 <div class="modal-header p-30 pb-0">
                   <h3 class="modal-title custom-font">Create your sale</h3>
                 </div>
-                <div class="modal-body p-30">
+                <div class="modal-body p-30" ng-init="init()">
                   <ul class="list-unstyled">
                     <li class="mb-10">
                       <span>Title</span><br/>
@@ -519,6 +519,39 @@
                     <li class="mb-10">
                       <span>Price</span><br/>
                       <input type="text" class="form-control" ng-model="price">
+                    </li>
+                    
+                    <li class="mb-10">
+                      <span>Photo</span><br/>
+                      <input ui-jq="filestyle" type="file" class="filestyle" ui-options="{
+                        buttonText: 'Select image',
+                        iconName: 'fa fa-file-image-o'
+                      }" id="salePhotoInput">
+
+                      <div class="btn-group mt-20">
+                        <label class="btn btn-default" ng-model="cropType" btn-radio="'circle'">Circle</label>
+                        <label class="btn btn-default" ng-model="cropType" btn-radio="'square'">Square</label>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-8">
+
+                          <div class="p-10 bg-white b-a b-solid" style="height:320px">
+                            <img-crop
+                              image="myImage"
+                              result-image="myCroppedImage"
+                              result-image-size="160"
+                              area-type="{{cropType}}"
+                            ></img-crop>
+                          </div>
+
+                        </div>
+                        <div class="col-md-4">
+                          <div class="p-10 bg-white b-a b-solid inline-block">
+                            <img ng-src="{{myCroppedImage}}" />
+                          </div>
+                        </div>
+                      </div>
                     </li>
                   </ul>
                 </div>

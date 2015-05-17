@@ -8,7 +8,7 @@
  * Controller of the getnearApp
  */
 angular.module('getnearApp')
-    .controller('ChannelCtrl', function ($rootScope, $scope, $timeout, $stateParams, $modal) {
+    .controller('ChannelCtrl', function ($rootScope, $scope, $timeout, $stateParams, $modal, $log) {
 
     $rootScope.currentGroup = $rootScope.getGroup($stateParams.group);
     $rootScope.currentChannel = $rootScope.getChannel($stateParams.channel);
@@ -396,11 +396,28 @@ angular.module('getnearApp')
   })
 
   .controller('CreateSaleModalInstanceCtrl', function ($scope, $modalInstance) {
-    
+    $scope.myImage='';
+    $scope.myCroppedImage='';
+    $scope.cropType='circle';
     $scope.price = "$ ";
 
+    var handleFileSelect=function(evt) {
+      var file=evt.currentTarget.files[0];
+      var reader = new FileReader();
+      reader.onload = function (evt) {
+        $scope.$apply(function($scope){
+          $scope.myImage=evt.target.result;
+        });
+      };
+      reader.readAsDataURL(file);
+    };
+
+    $scope.init = function() {
+        angular.element(document.querySelector('#salePhotoInput')).on('change',handleFileSelect);
+    }
+
     $scope.create = function () {
-      $modalInstance.close({title: $scope.title, price: $scope.price, photo: $scope.photo});
+      $modalInstance.close({title: $scope.title, price: $scope.price, photo: $scope.myCroppedImage});
     };
   })
 
@@ -472,4 +489,21 @@ angular.module('getnearApp')
     $scope.clear = function() {
       $scope.mytime = null;
     };
+  })
+  .controller('ImageCropCtrl', function ($scope) {
+    $scope.myImage='';
+    $scope.myCroppedImage='';
+    $scope.cropType='circle';
+
+    var handleFileSelect=function(evt) {
+      var file=evt.currentTarget.files[0];
+      var reader = new FileReader();
+      reader.onload = function (evt) {
+        $scope.$apply(function($scope){
+          $scope.myImage=evt.target.result;
+        });
+      };
+      reader.readAsDataURL(file);
+    };
+    angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
   });
