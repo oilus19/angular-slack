@@ -182,6 +182,17 @@ angular.module('getnearApp')
             avatar: 'images/random-avatar3.jpg'
         }
     },{
+      type: "s",
+      body: "Black Mini Dress",
+      photo: "http://arasar.hanathemes.com/wp-content/uploads/2013/12/982-400x560.jpg",
+      price: "$99",
+        timeline: "2 hours ago",
+        user: {
+            firstname: 'Robin',
+            lastname: 'Wills',
+            avatar: 'images/random-avatar3.jpg'
+        }
+    },{
       type: "@",
       to: 'John Douey',
       body: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue.",
@@ -218,6 +229,7 @@ angular.module('getnearApp')
     $rootScope.pollsScope = {};
     $rootScope.eventsScope = {};
     $rootScope.mentionsScope = {};
+    $rootScope.salesScope = {};
     $scope.Math = window.Math;
 
     $rootScope.getGroup = function(title){

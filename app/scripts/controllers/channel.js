@@ -24,6 +24,7 @@ angular.module('getnearApp')
             if(post.indexOf('@') === 0) return '@';
             if(post.indexOf('e:') === 0) return 'e';
             if(post.indexOf('p:') === 0) return 'p';
+            if(post.indexOf('s:') === 0) return 's';
         }
 
         function getPostBody(post){
@@ -71,6 +72,9 @@ angular.module('getnearApp')
                 break;
             case 'p':
                 $rootScope.newPoll();
+                break;
+            case 's':
+                $rootScope.newSale();
                 break;
         }
 
@@ -289,6 +293,55 @@ angular.module('getnearApp')
         delete pinnedItem.pinned;
     }
 
+    /*  Sales     */
+
+
+
+
+    $rootScope.newSale = function(){
+      var modalInstance = $modal.open({
+        templateUrl: 'createSaleModalContent.html',
+        controller: 'CreateSaleModalInstanceCtrl',
+        size: 'lg'
+      });
+
+      modalInstance.result.then(function (result) {
+
+        function getPostAuthor(){
+            var author = {
+                firstname: 'John',
+                lastname: 'Douey',
+                avatar: 'images/profile-photo.jpg'
+            }
+            return author;
+        }
+
+        var sale = {
+          type: "s",
+          body: result.title,
+          photo: result.photo,
+          price: result.price,
+          timeline: "Just now",
+          user: getPostAuthor()
+        }
+        $rootScope.posts.push(sale);
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+    }
+
+    $rootScope.showSale = function(sale){
+        $rootScope.sale = sale;
+        $rootScope.salesScope.saleShowed = true;
+        $timeout(function(){
+            angular.element($("#rightbar .nav-tabs li#sales a")).triggerHandler("click");
+        },0);
+    }
+
+    $rootScope.hideSale = function(poll){
+        $rootScope.salesScope.saleShowed = false;
+    }
+
   });
 
 
@@ -339,6 +392,15 @@ angular.module('getnearApp')
       var date = $scope.dt.toLocaleDateString();
       var time = $scope.mytime.toLocaleTimeString();
       $modalInstance.close({title: $scope.title, info: $scope.info, location: $scope.location, date: date, time: time, price: (($scope.free==true)?'free':$scope.price)});
+    };
+  })
+
+  .controller('CreateSaleModalInstanceCtrl', function ($scope, $modalInstance) {
+    
+    $scope.price = "$ ";
+
+    $scope.create = function () {
+      $modalInstance.close({title: $scope.title, price: $scope.price, photo: $scope.photo});
     };
   })
 

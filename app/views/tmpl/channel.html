@@ -30,6 +30,7 @@
               <span class="label bg-drank" ng-if="post.type=='p'">Poll</span>
               <span class="label bg-success" ng-if="post.type=='e'">Event</span>
               <span class="label bg-warning" ng-if="post.type=='@'">Mention</span>
+              <span class="label bg-hotpink" ng-if="post.type=='s'">Sales</span>
               <span class="text-muted pull-right"><i class="fa fa-clock-o mr-5"></i> {{post.timeline}}</span>
             </div>
             <div class="panel-body">
@@ -43,6 +44,7 @@
                 <button type="button" class="btn btn-default btn-xs" ng-if="post.type=='p'" ng-click="showPoll(post)"><i class="fa fa-bar-chart-o"/> Answer Poll</button>
                 <button type="button" class="btn btn-default btn-xs" ng-if="post.type=='p'" ng-click="showPoll(post)"><i class="fa fa-bar-chart-o"/> View Poll</button>
                 <button type="button" class="btn btn-default btn-xs" ng-if="post.type=='e'" ng-click="showEvent(post)"><i class="fa fa-calendar"/> View Event Details</button>
+                <button type="button" class="btn btn-default btn-xs" ng-if="post.type=='s'" ng-click="showSale(post)"><i class="fa fa-dollar"/> View Sales Details</button>
               </p>
             </div>
           </div>

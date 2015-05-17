@@ -480,6 +480,71 @@
     <tab-heading>
       <fa name="dollar"></fa>
     </tab-heading>
+
+    <h6>Sales
+      <a class="pull-right" ng-click="newSale()" ng-if="!salesScope.saleShowed"><i class="icon-plus"/></a>
+      <a class="pull-right" ng-click="hideSale()" ng-if="salesScope.saleShowed"><i class="icon-close"/></a>
+    </h6>
+
+    <div ng-if="!salesScope.saleShowed">
+      <ul class="sales" ng-init="salesScope.filter={type:'s'};salesScope.empty=true">
+        <li ng-repeat="post in posts | filter:salesScope.filter">
+          <div class="media" ng-init="salesScope.empty=false">
+            <a class="pull-left thumb thumb-sm" href="javascript:;">
+              <img class="media-object img-circle" src="{{post.user.avatar}}" alt>
+            </a>
+            <div class="media-body">
+              <span class="media-heading">{{post.user.firstname}} <strong>{{post.user.lastname}}</strong></span>
+              <small>{{post.body}}</small><br/>
+              <a class="read-more" ng-click="showSale(post)">View more</a>
+            </div>
+          </div>
+        </li>
+      </ul>
+
+      <span ng-if="salesScope.empty">There's no sales yet.</span>
+      <div class="new-post" ng-if="salesScope.empty"><button type="button" class="btn btn-greensea" ng-click="newSale()">Click here to create your first sale</button></div>
+
+      <script type="text/ng-template" id="createSaleModalContent.html">
+                <div class="modal-header p-30 pb-0">
+                  <h3 class="modal-title custom-font">Create your sale</h3>
+                </div>
+                <div class="modal-body p-30">
+                  <ul class="list-unstyled">
+                    <li class="mb-10">
+                      <span>Title</span><br/>
+                      <input type="text" class="form-control" ng-model="title">
+                    </li>
+                    
+                    <li class="mb-10">
+                      <span>Price</span><br/>
+                      <input type="text" class="form-control" ng-model="price">
+                    </li>
+                  </ul>
+                </div>
+                <div class="modal-footer pr-30" style="clear:both">
+                  <button class="btn btn-greensea btn-lg" ng-click="create()">Create sale</button>
+                </div>
+              </script>
+    </div>
+
+    <div ng-if="salesScope.saleShowed">
+      <ul>
+        <li>
+          <div class="media">
+            <a class="pull-left thumb thumb-sm" href="javascript:;">
+              <img class="media-object img-circle" src="{{sale.user.avatar}}" alt>
+            </a>
+            <div class="media-body">
+              <span class="media-heading">{{sale.user.firstname}} <strong>{{sale.user.lastname}}</strong></span>
+              <span><strong>Title:</strong> {{sale.body}}</span><br/>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <div ng-if="sale.photo" class="p-10 bg-white b-a b-solid"><img src="{{sale.photo}}" style="max-width:100%"/></div><br/>
+      <span ng-if="sale.price"><strong>Price:</strong> {{sale.price}}</span><br/>
+    </div>
   </tab>
 
   
