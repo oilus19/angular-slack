@@ -8,16 +8,17 @@
  * Controller of the getnearApp
  */
 angular.module('getnearApp')
-    .controller('ChannelCtrl', function ($scope, $timeout, $stateParams, $modal) {
+    .controller('ChannelCtrl', function ($rootScope, $scope, $timeout, $stateParams, $modal) {
 
-    $scope.$parent.currentGroup = $scope.$parent.getGroup($stateParams.group);
-    $scope.$parent.currentChannel = $scope.$parent.getChannel($stateParams.channel);
+    $rootScope.currentGroup = $rootScope.getGroup($stateParams.group);
+    $rootScope.currentChannel = $rootScope.getChannel($stateParams.channel);
+    $rootScope.chatWith = {};
 
-    $scope.$parent.getPostBody = function(post){
+    $rootScope.getPostBody = function(post){
         return post.body;
     }
 
-    $scope.$parent.submitPost = function(){
+    $rootScope.submitPost = function(){
         function getPostType(post){
             if(post.indexOf('q:') === 0) return 'q';
             if(post.indexOf('@') === 0) return '@';
@@ -59,17 +60,17 @@ angular.module('getnearApp')
 
         switch(postType){
             case 'q':
-                $scope.$parent.posts.push(post);
+                $rootScope.posts.push(post);
                 break;
             case '@':
                 post.to = getPostTo(post_input);
-                $scope.$parent.posts.push(post);
+                $rootScope.posts.push(post);
                 break;
             case 'e':
-                $scope.$parent.newEvent();
+                $rootScope.newEvent();
                 break;
             case 'p':
-                $scope.$parent.newPoll();
+                $rootScope.newPoll();
                 break;
         }
 
@@ -78,39 +79,39 @@ angular.module('getnearApp')
 
     /*  Mentions     */
 
-    $scope.$parent.showMention = function(mention){
-        $scope.$parent.mention = mention;
-        $scope.$parent.mentionsScope.mentionShowed = true;
+    $rootScope.showMention = function(mention){
+        $rootScope.mention = mention;
+        $rootScope.mentionsScope.mentionShowed = true;
         $timeout(function(){
             angular.element($("#rightbar .nav-tabs li#mentions a")).triggerHandler("click");
         },0);
     }
 
-    $scope.$parent.hideMention = function(mention){
-        $scope.$parent.mentionsScope.mentionShowed = false;
+    $rootScope.hideMention = function(mention){
+        $rootScope.mentionsScope.mentionShowed = false;
     }
 
     /*  Question and Answer     */
 
-    $scope.$parent.newQuestion = function(){
+    $rootScope.newQuestion = function(){
         $scope.newPost = 'q: ';
         jQuery('#new_post_input').focus();
     }
 
-    $scope.$parent.showQuestion = function(question){
-        $scope.$parent.question = question;
-        $scope.$parent.questionsScope.questionShowed = true;
+    $rootScope.showQuestion = function(question){
+        $rootScope.question = question;
+        $rootScope.questionsScope.questionShowed = true;
         $timeout(function(){
             angular.element($("#rightbar .nav-tabs li#questions a")).triggerHandler("click");
         },0);
     }
 
-    $scope.$parent.hideQuestion = function(question){
-        $scope.$parent.questionsScope.questionShowed = false;
+    $rootScope.hideQuestion = function(question){
+        $rootScope.questionsScope.questionShowed = false;
     }
 
-    $scope.$parent.replyQuestion = function(question){
-        $scope.$parent.showQuestion(question);
+    $rootScope.replyQuestion = function(question){
+        $rootScope.showQuestion(question);
         $timeout(function(){
             var $target = $('#new_answer_input');
             $target.focus();
@@ -118,7 +119,7 @@ angular.module('getnearApp')
         },100);
     }
 
-    $scope.$parent.submitAnswer = function(){
+    $rootScope.submitAnswer = function(){
         function getPostBody(post){
             return jQuery('#new_answer_input').val().trim();
         }
@@ -143,8 +144,8 @@ angular.module('getnearApp')
             user: postAuthor
         }
 
-        if($scope.$parent.question.answers==undefined) $scope.$parent.question.answers = [];
-        $scope.$parent.question.answers.push(answer);
+        if($rootScope.question.answers==undefined) $rootScope.question.answers = [];
+        $rootScope.question.answers.push(answer);
         reset();
     }
 
@@ -153,7 +154,7 @@ angular.module('getnearApp')
 
 
 
-    $scope.$parent.newPoll = function(){
+    $rootScope.newPoll = function(){
       var modalInstance = $modal.open({
         templateUrl: 'createPollModalContent.html',
         controller: 'CreatePollModalInstanceCtrl',
@@ -178,40 +179,40 @@ angular.module('getnearApp')
           timeline: "Just now",
           user: getPostAuthor()
         }
-        $scope.$parent.posts.push(poll);
+        $rootScope.posts.push(poll);
       }, function () {
         $log.info('Modal dismissed at: ' + new Date());
       });
     }
 
-    $scope.$parent.showPoll = function(poll){
-        $scope.$parent.poll = poll;
-        $scope.$parent.pollsScope.pollTotalVotes = 0;
-        $scope.$parent.pollsScope.selectedPollOption = null;
-        $scope.$parent.pollsScope.pollShowed = true;
+    $rootScope.showPoll = function(poll){
+        $rootScope.poll = poll;
+        $rootScope.pollsScope.pollTotalVotes = 0;
+        $rootScope.pollsScope.selectedPollOption = null;
+        $rootScope.pollsScope.pollShowed = true;
         $timeout(function(){
             angular.element($("#rightbar .nav-tabs li#polls a")).triggerHandler("click");
         },0);
         angular.forEach(poll.options, function(option){
             if(option.votes == undefined) return;
-            $scope.$parent.pollsScope.pollTotalVotes += option.votes;
+            $rootScope.pollsScope.pollTotalVotes += option.votes;
         })
     }
 
-    $scope.$parent.hidePoll = function(poll){
-        $scope.$parent.pollsScope.pollShowed = false;
+    $rootScope.hidePoll = function(poll){
+        $rootScope.pollsScope.pollShowed = false;
     }
 
-    $scope.$parent.submitVote = function(poll){
-        if($scope.$parent.pollsScope.selectedPollOption==undefined) return;
-        poll.options[$scope.$parent.pollsScope.selectedPollOption].votes ++;
-        $scope.$parent.pollsScope.pollTotalVotes ++;
-        $scope.$parent.pollsScope.selectedPollOption = null;
+    $rootScope.submitVote = function(poll){
+        if($rootScope.pollsScope.selectedPollOption==undefined) return;
+        poll.options[$rootScope.pollsScope.selectedPollOption].votes ++;
+        $rootScope.pollsScope.pollTotalVotes ++;
+        $rootScope.pollsScope.selectedPollOption = null;
     }
 
     /*  Events     */
 
-    $scope.$parent.newEvent = function(){
+    $rootScope.newEvent = function(){
       var modalInstance = $modal.open({
         templateUrl: 'createEventModalContent.html',
         controller: 'CreateEventModalInstanceCtrl',
@@ -240,67 +241,52 @@ angular.module('getnearApp')
           timeline: "Just now",
           user: getPostAuthor()
         }
-        $scope.$parent.posts.push(event);
+        $rootScope.posts.push(event);
       }, function () {
         $log.info('Modal dismissed at: ' + new Date());
       });
     }
 
-    $scope.$parent.showEvent = function(event){
-        $scope.$parent.event = event;
-        $scope.$parent.eventsScope.eventShowed = true;
+    $rootScope.showEvent = function(event){
+        $rootScope.event = event;
+        $rootScope.eventsScope.eventShowed = true;
         $timeout(function(){
             angular.element($("#rightbar .nav-tabs li#events a")).triggerHandler("click");
         },0);
     }
 
-    $scope.$parent.hideEvent = function(event){
-        $scope.$parent.eventsScope.eventShowed = false;
-    }
-
-    $scope.$parent.submitEvent = function(){
+    $rootScope.hideEvent = function(event){
+        $rootScope.eventsScope.eventShowed = false;
     }
 
     /*  Pinned Items     */
 
-    $scope.$parent.showPinnedItem = function(pinnedItem){
+    $rootScope.showPinnedItem = function(pinnedItem){
         switch(pinnedItem.type){
             case '@':
-                $scope.$parent.showMention(pinnedItem);
+                $rootScope.showMention(pinnedItem);
                 break;
             case 'e':
-                $scope.$parent.showEvent(pinnedItem);
+                $rootScope.showEvent(pinnedItem);
                 break;
             case 'p':
-                $scope.$parent.showPoll(pinnedItem);
+                $rootScope.showPoll(pinnedItem);
                 break;
             case 'q':
-                $scope.$parent.showQuestion(pinnedItem);
+                $rootScope.showQuestion(pinnedItem);
                 break;
         }
     }
 
-    $scope.$parent.setPinned = function(pinnedItem){
+    $rootScope.setPinned = function(pinnedItem){
         pinnedItem.pinned = true;
         $timeout(function(){
             angular.element($("#rightbar .nav-tabs li#pinned_items a")).triggerHandler("click");
         },0);
     }
 
-    $scope.$parent.unsetPinned = function(pinnedItem){
+    $rootScope.unsetPinned = function(pinnedItem){
         delete pinnedItem.pinned;
-    }
-
-
-    /* Channel */
-
-    $scope.$parent.submitChannel = function(title){
-        var channel = {
-            title: title,
-            initial: title.charAt(0).toUpperCase()
-        }
-        $scope.$parent.channels.push(channel);
-        $('.suggest-channel .dropdown-menu').toggle();
     }
 
   });

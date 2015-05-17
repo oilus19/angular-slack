@@ -8,7 +8,7 @@
  * Controller of the getnearApp
  */
 angular.module('getnearApp')
-  .controller('MainCtrl', function ($scope, $http, $modal, $log) {
+  .controller('MainCtrl', function ($rootScope, $scope, $http, $modal, $log) {
 
     $scope.main = {
       title: 'getnear',
@@ -23,7 +23,7 @@ angular.module('getnearApp')
       }
     };
 
-    $scope.joinedGroup = [{
+    $rootScope.joinedGroup = [{
       title: "Android Developers",
       initial: "A"
     },{
@@ -34,7 +34,7 @@ angular.module('getnearApp')
       initial: "P"
     }];
 
-    $scope.groupStatus = [{
+    $rootScope.groupStatus = [{
         title: "Public",
         slug: "public"
     },{
@@ -42,7 +42,7 @@ angular.module('getnearApp')
         slug: "private"
     }];
 
-    $scope.groupCategories = [{
+    $rootScope.groupCategories = [{
         title: "Web Development",
         slug: "web_development"
     },{
@@ -50,10 +50,10 @@ angular.module('getnearApp')
         slug: "mobile_development"
     }];
 
-    $scope.groups = [];
+    $rootScope.groups = [];
 
     for(var i=1; i<=12; i++){
-        $scope.groups.push({
+        $rootScope.groups.push({
             title: "Python Developers"+i.toString(),
             slug: "python_developers"+i.toString(),
             category: "Web Development",
@@ -66,7 +66,7 @@ angular.module('getnearApp')
         });
     }
 
-    $scope.channels = [{
+    $rootScope.channels = [{
       title: "General",
       initial: "G",
       icon: "fa-adjust"
@@ -100,7 +100,7 @@ angular.module('getnearApp')
       icon: "fa-glass"
     }];
 
-    $scope.users = [{
+    $rootScope.users = [{
       id: "benjamin",
       name: "Wood Walton"
     },{
@@ -123,7 +123,7 @@ angular.module('getnearApp')
       name: "Imrich Kamarel"
     }];
 
-    $scope.posts = [{
+    $rootScope.posts = [{
       type: "q",
       body: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue.",
       timeline: "Just Now",
@@ -213,45 +213,45 @@ angular.module('getnearApp')
         }
     }];
 
-    $scope.suggestions = ['@John Douey: '];
-    $scope.questionsScope = {};
-    $scope.pollsScope = {};
-    $scope.eventsScope = {};
-    $scope.mentionsScope = {};
+    $rootScope.suggestions = ['@John Douey: '];
+    $rootScope.questionsScope = {};
+    $rootScope.pollsScope = {};
+    $rootScope.eventsScope = {};
+    $rootScope.mentionsScope = {};
     $scope.Math = window.Math;
 
-    $scope.getGroup = function(title){
-      for(var i=0; i<$scope.joinedGroup.length; i++){
-        if($scope.joinedGroup[i].title==title){
-          return $scope.joinedGroup[i];
+    $rootScope.getGroup = function(title){
+      for(var i=0; i<$rootScope.joinedGroup.length; i++){
+        if($rootScope.joinedGroup[i].title==title){
+          return $rootScope.joinedGroup[i];
         }
       }
     }
 
-    $scope.getChannel = function(title){
-      for(var i=0; i<$scope.channels.length; i++){
-        if($scope.channels[i].title==title){
-          return $scope.channels[i];
+    $rootScope.getChannel = function(title){
+      for(var i=0; i<$rootScope.channels.length; i++){
+        if($rootScope.channels[i].title==title){
+          return $rootScope.channels[i];
         }
       }
     }
 
-    $scope.getUser = function(id){
-      for(var i=0; i<$scope.users.length; i++){
-        if($scope.users[i].id==id){
-          return $scope.users[i];
+    $rootScope.getUser = function(id){
+      for(var i=0; i<$rootScope.users.length; i++){
+        if($rootScope.users[i].id==id){
+          return $rootScope.users[i];
         }
       }
     }
 
-    $scope.newGroup = function(){
+    $rootScope.newGroup = function(){
 
       var modalInstance = $modal.open({
         templateUrl: 'createGroupModalContent.html',
         controller: 'CreateGroupModalInstanceCtrl',
         resolve: {
           items: function () {
-            return {groupStatus: $scope.groupStatus, groupCategories: $scope.groupCategories};
+            return {groupStatus: $rootScope.groupStatus, groupCategories: $rootScope.groupCategories};
           }
         }
       });
@@ -269,10 +269,22 @@ angular.module('getnearApp')
             channelcount: 0
         };
 
-        $scope.groups.push(group);
+        $rootScope.groups.push(group);
       }, function () {
         $log.info('Modal dismissed at: ' + new Date());
       });
+    }
+
+
+    /* Channel */
+
+    $rootScope.submitChannel = function(title){
+        var channel = {
+            title: title,
+            initial: title.charAt(0).toUpperCase(),
+            icon: "fa-adjust"
+        }
+        $rootScope.channels.push(channel);
     }
 
     $scope.selectChannelIcon = function(channel) {

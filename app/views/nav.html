@@ -13,35 +13,37 @@
       </h3>
       <span class="heading">CHANNELS</span>
       <ul id="navigation" nav-collapse ripple>
-        <li ui-sref-active="active" ng-repeat="channel in channels" ng-class="{active: channel==currentChannel}">
-          <a ui-sref="app.group.channel({group: '{{currentGroup.title}}', channel: '{{channel.title}}'})"><i class="fa {{channel.icon}}"/><span>#{{channel.title}}</span></a><a class="cog" ng-click="selectChannelIcon(channel)"><i class="fa fa-cog"/></a>
+        <li ng-repeat="channel in channels" ng-class="{active: channel==currentChannel}">
+          <a ng-href="{{$state.href('app.group.channel', {group: currentGroup.title, channel: channel.title})}}"><i class="fa {{channel.icon}}"/><span>#{{channel.title}}</span></a><a class="cog" ng-click="selectChannelIcon(channel)"><i class="fa fa-cog"/></a>
         </li>
       </ul>
 
-      <div class="dropdown suggest-channel mt-10 mb-40" dropdown on-toggle="toggled(open);navtoggle(open)" auto-close="outsideClick">
+      <div ng-controller="SuggestChannelCtrl">
+        <div class="dropdown suggest-channel mt-10 mb-40" dropdown on-toggle="navtoggle(open)" auto-close="outsideClick" is-open="status.isopen">
 
-        <a href class="dropdown-toggle text-default with-icon" dropdown-toggle>
-          <i class="fa fa-cog"/><span class="mt-5 mb-5">Suggest a channel</span>
-        </a>
+          <a href class="dropdown-toggle text-default with-icon" dropdown-toggle>
+            <i class="fa fa-cog"/><span class="mt-5 mb-5">Suggest a channel</span>
+          </a>
 
-        <div class="dropdown-menu pull-left with-arrow panel panel-default animated littleFadeInDown" style="margin-top: 15px;  min-width: 220px; ">
+          <div class="dropdown-menu pull-left with-arrow panel panel-default animated littleFadeInDown" style="margin-top: 15px;  min-width: 220px; ">
 
-          <div class="panel-heading pt-10 pb-10 pl-20">
-            Write the channel that you want
-          </div>
+            <div class="panel-heading pt-10 pb-10 pl-20">
+              Write the channel that you want
+            </div>
 
-          <div class="input-group">
-            <input type="text" id="new_channel_input" class="form-control" placeholder="write here..." ng-model="newChannel">
-            <span class="input-group-btn"><button class="btn btn-default" type="button" ng-click="submitChannel(newChannel)"><i class="fa fa-arrow-right"/></button></span>
+            <div class="input-group">
+              <input type="text" id="new_channel_input" class="form-control" placeholder="write here..." ng-model="newChannel">
+              <span class="input-group-btn"><button class="btn btn-default" type="button" ng-click="submit($event);"><i class="fa fa-arrow-right"/></button></span>
+            </div>
+
           </div>
 
         </div>
-
       </div>
 
       <span class="heading">DIRECT MESSAGES</span>
       <ul id="navigation" class="direct-messages" nav-collapse ripple>
-        <li ng-repeat="user in users"><a ui-sref="app.group.chat({group:'{{currentGroup.title}}', user:'{{user.id}}'})"><span class="status"></span><span>{{user.id}}</span></a></li>
+        <li ng-repeat="user in users" ng-class="{active: user==chatWith}"><a ui-sref="app.group.chat({group:'{{currentGroup.title}}', user:'{{user.id}}'})"><span class="status"></span><span>{{user.id}}</span></a></li>
       </ul>
       <span>+16 More...</span>
     </accordion-group>

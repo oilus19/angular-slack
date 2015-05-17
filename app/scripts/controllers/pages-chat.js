@@ -8,8 +8,7 @@
  * Controller of the getnearApp
  */
 angular.module('getnearApp')
-  .controller('ChatCtrl', function ($scope, $resource, $stateParams) {
-	$scope.$parent.currentGroup = $scope.$parent.getGroup($stateParams.group);
-    $scope.chatWith = $scope.$parent.getUser($stateParams.user);
-
+  .controller('ChatCtrl', function ($rootScope, $scope, $resource, $stateParams) {
+	$rootScope.currentGroup = $rootScope.getGroup($stateParams.group);
+    $rootScope.chatWith = $rootScope.getUser($stateParams.user);
   });
