@@ -222,8 +222,8 @@
     </tab-heading>
 
     <h6>Events
-      <a class="pull-right" ng-click="newEvent()" ng-if="!eventsScope.eventShowed"><i class="icon-plus"/></a>
-      <a class="pull-right" ng-click="hideEvent()" ng-if="eventsScope.eventShowed"><i class="icon-close"/></a>
+      <a class="pull-right" ng-click="newEvent()" ng-class="{hidden: eventsScope.eventShowed}"><i class="icon-plus"/></a>
+      <a class="pull-right" ng-click="hideEvent()" ng-class="{hidden: !eventsScope.eventShowed}"><i class="icon-close"/></a>
     </h6>
 
     <div ng-if="!eventsScope.eventShowed">
@@ -302,7 +302,7 @@
             <div class="media-body">
               <span class="media-heading">{{event.user.firstname}} <strong>{{event.user.lastname}}</strong></span>
               <span><strong>Title:</strong> {{event.body}}</span><br/><br/>
-              <span ng-if="event.info"><strong>Info:</strong> {{event.info}}</span><br/><br/>
+              <span ng-if="event.info"><strong>Info:</strong> <span ng-bind-html="event.info"></span></span><br/><br/>
               <span ng-if="event.location"><strong>Location:</strong> {{event.location}}</span><br/><br/>
               <span ng-if="event.date"><strong>Date:</strong> {{event.date}}</span><br/><br/>
               <span ng-if="event.time"><strong>Time:</strong> {{event.time}}</span><br/><br/>
@@ -320,8 +320,8 @@
     </tab-heading>
 
     <h6>Polls
-      <a class="pull-right" ng-click="newPoll()" ng-if="!pollsScope.pollShowed"><i class="icon-plus"/></a>
-      <a class="pull-right" ng-click="hidePoll()" ng-if="pollsScope.pollShowed"><i class="icon-close"/></a>
+      <a class="pull-right" ng-click="newPoll()" ng-class="{hidden: pollsScope.pollShowed}"><i class="icon-plus"/></a>
+      <a class="pull-right" ng-click="hidePoll()"  ng-class="{hidden: !pollsScope.pollShowed}"><i class="icon-close"/></a>
     </h6>
 
     <div ng-if="!pollsScope.pollShowed">
@@ -389,8 +389,8 @@
     </tab-heading>
 
     <h6>Questions
-      <a class="pull-right" ng-click="newQuestion()" ng-if="!questionsScope.questionShowed"><i class="icon-plus"/></a>
-      <a class="pull-right" ng-click="hideQuestion()" ng-if="questionsScope.questionShowed"><i class="icon-close"/></a>
+      <a class="pull-right" ng-click="newQuestion()" ng-class="{hidden: questionsScope.questionShowed}"><i class="icon-plus"/></a>
+      <a class="pull-right" ng-click="hideQuestion()" ng-class="{hidden: !questionsScope.questionShowed}"><i class="icon-close"/></a>
     </h6>
 
     <div ng-if="!questionsScope.questionShowed">
@@ -482,8 +482,8 @@
     </tab-heading>
 
     <h6>Sales
-      <a class="pull-right" ng-click="newSale()" ng-if="!salesScope.saleShowed"><i class="icon-plus"/></a>
-      <a class="pull-right" ng-click="hideSale()" ng-if="salesScope.saleShowed"><i class="icon-close"/></a>
+      <a class="pull-right" ng-click="newSale()" ng-class="{hidden: salesScope.saleShowed}"><i class="icon-plus"/></a>
+      <a class="pull-right" ng-click="hideSale()" ng-class="{hidden: !salesScope.saleShowed}"><i class="icon-close"/></a>
     </h6>
 
     <div ng-if="!salesScope.saleShowed">

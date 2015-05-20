@@ -17,9 +17,6 @@ angular.module('getnearApp')
       isSecondOpen: true,
       isThirdOpen: true
     };      
-
-    resize();
-
   })
   .controller('SuggestChannelCtrl', function($scope, $log){
     $scope.status = {

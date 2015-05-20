@@ -18,6 +18,13 @@ angular.module('getnearApp')
         return post.body;
     }
 
+    $("#new_post_input").keypress(function(e) {
+      var key = e.which;
+      if(key==13){
+        $rootScope.submitPost();
+      }
+    });
+
     $rootScope.submitPost = function(){
         function getPostType(post){
             if(post.indexOf('q:') === 0) return 'q';
@@ -237,7 +244,7 @@ angular.module('getnearApp')
         var event = {
           type: "e",
           body: result.title,
-          info: result.info,
+          info: nl2br(result.info),
           location: result.location,
           date: result.date,
           time: result.time,
@@ -278,6 +285,9 @@ angular.module('getnearApp')
                 break;
             case 'q':
                 $rootScope.showQuestion(pinnedItem);
+                break;
+            case 's':
+                $rootScope.showSale(pinnedItem);
                 break;
         }
     }

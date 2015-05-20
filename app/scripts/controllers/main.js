@@ -23,6 +23,10 @@ angular.module('getnearApp')
       }
     };
 
+    if ($(window).width() < 768) {
+      $scope.main.settings.rightbarShow = false;
+    }
+
     $rootScope.joinedGroup = [{
       title: "Android Developers",
       initial: "A"
@@ -170,7 +174,7 @@ angular.module('getnearApp')
     },{
       type: "e",
       body: "Meetup next friday at 19:00",
-      info: "Good news, everyone! Office hours has a new home at http://learn.nycphyhon.org/. We'll stop posting events to the main NYC phython page after next month. To RSVP for this event, please go here: http://getnear.co/k23124.",
+      info: "Good news, everyone!<br/>Office hours has a new home at http://learn.nycphyhon.org/.<br/>We'll stop posting events to the main NYC phython page after next month.<br/>To RSVP for this event, please go here: http://getnear.co/k23124.",
       location: "34 W. 3rd Ave. 4th floor",
       date: "Friday 12 of May",
       time: "19:00",
@@ -379,11 +383,16 @@ angular.module('getnearApp')
 
 
 function resize(){
-  var width = ($(window).width()-$('#sidebar').width())*0.4;
+  var width = ($(window).width()-$('#sidebar').width())*0.3;
   $("#rightbar").width(width);
-  $("#content").css('right',width.toString()+"px");
+  $("#content").css('right', width.toString()+"px");
 }
 
 $(window).resize(function(){
   resize();
 });
+
+function nl2br (str, is_xhtml) {   
+    var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br>';    
+    return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1'+ breakTag +'$2');
+}
