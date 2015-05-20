@@ -384,6 +384,7 @@ angular.module('getnearApp')
 
 function resize(){
   var width = ($(window).width()-$('#sidebar').width())*0.3;
+  width = (width<280) ? 280: width;
   $("#rightbar").width(width);
   $("#content").css('right', width.toString()+"px");
 }

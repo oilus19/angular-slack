@@ -2721,6 +2721,7 @@ header {
   font-size: 12px;
   top: 90px;
   bottom: 0;
+  right: 0;
   z-index: 9999;
   background-color: #1d2833;
   color: #BFC7CB;
@@ -2853,26 +2854,22 @@ header {
         color: white;
         text-decoration: initial; }
 
-@media only screen and (max-width: 1200px) {
-  #rightbar { }
+@media only screen and (max-width: 1200px) { }
+@media only screen and (max-width: 768px) {
+  #rightbar {
+    top: 135px; }
 
-  #getnear:not(.rtl).rightbar-show #rightbar {
-    right: 0; }
-  #getnear:not(.rtl).rightbar-show #header {
-    right: 0 !important;
-    padding-right: 0 !important; }
   #getnear:not(.rtl).rightbar-show #content {
     right: 0 !important;
     padding-right: 0 !important; } }
-@media only screen and (max-width: 768px) {
-  #rightbar {
-    top: 135px; } }
+    
 @media only screen and (max-width: 360px) {
   #rightbar {
     width: 100%; }
 
   #getnear.rightbar-hidden #rightbar {
     right: -100%; } }
+
 #pageloader.hide {
   display: none; }
 
