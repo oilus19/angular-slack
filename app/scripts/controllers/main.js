@@ -397,3 +397,25 @@ function nl2br (str, is_xhtml) {
     var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br>';    
     return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1'+ breakTag +'$2');
 }
+
+function positionNewPostButton() {
+  var $new_post = $("#rightbar .tab-content .tab-pane.active .new-post");
+
+  var new_post_height = $new_post.height();
+
+ if ( ($('#rightbar .ng-isolate-scope').height()+new_post_height) < $('#rightbar').height()) {
+     $new_post.removeClass('static');
+ } else {
+     $new_post.addClass('static');
+ }
+         
+}
+
+// Window load event used just in case window height is dependant upon images
+$(window).bind("load", function() { 
+
+       $(window)
+               .scroll(positionNewPostButton)
+               .resize(positionNewPostButton)
+               
+});

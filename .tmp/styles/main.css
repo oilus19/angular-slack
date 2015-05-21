@@ -2841,6 +2841,11 @@ header {
         bottom: 0;
         left: 0;
         width: 100%; }
+      #rightbar .tab-content .tab-pane .new-post.static {
+        position: static;
+        margin: 0 -15px -5px -15px;
+        width: inherit;
+      }
         #rightbar .tab-content .tab-pane .new-post button {
           width: 100%;
           padding: 15px 0; }
