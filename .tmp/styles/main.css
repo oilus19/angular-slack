@@ -2722,14 +2722,14 @@ header {
   top: 90px;
   bottom: 0;
   right: 0;
-  z-index: 9999;
+  z-index: 100;
   background-color: #1d2833;
   color: #BFC7CB;
   -webkit-transition: all 0.25s cubic-bezier(0.6, 0.04, 0.98, 0.335);
   -moz-transition: all 0.25s cubic-bezier(0.6, 0.04, 0.98, 0.335);
   transition: all 0.25s cubic-bezier(0.6, 0.04, 0.98, 0.335);
   overflow: auto;
-  z-index: 100; }
+  z-index: 10; }
   #rightbar .nav.nav-tabs {
     padding: 0;
     max-height: 45px;
@@ -4266,7 +4266,9 @@ check-toggler,
 .dropdown.settings .form-group {
   margin-bottom: 0; }
 .dropdown.nav-profile .dropdown-menu {
-  min-width: 180px; }
+  min-width: 180px;
+  left: inherit;
+  right: -4px; }
 
 #header .dropdown > .dropdown-menu {
   margin-top: -2px; }
