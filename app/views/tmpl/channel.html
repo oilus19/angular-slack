@@ -37,8 +37,8 @@
               {{post.body}}
 
               <p class="mt-10 mb-0">
-                <button type="button" class="btn btn-default btn-xs" ng-if="!post.pinned" ng-click="setPinned(post)"><i class="fa fa-thumb-tack"/> Pin This</button>
-                <button type="button" class="btn btn-default btn-xs active" ng-if="post.pinned" ng-click="unsetPinned(post)"><i class="fa fa-thumb-tack text-danger"/> Pinned</button>
+                <button type="button" class="btn btn-default btn-xs" ng-if="!post.pinned && post.type" ng-click="setPinned(post)"><i class="fa fa-thumb-tack"/> Pin This</button>
+                <button type="button" class="btn btn-default btn-xs active" ng-if="post.pinned && post.type" ng-click="unsetPinned(post)"><i class="fa fa-thumb-tack text-danger"/> Pinned</button>
                 <button type="button" class="btn btn-default btn-xs" ng-if="post.type=='q'" ng-click="showQuestion(post)"><i class="fa fa-eye"/> Show Answers</button>
                 <button type="button" class="btn btn-default btn-xs" ng-if="post.type=='q'" ng-click="replyQuestion(post)"><i class="fa fa-mail-reply"/> Reply</button>
                 <button type="button" class="btn btn-default btn-xs" ng-if="post.type=='p'" ng-click="showPoll(post)"><i class="fa fa-bar-chart-o"/> Answer Poll</button>

@@ -57,7 +57,7 @@ angular.module('getnearApp')
         
         var post_input = $("#new_post_input").val().trim();
         var postType = getPostType(post_input);
-        var postBody = getPostBody(post_input);
+        var postBody = postType?getPostBody(post_input):post_input;
         var postAuthor = getPostAuthor(post_input);
         var post = {
             type: postType,
@@ -83,6 +83,8 @@ angular.module('getnearApp')
             case 's':
                 $rootScope.newSale();
                 break;
+            default:
+                $rootScope.posts.push(post);
         }
 
         reset();
@@ -373,7 +375,7 @@ angular.module('getnearApp')
 
 angular.module('getnearApp')
   .controller('CreatePollModalInstanceCtrl', function ($scope, $modalInstance) {
-
+    $scope.question = "";
     $scope.options = [{
         title: "",
         votes: 0
