@@ -59,23 +59,6 @@ angular.module('getnearApp')
           }
         });
 
-        element.on('click', function(e) {
-          if (app.hasClass('sidebar-sm')) {
-            app.removeClass('sidebar-sm').addClass('sidebar-xs');
-          }
-          else if (app.hasClass('sidebar-xs')) {
-            app.removeClass('sidebar-xs');
-          }
-          else {
-            app.addClass('sidebar-sm');
-          }
-
-          app.removeClass('sidebar-sm-forced sidebar-xs-forced');
-          app.parent().removeClass('sidebar-sm sidebar-xs');
-          removeRipple();
-          e.preventDefault();
-        });
-
       }
     };
   });

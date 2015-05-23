@@ -1740,6 +1740,7 @@ html.boxed-layout {
   unicode-bidi: embed; }
 
 #content {
+  margin-top: 57px;
   padding-top: 90px;
   width: auto;
   -webkit-overflow-scrolling: touch;
@@ -1803,7 +1804,7 @@ html.boxed-layout {
 
 #getnear.header-fixed.aside-fixed #content {
   position: absolute;
-  top: 90px;
+  top: 45px;
   right: 0;
   bottom: 0;
   width: auto;
@@ -1827,7 +1828,7 @@ html.boxed-layout {
     left: 80px; } }
 @media only screen and (max-width: 768px) {
   #getnear.header-fixed.aside-fixed #content {
-    top: 135px; }
+    top: 45px; }
   #getnear.header-fixed.aside-fixed:not(.sidebar-sm):not(.sidebar-xs) #content {
     left: 40px; }
   #getnear.aside-static #content {
@@ -1950,6 +1951,8 @@ header {
   #header .nav-right,
   #header .nav-left {
     margin-bottom: 0; }
+  #header .nav-right {
+    background-color: #493D55; }
     #header .nav-right > li,
     #header .nav-left > li {
       margin-top: 3px;
@@ -2124,7 +2127,7 @@ header {
 
 #getnear.aside-fixed #sidebar {
   position: fixed;
-  top: 90px;
+  top: 45px;
   bottom: 0; }
 
 #getnear.aside-static #wrap {
@@ -2605,7 +2608,7 @@ header {
 
 @media only screen and (max-width: 768px) {
   #getnear.sidebar-xs.aside-fixed #sidebar {
-    top: 135px; }
+    top: 45px; }
   #getnear.sidebar-xs.aside-fixed.header-static #sidebar {
     top: 0;
     z-index: 99; }
@@ -2614,8 +2617,13 @@ header {
       line-height: 26px; }
   #getnear.sidebar-xs.aside-static #sidebar {
     padding-top: 90px; } }
+
 .pageheader {
-  margin-bottom: 30px; }
+  position: fixed;
+  width: 100%;
+  height: 57px;
+  margin-top: -57px;
+  z-index: 100; }
   .pageheader h2 {
     display: inline-block;
     color: #4a555b;
@@ -2719,7 +2727,7 @@ header {
   min-width: 280px;
   position: fixed;
   font-size: 12px;
-  top: 90px;
+  top: 45px;
   bottom: 0;
   right: 0;
   z-index: 100;
@@ -2730,9 +2738,15 @@ header {
   transition: all 0.25s cubic-bezier(0.6, 0.04, 0.98, 0.335);
   overflow: auto;
   z-index: 10; }
+  #rightbar .slimScrollDiv,
+  #rightbar .slimScrollDiv #rightbar-wrap,
+  #rightbar .slimScrollDiv .ng-isolate-scope {
+    width: inherit !important;
+  }
   #rightbar .nav.nav-tabs {
-    padding: 0;
-    max-height: 45px;
+    max-height: 58px;
+    position: fixed;
+    width: inherit;
     z-index: 2; }
     #rightbar .nav.nav-tabs > li {
       display: table-cell;
@@ -2740,8 +2754,8 @@ header {
       #rightbar .nav.nav-tabs > li > a {
         border-radius: 0;
         border: 0;
-        padding: 12px 15px;
-        min-height: 45px;
+        padding: 20px 15px;
+        min-height: 58px;
         color: #95a2a9;
         background-color: #141b23;
         cursor: pointer; }
@@ -2758,7 +2772,7 @@ header {
   #rightbar .tab-content {
     left: 0;
     background: #1d2833;
-    padding: 5px 15px; }
+    padding: 63px 15px 5px; }
     #rightbar .tab-content .tab-pane {
       padding: 0; }
       #rightbar .tab-content .tab-pane > h6 {
@@ -2862,7 +2876,7 @@ header {
 @media only screen and (max-width: 1200px) { }
 @media only screen and (max-width: 768px) {
   #rightbar {
-    top: 135px; }
+    top: 45px; }
 
   #getnear:not(.rtl).rightbar-show #content {
     right: 0 !important;
@@ -9552,10 +9566,8 @@ input[type="text"].ui-grid-filter-input {
       float: left;
       vertical-align: top; }
   .streamline .streamline-form {
-    position: absolute;
-    width: 100%;
     padding-bottom: 20px;
-    z-index: 2; }
+    z-index: 90; }
     .streamline .streamline-form .thumb {
       float: left; }
     .streamline .streamline-form form {
@@ -11690,21 +11702,16 @@ hr.line-full {
 /* Custom CSS */
 
 
-#header #group_nav {
-  border-top: 1px solid #313653;
-  background-color: #344D6B;
+#header .group-nav {
+  margin: 0;
+  height: 45px;
 }
 
-#header #group_nav>ul {
-  margin-bottom: 0px;
-  margin-left: 2px;
-}
-
-#header #group_nav>ul>li {
+#header .group-nav > li {
   padding: 0;
 }
 
-#header #group_nav>ul>li>a {
+#header .group-nav > li > a {
   line-height: 44px;
   width: 60px;
   font-size: 26px;
@@ -11713,10 +11720,40 @@ hr.line-full {
   display: inline-block;
 }
 
-#header #group_nav>ul>li.active>a {
+#header .group-nav > li.active > a {
   background-color: #16A085;
+}
+
+#header #group_nav {
+  border-top: 1px solid #313653;
+  background-color: #344D6B;
 }
 
 .page-group .group-filter>*{
   vertical-align: top;
+}
+
+.page-channel .streamline-form-wrapper {
+  position: absolute;
+  width: 100%;
+  z-index: 90;
+}
+
+.page-channel .streamline-form-wrapper .streamline-form {
+  margin: 0px -30px;
+  padding: 17px 30px 18px !important;
+  background: white;
+}
+
+.page-channel .streamline-form .what-to-do a {
+  color: #616F77;
+  width: 50px;
+  text-align: center;
+  display: inline-block;
+}
+
+.page-channel .streamline-form .what-to-do a:hover {
+  background-color: #161D25;
+  color: white;
+  cursor: pointer;
 }

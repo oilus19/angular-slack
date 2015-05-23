@@ -10,7 +10,7 @@
 angular.module('getnearApp')
   .controller('MainCtrl', function ($rootScope, $scope, $http, $modal, $log) {
 
-    $scope.main = {
+    $rootScope.main = {
       title: 'getnear',
       settings: {
         navbarHeaderColor: 'scheme-default',
@@ -24,7 +24,7 @@ angular.module('getnearApp')
     };
 
     if ($(window).width() < 768) {
-      $scope.main.settings.rightbarShow = false;
+      $rootScope.main.settings.rightbarShow = false;
     }
 
     $rootScope.joinedGroup = [{
@@ -228,6 +228,47 @@ angular.module('getnearApp')
         }
     }];
 
+    $rootScope.messages = [{
+      type: "in",
+      body: "Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.",
+      timeline: "2 hours ago",
+      user: {
+        firstname: 'Wood',
+        lastname: 'Walton',
+        avatar: 'images/random-avatar4.jpg'
+      }
+    },{
+      type: "out",
+      body: "Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.",
+      timeline: "1 hour ago"
+    },{
+      type: "in",
+      body: "Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue.",
+      timeline: "53 minutes ago",
+      user: {
+        firstname: 'Wood',
+        lastname: 'Walton',
+        avatar: 'images/random-avatar4.jpg'
+      }
+    },{
+      type: "out",
+      body: "Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.",
+      timeline: "40 minutes ago"
+    },{
+      type: "in",
+      body: "Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue.",
+      timeline: "20 minutes ago",
+      user: {
+        firstname: 'Wood',
+        lastname: 'Walton',
+        avatar: 'images/random-avatar4.jpg'
+      }
+    },{
+      type: "out",
+      body: "Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.",
+      timeline: "10 minutes ago"
+    }];
+
     $rootScope.suggestions = ['@John Douey: '];
     $rootScope.questionsScope = {};
     $rootScope.pollsScope = {};
@@ -368,7 +409,6 @@ angular.module('getnearApp')
   })
   .controller('selectIconModalInstanceCtrl', function ($scope, $modalInstance) {
 
-
     $scope.icons = [
       "fa-adjust", "fa-anchor", "fa-archive", "fa-arrows", "fa-arrows-h", "fa-arrows-v",
       "fa-asterisk", "fa-automobile", "fa-ban", "fa-bank", "fa-bar-chart-o", "fa-barcode",
@@ -379,43 +419,12 @@ angular.module('getnearApp')
     $scope.select = function (icon) {
       $modalInstance.close({icon: icon});
     }
+
   });;
 
-
-function resize(){
-  var width = ($(window).width()-$('#sidebar').width())*0.3;
-  width = (width<280) ? 280: width;
-  $("#rightbar").width(width);
-  $("#content").css('right', width.toString()+"px");
-}
-
-$(window).resize(function(){
-  resize();
-});
+  
 
 function nl2br (str, is_xhtml) {   
     var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br>';    
     return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1'+ breakTag +'$2');
 }
-
-function positionNewPostButton() {
-  var $new_post = $("#rightbar .tab-content .tab-pane.active .new-post");
-
-  var new_post_height = $new_post.height();
-
- if ( ($('#rightbar .ng-isolate-scope').height()+new_post_height) < $('#rightbar').height()) {
-     $new_post.removeClass('static');
- } else {
-     $new_post.addClass('static');
- }
-         
-}
-
-// Window load event used just in case window height is dependant upon images
-$(window).bind("load", function() { 
-
-       $(window)
-               .scroll(positionNewPostButton)
-               .resize(positionNewPostButton)
-               
-});

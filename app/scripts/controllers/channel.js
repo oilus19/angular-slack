@@ -96,7 +96,8 @@ angular.module('getnearApp')
         $rootScope.mention = mention;
         $rootScope.mentionsScope.mentionShowed = true;
         $timeout(function(){
-            angular.element($("#rightbar .nav-tabs li#mentions a")).triggerHandler("click");
+          angular.element($("#rightbar .nav-tabs li#mentions a")).triggerHandler("click");
+          $rootScope.main.settings.rightbarShow = true;
         },0);
     }
 
@@ -115,7 +116,8 @@ angular.module('getnearApp')
         $rootScope.question = question;
         $rootScope.questionsScope.questionShowed = true;
         $timeout(function(){
-            angular.element($("#rightbar .nav-tabs li#questions a")).triggerHandler("click");
+          angular.element($("#rightbar .nav-tabs li#questions a")).triggerHandler("click");
+          $rootScope.main.settings.rightbarShow = true;
         },0);
     }
 
@@ -204,7 +206,8 @@ angular.module('getnearApp')
         $rootScope.pollsScope.selectedPollOption = null;
         $rootScope.pollsScope.pollShowed = true;
         $timeout(function(){
-            angular.element($("#rightbar .nav-tabs li#polls a")).triggerHandler("click");
+          angular.element($("#rightbar .nav-tabs li#polls a")).triggerHandler("click");
+          $rootScope.main.settings.rightbarShow = true;
         },0);
         angular.forEach(poll.options, function(option){
             if(option.votes == undefined) return;
@@ -264,7 +267,8 @@ angular.module('getnearApp')
         $rootScope.event = event;
         $rootScope.eventsScope.eventShowed = true;
         $timeout(function(){
-            angular.element($("#rightbar .nav-tabs li#events a")).triggerHandler("click");
+          angular.element($("#rightbar .nav-tabs li#events a")).triggerHandler("click");
+          $rootScope.main.settings.rightbarShow = true;
         },0);
     }
 
@@ -346,7 +350,8 @@ angular.module('getnearApp')
         $rootScope.sale = sale;
         $rootScope.salesScope.saleShowed = true;
         $timeout(function(){
-            angular.element($("#rightbar .nav-tabs li#sales a")).triggerHandler("click");
+          angular.element($("#rightbar .nav-tabs li#sales a")).triggerHandler("click");
+          $rootScope.main.settings.rightbarShow = true;
         },0);
     }
 
@@ -519,3 +524,21 @@ angular.module('getnearApp')
     };
     angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
   });
+
+
+function positionNewPostBox(){
+  var scrollTop = $(window).scrollTop();
+  var height = $(".streamline-form-wrapper").outerHeight(true);
+  console.log(height);
+  var top = $("#content").height()+scrollTop-height-30;
+  $(".page-channel .streamline-form-wrapper").css('top', top.toString() + 'px');
+}
+
+$(window).bind("load", function() { 
+
+  $(window)
+    .scroll(positionNewPostBox)
+    .resize(positionNewPostBox);
+
+  positionNewPostBox();
+});

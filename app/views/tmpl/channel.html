@@ -9,8 +9,8 @@
   <!-- /page header -->
 
   <!-- page content -->
-  <div class="pagecontent p-30">
-    <div class="streamline mt-20">
+  <div class="pagecontent p-30" style="margin-bottom: 90px">
+    <div class="streamline">
 
       <article class="streamline-post" ng-repeat="post in posts">
 
@@ -45,6 +45,7 @@
                 <button type="button" class="btn btn-default btn-xs" ng-if="post.type=='p'" ng-click="showPoll(post)"><i class="fa fa-bar-chart-o"/> View Poll</button>
                 <button type="button" class="btn btn-default btn-xs" ng-if="post.type=='e'" ng-click="showEvent(post)"><i class="fa fa-calendar"/> View Event Details</button>
                 <button type="button" class="btn btn-default btn-xs" ng-if="post.type=='s'" ng-click="showSale(post)"><i class="fa fa-dollar"/> View Sales Details</button>
+                <button type="button" class="btn btn-default btn-xs" ng-if="post.user=='s'" ng-click="editPost(post)"><i class="fa fa-pen"/> Edit</button>
               </p>
             </div>
           </div>
@@ -52,14 +53,24 @@
 
       </article>
 
-      <div class="streamline-form pb-30">
-        <div class="thumb thumb-sm"><img class="img-circle" src="images/profile-photo.jpg" alt=""></div>
-        <form>
-          <div class="input-group">
-            <input type="text" id="new_post_input" class="form-control" placeholder="Write your comment here" ng-model="newPost" auto-complete ui-items="suggestions">
-            <span class="input-group-btn"><button class="btn btn-default" type="button" ng-click="submitPost()">Post</button></span>
-          </div>
-        </form>
+      <div class="streamline-form-wrapper">
+        <div class="streamline-form b-t">
+          <div class="thumb thumb-sm"><img class="img-circle" src="images/profile-photo.jpg" alt=""></div>
+          <form>
+            <div class="input-group">
+              <input type="text" id="new_post_input" class="form-control" placeholder="Write your comment here" ng-model="newPost" auto-complete ui-items="suggestions">
+              <span class="input-group-btn"><button class="btn btn-default" type="button" ng-click="submitPost()">Post</button></span>
+            </div>
+            <div class="what-to-do">
+              <span class="inline-block mt-5 mb-5">What do you want to do:</span>
+              <a><i name="at" class="fa fa-at"></i></a>
+              <a><i name="at" class="fa fa-calendar"></i></a>
+              <a><i name="at" class="fa fa-bar-chart-o"></i></a>
+              <a><i name="at" class="fa fa-question"></i></a>
+              <a><i name="at" class="fa fa-dollar"></i></a>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
 
