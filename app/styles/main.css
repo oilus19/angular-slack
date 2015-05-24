@@ -83,6 +83,8 @@
   padding-right: 20px; }
 
 ul.chats {
+  position: relative;
+  display: block;
   list-style: none; }
   ul.chats > li {
     margin: 20px auto;
@@ -154,6 +156,17 @@ ul.chats {
       top: 18px;
       right: 36px;
       z-index: 1; }
+  ul.chats > li.send-message-wrapper {
+    position: absolute;
+    width: 100%;
+    z-index: 90;
+    margin: 0 !important;
+  }
+    ul.chats > li.send-message-wrapper .send-message {
+      margin: 0px -30px;
+      padding: 17px 30px 18px !important;
+      background-color: #E7EAEB;
+    }
 
 .chat-form {
   padding: 10px;
@@ -1823,6 +1836,13 @@ html.boxed-layout {
 #getnear.aside-static #content {
   padding-left: 250px; }
 
+@media only screen and (max-width: 1200px) {
+
+  #getnear.header-fixed.aside-fixed #content .page-channel .streamline-form .what-to-do a {
+    width: 25px;
+  }
+}
+
 @media only screen and (max-width: 992px) {
   #getnear.header-fixed.aside-fixed:not(.sidebar-sm):not(.sidebar-xs) #content {
     left: 80px; } }
@@ -2199,7 +2219,8 @@ header {
               #sidebar accordion .panel-group .panel.closed > .panel-heading .panel-title > a:hover {
                 color: white; }
         #sidebar accordion .panel-group .panel .panel-body {
-          color: rgba(255, 255, 255, 0.5); }
+          color: rgba(255, 255, 255, 0.5);
+          margin-top: 57px; }
   #sidebar .summary .media .media-body {
     font-size: 12px;
     color: rgba(255, 255, 255, 0.3);
@@ -2228,7 +2249,7 @@ header {
   height: 100%; }
 
 #sidebar .heading{
-  margin-top: 40px;
+  margin-top: 20px;
   font-size: 15px;
   color: rgba(255, 255, 255, 0.5);
   font-weight: 700;
@@ -2237,9 +2258,16 @@ header {
   padding: 5px 0px;
 }
 
-#sidebar .group-title {
-  color: white;
-  margin-top: 0px;
+#sidebar .group-title {    
+  color: #FFF;
+  top: 45px;
+  left: 0;
+  position: fixed;
+  width: 250px;
+  z-index: 100;
+  background-color: rgba(28, 43, 54, 0.9) !important;
+  padding: 15px;
+  margin: 0;
 }
 
 #sidebar .group-title .initial {
@@ -2273,7 +2301,6 @@ header {
   list-style: none;
   background-color: #493d55; }
   #navigation > li > a > i {
-    display: none;
     margin-right: 10px;
     text-align: center;
     font-size: 14px;
@@ -2503,6 +2530,19 @@ header {
       .sidebar-xs #sidebar #navigation.direct-messages > li > a {
         text-align: left;
         white-space: nowrap; }
+
+  .sidebar-sm #sidebar .group-title {
+    width: 80px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .sidebar-xs #sidebar .group-title {
+    width: 40px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
   .sidebar-sm #sidebar .group-title .title,
   .sidebar-xs #sidebar .group-title .title {
     display: none; }
@@ -2510,8 +2550,7 @@ header {
   .sidebar-sm #sidebar .group-title .initial,
   .sidebar-xs #sidebar .group-title .initial {
     display: block;
-    text-align: center;
-    margin-top: 10px; }
+    text-align: center; }
 
   .sidebar-sm #sidebar a.with-icon i,
   .sidebar-xs #sidebar a.with-icon i {
@@ -2619,7 +2658,7 @@ header {
     padding-top: 90px; } }
 
 .pageheader {
-  position: fixed;
+  position: absolute;
   width: 100%;
   height: 57px;
   margin-top: -57px;
@@ -2769,6 +2808,10 @@ header {
         #rightbar .nav.nav-tabs > li.active > a:focus {
           background-color: #1d2833;
           color: white; }
+      #rightbar .nav.nav-tabs > li > a > tab-heading {
+        display: block;
+        margin: -20px -15px;
+        padding: 20px 15px; }
   #rightbar .tab-content {
     left: 0;
     background: #1d2833;
@@ -11712,24 +11755,38 @@ hr.line-full {
 }
 
 #header .group-nav > li > a {
-  line-height: 44px;
-  width: 60px;
+  line-height: 45px;
+  padding: 0 22px;
   font-size: 26px;
   color: white;
   text-align: center;
   display: inline-block;
 }
 
+#header .group-nav > li > a .group-title {
+  display: none;
+}
+
 #header .group-nav > li.active > a {
   background-color: #16A085;
 }
 
-#header #group_nav {
-  border-top: 1px solid #313653;
-  background-color: #344D6B;
+#header .group-nav > li:hover > a i,
+#header .group-nav > li.active > a i {
+  margin-right: 10px;
 }
 
-.page-group .group-filter>*{
+#header .group-nav > li:hover > a .group-initial,
+#header .group-nav > li.active > a .group-initial {
+  display: none;
+}
+
+#header .group-nav > li:hover > a .group-title,
+#header .group-nav > li.active > a .group-title {
+  display: inline-block;
+}
+
+.page-group .group-filter > *{
   vertical-align: top;
 }
 
@@ -11742,17 +11799,19 @@ hr.line-full {
 .page-channel .streamline-form-wrapper .streamline-form {
   margin: 0px -30px;
   padding: 17px 30px 18px !important;
-  background: white;
+  background-color: #E7EAEB;
 }
 
 .page-channel .streamline-form .what-to-do a {
-  color: #616F77;
-  width: 50px;
+  color: #80919B;
+  width: 40px;
   text-align: center;
   display: inline-block;
+  padding: 2px 0 4px;
 }
 
-.page-channel .streamline-form .what-to-do a:hover {
+.page-channel .streamline-form .what-to-do a:hover,
+.page-channel .streamline-form .what-to-do a.active {
   background-color: #161D25;
   color: white;
   cursor: pointer;

@@ -38,6 +38,15 @@
                   </ui-select-choices>
                 </ui-select>
               </div>
+              <div class="mb-10">
+                <span>Sub-Category</span><br/>
+                <ui-select ng-model="selected.subcategory"  ng-disabled="disabled">
+                  <ui-select-match placeholder="Click to view the sub-categories and select">{{$select.selected.title}}</ui-select-match>
+                  <ui-select-choices repeat="subcategory in selected.category.subcategories | filter: $select.search">
+                    <span ng-bind-html="subcategory.title | highlight: $select.search"></span>
+                  </ui-select-choices>
+                </ui-select>
+              </div>
               <div class="mb-10 row">
                 <div class="col-sm-4 col-xs-12">
                   <div class="mb-10">
@@ -73,12 +82,12 @@
 
         <script type="text/ng-template" id="selectIconModalContent.html">
           <div class="modal-header p-30 pb-0">
-            <h3 class="modal-title custom-font">Choose an icon for your group</h3>
+            <h3 class="modal-title custom-font">{{title}}</h3>
           </div>
           <div class="modal-body p-30">
             <div class="row icons-list">
               <div class="col-md-3 col-sm-4 col-xs-6" ng-repeat="icon in icons">
-                <span ng-click="select(icon)"><i class="fa {{icon}}"/>{{icon}}</span>
+                <span ng-click="select(icon)"><i class="fa {{icon}}"/>{{getIconName(icon)}}</span>
               </div>
             </div>
           </div>
@@ -87,7 +96,7 @@
       </div>
 
     </li>
-    <li ng-repeat="group in joinedGroup" ng-class="{active: group==currentGroup}"><a ui-sref="app.group.channel({group: '{{group.title}}', channel: 'General'})"><span ng-if="!group.icon || group.icon==''">{{group.initial}}</span><i class="fa {{group.icon}}" ng-if="group.icon"/></a></li>
+    <li ng-repeat="group in joinedGroup" ng-class="{active: group==currentGroup}"><a ui-sref="app.group.channel({group: '{{group.title}}', channel: 'General'})"><span class="group-initial" ng-if="!group.icon || group.icon==''">{{group.initial}}</span><i class="fa {{group.icon}}" ng-if="group.icon"/><span class="group-title">{{group.title}}</span></a></li>
   </ul>
 
   <!-- Right-side navigation -->

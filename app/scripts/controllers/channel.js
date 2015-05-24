@@ -18,77 +18,6 @@ angular.module('getnearApp')
         return post.body;
     }
 
-    $("#new_post_input").keypress(function(e) {
-      var key = e.which;
-      if(key==13){
-        $rootScope.submitPost();
-      }
-    });
-
-    $rootScope.submitPost = function(){
-        function getPostType(post){
-            if(post.indexOf('q:') === 0) return 'q';
-            if(post.indexOf('@') === 0) return '@';
-            if(post.indexOf('e:') === 0) return 'e';
-            if(post.indexOf('p:') === 0) return 'p';
-            if(post.indexOf('s:') === 0) return 's';
-        }
-
-        function getPostBody(post){
-            return post.substr(post.indexOf(':')+1).trim();
-        }
-
-        function getPostAuthor(post){
-            var author = {
-                firstname: 'John',
-                lastname: 'Douey',
-                avatar: 'images/profile-photo.jpg'
-            }
-            return author;
-        }
-
-        function getPostTo(post){
-            return post.substr(1,post.indexOf(':')-1).trim();
-        }
-
-        function reset(){
-            $("#new_post_input").val('');
-        }
-        
-        var post_input = $("#new_post_input").val().trim();
-        var postType = getPostType(post_input);
-        var postBody = postType?getPostBody(post_input):post_input;
-        var postAuthor = getPostAuthor(post_input);
-        var post = {
-            type: postType,
-            body: postBody,
-            user: postAuthor,
-            timeline: "Just Now"
-        }
-
-        switch(postType){
-            case 'q':
-                $rootScope.posts.push(post);
-                break;
-            case '@':
-                post.to = getPostTo(post_input);
-                $rootScope.posts.push(post);
-                break;
-            case 'e':
-                $rootScope.newEvent();
-                break;
-            case 'p':
-                $rootScope.newPoll();
-                break;
-            case 's':
-                $rootScope.newSale();
-                break;
-            default:
-                $rootScope.posts.push(post);
-        }
-
-        reset();
-    }
 
     /*  Mentions     */
 
@@ -108,8 +37,34 @@ angular.module('getnearApp')
     /*  Question and Answer     */
 
     $rootScope.newQuestion = function(){
-        $scope.newPost = 'q: ';
-        jQuery('#new_post_input').focus();
+      var modalInstance = $modal.open({
+        templateUrl: 'createQuestionModalContent.html',
+        controller: 'CreateQuestionModalInstanceCtrl',
+        size: 'lg'
+      });
+
+      modalInstance.result.then(function (result) {
+
+        function getPostAuthor(){
+            var author = {
+                firstname: 'John',
+                lastname: 'Douey',
+                avatar: 'images/profile-photo.jpg'
+            }
+            return author;
+        }
+
+        var question = {
+          type: "q",
+          body: result.question,
+          timeline: "Just now",
+          user: getPostAuthor()
+        }
+        $rootScope.posts.push(question);
+        scrollBottom();
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
     }
 
     $rootScope.showQuestion = function(question){
@@ -134,35 +89,7 @@ angular.module('getnearApp')
         },100);
     }
 
-    $rootScope.submitAnswer = function(){
-        function getPostBody(post){
-            return jQuery('#new_answer_input').val().trim();
-        }
 
-        function getPostAuthor(){
-            var author = {
-                firstname: 'John',
-                lastname: 'Douey',
-                avatar: 'images/profile-photo.jpg'
-            }
-            return author;
-        }
-
-        function reset(){
-            jQuery('#new_answer_input').val('');
-        }
-        
-        var postBody = getPostBody();
-        var postAuthor = getPostAuthor();
-        var answer = {
-            body: postBody,
-            user: postAuthor
-        }
-
-        if($rootScope.question.answers==undefined) $rootScope.question.answers = [];
-        $rootScope.question.answers.push(answer);
-        reset();
-    }
 
     /*  Poll     */
 
@@ -195,6 +122,7 @@ angular.module('getnearApp')
           user: getPostAuthor()
         }
         $rootScope.posts.push(poll);
+        scrollBottom();
       }, function () {
         $log.info('Modal dismissed at: ' + new Date());
       });
@@ -258,6 +186,7 @@ angular.module('getnearApp')
           user: getPostAuthor()
         }
         $rootScope.posts.push(event);
+        scrollBottom();
       }, function () {
         $log.info('Modal dismissed at: ' + new Date());
       });
@@ -279,6 +208,7 @@ angular.module('getnearApp')
     /*  Pinned Items     */
 
     $rootScope.showPinnedItem = function(pinnedItem){
+
         switch(pinnedItem.type){
             case '@':
                 $rootScope.showMention(pinnedItem);
@@ -296,6 +226,13 @@ angular.module('getnearApp')
                 $rootScope.showSale(pinnedItem);
                 break;
         }
+
+        var index = jQuery.inArray(pinnedItem, $rootScope.posts)+1;
+
+        var container = $(window),
+          scrollTo = $("#post-"+index),
+          scrollTop = scrollTo.offset().top - 120;
+        container.scrollTop(scrollTop);
     }
 
     $rootScope.setPinned = function(pinnedItem){
@@ -341,6 +278,7 @@ angular.module('getnearApp')
           user: getPostAuthor()
         }
         $rootScope.posts.push(sale);
+        scrollBottom();
       }, function () {
         $log.info('Modal dismissed at: ' + new Date());
       });
@@ -359,6 +297,16 @@ angular.module('getnearApp')
         $rootScope.salesScope.saleShowed = false;
     }
 
+
+    $scope.firstPostsLoad = true;
+
+    $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent){
+      if($scope.firstPostsLoad){
+        $scope.firstPostsLoad=false;
+        scrollBottom();
+      }
+    })
+
   });
 
 
@@ -375,10 +323,31 @@ angular.module('getnearApp')
             }
         });
     };
-});
+  })
+  .directive('onFinishRender', function ($timeout) {
+    return {
+      restrict: 'A',
+      link: function(scope, element, attr) {
+        if(scope.$last===true){
+          $timeout(function(){
+            scope.$emit('ngRepeatFinished');
+          })
+        }
+      }
+    }
+  });
 
 
 angular.module('getnearApp')
+
+  .controller('CreateQuestionModalInstanceCtrl', function ($scope, $modalInstance) {
+    $scope.question = "";
+
+    $scope.create = function () {
+      $modalInstance.close({question: $scope.question});
+    };
+  })
+
   .controller('CreatePollModalInstanceCtrl', function ($scope, $modalInstance) {
     $scope.question = "";
     $scope.options = [{
@@ -476,6 +445,7 @@ angular.module('getnearApp')
     $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
     $scope.format = $scope.formats[0];
   })
+
   .controller('TimepickerCtrl', function ($scope) {
     $scope.mytime = new Date();
 
@@ -507,6 +477,7 @@ angular.module('getnearApp')
       $scope.mytime = null;
     };
   })
+
   .controller('ImageCropCtrl', function ($scope) {
     $scope.myImage='';
     $scope.myCroppedImage='';
@@ -523,22 +494,112 @@ angular.module('getnearApp')
       reader.readAsDataURL(file);
     };
     angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
+  })
+
+  .controller('AddPostCtrl', function ($rootScope, $scope) {
+    $scope.newPost='';
+    $scope.selectedNewPostType='';
+    $scope.newPostInput=$("#new_post_input");
+
+    $scope.newPostInput.keypress(function(e) {
+      var key = e.which;
+      if(key==13){
+        $scope.submitPost();
+      }
+    });
+
+    $scope.reset = function(){
+      $scope.newPost = '';
+      $scope.selectedNewPostType = '';
+    }
+
+    $scope.submitPost = function(){
+        function getPostType(post){
+            if(post.indexOf('q:') === 0) return 'q';
+            if(post.indexOf('@') === 0) return '@';
+            if(post.indexOf('e:') === 0) return 'e';
+            if(post.indexOf('p:') === 0) return 'p';
+            if(post.indexOf('s:') === 0) return 's';
+        }
+
+        function getPostBody(post){
+            return post.substr(post.indexOf(':')+1).trim();
+        }
+
+        function getPostAuthor(post){
+            var author = {
+                firstname: 'John',
+                lastname: 'Douey',
+                avatar: 'images/profile-photo.jpg'
+            }
+            return author;
+        }
+
+        function getPostTo(post){
+            return post.substr(1,post.indexOf(':')-1).trim();
+        }
+        
+        var post_input = $scope.newPost;
+        var postType = getPostType(post_input);
+        var postBody = postType?getPostBody(post_input):post_input;
+        var postAuthor = getPostAuthor(post_input);
+        var post = {
+            type: postType,
+            body: postBody,
+            user: postAuthor,
+            timeline: "Just Now"
+        }
+
+        switch(postType){
+            case 'q':
+                $rootScope.posts.push(post);
+                break;
+            case '@':
+                post.to = getPostTo(post_input);
+                $rootScope.posts.push(post);
+                break;
+            case 'e':
+                $rootScope.newEvent();
+                break;
+            case 'p':
+                $rootScope.newPoll();
+                break;
+            case 's':
+                $rootScope.newSale();
+                break;
+            default:
+                $rootScope.posts.push(post);
+        }
+
+        $scope.reset();
+        scrollBottom();
+    }
+
+    $scope.selectMention = function() {
+      $scope.selectedNewPostType = '@';
+      $scope.newPost = '@';
+      $scope.newPostInput.focus();
+    }
+
+    $scope.selectEvent = function() {
+      $rootScope.newEvent();
+      $scope.reset();
+    }
+
+    $scope.selectPoll = function() {
+      $rootScope.newPoll();
+      $scope.reset();
+    }
+
+    $scope.selectQuestion = function() {
+      $rootScope.newQuestion();
+      $scope.reset();
+    }
+
+    $scope.selectSale = function() {
+      $rootScope.newSale();
+      $scope.reset();
+    }
+
   });
 
-
-function positionNewPostBox(){
-  var scrollTop = $(window).scrollTop();
-  var height = $(".streamline-form-wrapper").outerHeight(true);
-  console.log(height);
-  var top = $("#content").height()+scrollTop-height-30;
-  $(".page-channel .streamline-form-wrapper").css('top', top.toString() + 'px');
-}
-
-$(window).bind("load", function() { 
-
-  $(window)
-    .scroll(positionNewPostBox)
-    .resize(positionNewPostBox);
-
-  positionNewPostBox();
-});

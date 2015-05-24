@@ -8,7 +8,7 @@
  * Controller of the getnearApp
  */
 angular.module('getnearApp')
-  .controller('MainCtrl', function ($rootScope, $scope, $http, $modal, $log) {
+  .controller('MainCtrl', function ($rootScope, $scope, $http, $modal, $log, $resource) {
 
     $rootScope.main = {
       title: 'getnear',
@@ -26,6 +26,8 @@ angular.module('getnearApp')
     if ($(window).width() < 768) {
       $rootScope.main.settings.rightbarShow = false;
     }
+
+    $rootScope.icons = $resource('scripts/jsons/icons.json').query();
 
     $rootScope.joinedGroup = [{
       title: "Android Developers",
@@ -48,10 +50,24 @@ angular.module('getnearApp')
 
     $rootScope.groupCategories = [{
         title: "Web Development",
-        slug: "web_development"
+        slug: "web_development",
+        subcategories: [{
+          title: "Php Development",
+          slug: "php_development"
+        },{
+          title: "HTML5 Development",
+          slug: "html5_development"
+        }]
     },{
         title: "Mobile Development",
-        slug: "mobile_development"
+        slug: "mobile_development",
+        subcategories: [{
+          title: "IPhone Development",
+          slug: "iphone_development"
+        },{
+          title: "Android Development",
+          slug: "android_development"
+        }]
     }];
 
     $rootScope.groups = [];
@@ -130,7 +146,7 @@ angular.module('getnearApp')
     $rootScope.posts = [{
       type: "q",
       body: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue.",
-      timeline: "Just Now",
+      timeline: "2 hours ago",
       pinned: true,
       user: {
         firstname: 'Wood',
@@ -165,7 +181,7 @@ angular.module('getnearApp')
         title: 'Kune',
         votes: 3
       }],
-        timeline: "39 minutes ago",
+        timeline: "1 hour ago",
         user: {
             firstname: 'Mike',
             lastname: 'Stuart',
@@ -179,7 +195,7 @@ angular.module('getnearApp')
       date: "Friday 12 of May",
       time: "19:00",
       price: "free",
-        timeline: "2 hours ago",
+        timeline: "1 hour ago",
         user: {
             firstname: 'Robin',
             lastname: 'Wills',
@@ -190,7 +206,7 @@ angular.module('getnearApp')
       body: "Black Mini Dress",
       photo: "http://arasar.hanathemes.com/wp-content/uploads/2013/12/982-400x560.jpg",
       price: "$99",
-        timeline: "2 hours ago",
+        timeline: "39 minutes ago",
         user: {
             firstname: 'Robin',
             lastname: 'Wills',
@@ -200,7 +216,7 @@ angular.module('getnearApp')
       type: "@",
       to: 'John Douey',
       body: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue.",
-        timeline: "2 hours ago",
+        timeline: "30 minutes ago",
         user: {
             firstname: 'Imrich',
             lastname: 'Kamarel',
@@ -210,17 +226,7 @@ angular.module('getnearApp')
       type: "@",
       to: 'John Douey',
       body: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue.",
-        timeline: "2 hours ago",
-        user: {
-            firstname: 'Imrich',
-            lastname: 'Kamarel',
-            avatar: 'images/random-avatar4.jpg'
-        }
-    },{
-      type: "@",
-      to: 'John Douey',
-      body: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue.",
-        timeline: "2 hours ago",
+        timeline: "29 minutes ago",
         user: {
             firstname: 'Imrich',
             lastname: 'Kamarel',
@@ -332,34 +338,6 @@ angular.module('getnearApp')
       });
     }
 
-
-    /* Channel */
-
-    $rootScope.submitChannel = function(title){
-        var channel = {
-            title: title,
-            initial: title.charAt(0).toUpperCase(),
-            icon: "fa-adjust"
-        }
-        $rootScope.channels.push(channel);
-    }
-
-    $scope.selectChannelIcon = function(channel) {
-
-      var modalInstance = $modal.open({
-        templateUrl: 'selectIconModalContent.html',
-        controller: 'selectIconModalInstanceCtrl',
-        size: "lg"
-      });
-
-      modalInstance.result.then(function (result) {
-
-        channel.icon = result.icon;
-      }, function () {
-        $log.info('Modal dismissed at: ' + new Date());
-      });
-    }
-
     $scope.ajaxFaker = function(){
       $scope.data=[];
       var url = 'http://www.filltext.com/?rows=10&fname={firstName}&lname={lastName}&delay=5&callback=JSON_CALLBACK';
@@ -370,10 +348,6 @@ angular.module('getnearApp')
         angular.element('.tile.refreshing').removeClass('refreshing');
       });
     };
-
-    $scope.resize = function(){
-      resize();
-    }
   })
 
   .controller('CreateGroupModalInstanceCtrl', function ($scope, $modalInstance, $modal, $log, items) {
@@ -384,43 +358,51 @@ angular.module('getnearApp')
     $scope.selected = {};
 
     $scope.create = function () {
-      $modalInstance.close({title: $scope.title, category: $scope.selected.category.title, status: $scope.selected.status.title, icon: $scope.icon, about: $scope.about});
+      $modalInstance.close({title: $scope.title, category: $scope.selected.category.title, subcategory: $scope.selected.subcategory.title, status: $scope.selected.status.title, icon: $scope.icon, about: $scope.about});
     };
 
     $scope.selectIcon = function() {
 
       var modalInstance = $modal.open({
         templateUrl: 'selectIconModalContent.html',
-        controller: 'selectIconModalInstanceCtrl',
-        size: "lg"
+        controller: 'SelectIconModalInstanceCtrl',
+        size: "lg",
+        resolve: {
+          items: function () {
+            return {title: "Choose an icon for your group"};
+          }
+        }
       });
 
       modalInstance.result.then(function (result) {
-
         $scope.icon = result.icon;
       }, function () {
         $log.info('Modal dismissed at: ' + new Date());
       });
     }
 
+    $scope.$watch(function(scope){return scope.selected.category},
+      function(){
+        $scope.selected.subcategory = '';
+      });
+
     $scope.cancel = function () {
       $modalInstance.dismiss('cancel');
     };
   })
-  .controller('selectIconModalInstanceCtrl', function ($scope, $modalInstance) {
 
-    $scope.icons = [
-      "fa-adjust", "fa-anchor", "fa-archive", "fa-arrows", "fa-arrows-h", "fa-arrows-v",
-      "fa-asterisk", "fa-automobile", "fa-ban", "fa-bank", "fa-bar-chart-o", "fa-barcode",
-      "fa-bars", "fa-beer", "fa-bell", "fa-bell-o", "fa-bolt", "fa-bomb",
-      "fa-book", "fa-bookmark", "fa-bookmark-o", "fa-briefcase", "fa-bug", "fa-building",
-    ];
+  .controller('SelectIconModalInstanceCtrl', function ($scope, $modalInstance, items) {
+    $scope.title = items.title;
+    
+    $scope.getIconName = function (icon) {
+      return icon.substr(3);
+    }
 
     $scope.select = function (icon) {
       $modalInstance.close({icon: icon});
     }
 
-  });;
+  });
 
   
 

@@ -3,7 +3,7 @@
   	<div class="page page-full page-chat" ng-init="resize()">
 
 
-      <div class="p-15 bg-white b-b">
+      <div class="pageheader p-15 bg-white b-b">
 
         <div class="btn-toolbar pull-right">
           <div class="btn-group">
@@ -22,7 +22,7 @@
 
       </div>
 
-      <div class="p-30">
+      <div class="p-30" style="margin-bottom: 130px">
 
         <!-- chats -->
         <ul class="chats p-0">
@@ -40,7 +40,7 @@
             </div>
           </li>
           <li class="conversation-divider"><span>Today</span></li>
-          <li ng-repeat="message in messages" class="{{message.type}}">
+          <li ng-repeat="message in messages" class="{{message.type}}" on-finish-render>
             
             <div class="media" ng-if="message.type=='in'">
               <div class="pull-left thumb thumb-sm">
@@ -62,20 +62,22 @@
               </div>
             </div>
           </li>
-          <li class="out">
-            <div class="media">
-              <div class="pull-right thumb thumb-sm">
-                <img class="media-object img-circle" src="images/profile-photo.jpg" alt="">
-              </div>
-              <div class="media-body">
-                <div class="mb-40" ng-hide="post">
-                  <a href="javascript:;" ng-click="post=!post">Post</a> new message</a>
+          <li class="out send-message-wrapper">
+            <div class="send-message" ng-controller="SendMessageCtrl">
+              <div class="media">
+                <div class="pull-right thumb thumb-sm">
+                  <img class="media-object img-circle" src="images/profile-photo.jpg" alt="">
                 </div>
-                <div ng-show="post">
-                  <textarea class="form-control b-0" ng-model="messageinput"></textarea>
-                  <div class="panel-footer text-left">
-                    <button class="btn btn-link text-default pull-right" ng-click="post=!post"><i class="fa fa-trash-o"></i></button>
-                    <button class="btn btn-greensea btn-ef btn-ef-7 btn-ef-7b b-0 br-2" ng-click="sendMessage()"><i class="fa fa-envelope"></i> Send Message</button>
+                <div class="media-body">
+                  <div class="mb-40" ng-hide="post">
+                    <a href="javascript:;" ng-click="post=!post">Post</a> new message</a>
+                  </div>
+                  <div ng-show="post">
+                    <textarea class="form-control b-0" ng-model="messageinput"></textarea>
+                    <div class="panel-footer text-left">
+                      <button class="btn btn-link text-default pull-right" ng-click="post=!post"><i class="fa fa-trash-o"></i></button>
+                      <button class="btn btn-greensea btn-ef btn-ef-7 btn-ef-7b b-0 br-2" ng-click="sendMessage()"><i class="fa fa-envelope"></i> Send Message</button>
+                    </div>
                   </div>
                 </div>
               </div>

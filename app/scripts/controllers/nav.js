@@ -9,16 +9,83 @@
  */
 
 angular.module('getnearApp')
-  .controller('NavCtrl', function ($rootScope, $scope) {
+  .controller('NavCtrl', function ($rootScope, $scope, $modal) {
     $scope.oneAtATime = false;
 
     $scope.status = {
       isFirstOpen: true,
       isSecondOpen: true,
       isThirdOpen: true
-    };      
+    };
+
+    $scope.editChannel = function(channel) {
+
+      var modalInstance = $modal.open({
+        templateUrl: 'editChannelModalContent.html',
+        controller: 'editChannelModalInstanceCtrl',
+        resolve: {
+          items: function () {
+            return {channel: channel};
+          }
+        }
+      });
+    }
+
+    $scope.selectChannelIcon = function(channel) {
+
+      var modalInstance = $modal.open({
+        templateUrl: 'selectIconModalContent.html',
+        controller: 'selectIconModalInstanceCtrl',
+        size: "lg"
+      });
+
+      modalInstance.result.then(function (result) {
+
+        channel.icon = result.icon;
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+    }
   })
-  .controller('SuggestChannelCtrl', function($scope, $log){
+  .controller('editChannelModalInstanceCtrl', function ($scope, $rootScope, $modalInstance, $modal, $log, items) {
+    
+    $scope.icon = items.channel.icon;
+    $scope.title = items.channel.title;
+
+    $scope.update = function () {
+      items.channel.icon = $scope.icon;
+      items.channel.title = $scope.title;
+      $modalInstance.close();
+    };
+
+    $scope.selectIcon = function() {
+
+      var modalInstance = $modal.open({
+        templateUrl: 'selectIconModalContent.html',
+        controller: 'SelectIconModalInstanceCtrl',
+        size: "lg",
+        resolve: {
+          items: function () {
+            return {title: "Choose an icon for your channel"};
+          }
+        }
+      });
+
+      modalInstance.result.then(function (result) {
+        $scope.icon = result.icon;
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+    }
+
+    $scope.delete = function () {
+      $rootScope.channels = $rootScope.channels.filter(function(el){
+        return el.title !== items.channel.title;
+      });
+      $modalInstance.close();
+    };
+  })
+  .controller('SuggestChannelCtrl', function($scope, $rootScope, $log){
     $scope.status = {
       isopen: false
     };
@@ -35,6 +102,15 @@ angular.module('getnearApp')
       else
         $("#sidebar").removeClass('dropdown-open');
     };
+
+    $scope.submitChannel = function(title){
+        var channel = {
+            title: title,
+            initial: title.charAt(0).toUpperCase(),
+            icon: "fa-adjust"
+        }
+        $rootScope.channels.push(channel);
+    }
 
     $scope.submit = function($event) {
       $scope.toggleDropdown($event);

@@ -2,7 +2,7 @@
 
 <tabset justified="true" ng-init="resize()">
   <tab id="info">
-    <tab-heading>
+    <tab-heading tooltip="Information" tooltip-placement="bottom">
       <fa name="info"></fa>
     </tab-heading>
 
@@ -174,7 +174,7 @@
   </tab>
 
   <tab id="mentions">
-    <tab-heading>
+    <tab-heading tooltip="Mentions" tooltip-placement="bottom">
       <fa name="at"></fa>
     </tab-heading>
 
@@ -218,106 +218,95 @@
     </div>
   </tab>
 
-  <tab id="events">
-    <tab-heading>
-      <fa name="calendar"></fa>
+  <tab id="questions">
+    <tab-heading tooltip="Questions" tooltip-placement="bottom">
+      <fa name="question"></fa>
     </tab-heading>
 
-    <h6>Events
-      <a class="pull-right" ng-click="newEvent()" ng-class="{hidden: eventsScope.eventShowed}"><i class="icon-plus"/></a>
-      <a class="pull-right" ng-click="hideEvent()" ng-class="{hidden: !eventsScope.eventShowed}"><i class="icon-close"/></a>
+    <h6>Questions
+      <a class="pull-right" ng-click="newQuestion()" ng-class="{hidden: questionsScope.questionShowed}"><i class="icon-plus"/></a>
+      <a class="pull-right" ng-click="hideQuestion()" ng-class="{hidden: !questionsScope.questionShowed}"><i class="icon-close"/></a>
     </h6>
 
-    <div ng-if="!eventsScope.eventShowed">
-      <ul class="events" ng-init="eventsScope.filter={type:'e'};eventsScope.empty=true">
-        <li ng-repeat="post in posts | filter:eventsScope.filter">
-          <div class="media" ng-init="eventsScope.empty=false">
+    <div ng-if="!questionsScope.questionShowed">
+      <ul class="questions" ng-init="questionsScope.filter={type:'q'};questionsScope.empty=true">
+        <li ng-repeat="post in posts | filter:questionsScope.filter">
+          <div class="media" ng-init="questionsScope.empty=false">
             <a class="pull-left thumb thumb-sm" href="javascript:;">
               <img class="media-object img-circle" src="{{post.user.avatar}}" alt>
             </a>
             <div class="media-body">
               <span class="media-heading">{{post.user.firstname}} <strong>{{post.user.lastname}}</strong></span>
               <small>{{post.body}}</small><br/>
-              <a class="read-more" ng-click="showEvent(post)">View more</a>
+              <a class="read-more" ng-click="showQuestion(post)">View more</a>
             </div>
           </div>
         </li>
       </ul>
 
-      <span ng-if="eventsScope.empty">There's no events yet.</span>
-      <div class="new-post"><button type="button" class="btn btn-greensea" ng-click="newEvent()">Click here to create your event</button></div>
+      <span ng-if="questionsScope.empty">There's no questions yet.</span>
+      <div class="new-post"><button type="button" class="btn btn-greensea" ng-click="newQuestion()">Click here to create your question</button></div>
 
-      <script type="text/ng-template" id="createEventModalContent.html">
+      <script type="text/ng-template" id="createQuestionModalContent.html">
                 <div class="modal-header p-30 pb-0">
-                  <h3 class="modal-title custom-font">Create your event</h3>
+                  <h3 class="modal-title custom-font">Create your question</h3>
                 </div>
                 <div class="modal-body p-30">
-                    <div class="mb-10">
-                      <span>Title</span><br/>
-                      <input type="text" class="form-control" ng-model="title">
-                    </div>
-                    <div class="mb-10">
-                      <span>Information about the event</span><br/>
-                      <textarea class="form-control" ng-model="info"></textarea>
-                    </div>
-                    <div class="mb-10">
-                      <span>Location</span><br/>
-                      <input type="text" class="form-control" ng-model="location">
-                    </div>
-                    <div class="row">
-                      <div class="col-sm-4 col-xs-12 mt-5 pt-10" ng-controller="DatepickerCtrl">
-
-                            <span>Date & Time</span><br/>
-                            <p class="input-group">
-                              <input type="text" id="event_date" class="form-control" datepicker-popup="{{format}}" ng-model="$parent.dt" is-open="opened" min-date="minDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
-                              <span class="input-group-btn">
-                                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="fa fa-calendar"></i></button>
-                              </span>
-                            </p>
-                      </div>
-
-                      <div class="col-sm-4 col-xs-12" ng-controller="TimepickerCtrl" id="event_timepicker">
-
-                        <timepicker ng-model="$parent.mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
-                      </div>
-
-                      <div class="col-sm-4 col-xs-12 mt-5 pt-10">
-                        <span>Price</span><br/>
-                        <button type="button" class="btn btn-default mr-10 mb-10" ng-click="free=(free==true)?false:true"><i class="fa fa-check" ng-if="free==true"/><i class="fa fa-check" ng-if="free==false" style="opacity:0"/></span></button><span class="mr-10 mb-10">Free</span>
-                        <input type="text" class="form-control inline-block" ng-model="price" ng-disabled="free==true" style="width:100px"/>
-                      </div>
-                    </div>
+                  <ul class="list-unstyled">
+                    <li class="mb-10">
+                      <span>Question</span><br/>
+                      <input type="text" class="form-control" ng-model="question">
+                    </li>
+                  </ul>
                 </div>
                 <div class="modal-footer pr-30">
-                  <button class="btn btn-greensea btn-lg" ng-click="create()">Create event</button>
+                  <button class="btn btn-greensea btn-lg" ng-click="create()">Create Question</button>
                 </div>
               </script>
     </div>
 
-    <div ng-if="eventsScope.eventShowed">
-      <ul>
+    <div ng-if="questionsScope.questionShowed">
+      <ul class="q-a">
         <li>
           <div class="media">
             <a class="pull-left thumb thumb-sm" href="javascript:;">
-              <img class="media-object img-circle" src="{{event.user.avatar}}" alt>
+              <img class="media-object img-circle" src="{{question.user.avatar}}" alt>
             </a>
             <div class="media-body">
-              <span class="media-heading">{{event.user.firstname}} <strong>{{event.user.lastname}}</strong></span>
-              <span><strong>Title:</strong> {{event.body}}</span><br/><br/>
-              <span ng-if="event.info"><strong>Info:</strong> <span ng-bind-html="event.info"></span></span><br/><br/>
-              <span ng-if="event.location"><strong>Location:</strong> {{event.location}}</span><br/><br/>
-              <span ng-if="event.date"><strong>Date:</strong> {{event.date}}</span><br/><br/>
-              <span ng-if="event.time"><strong>Time:</strong> {{event.time}}</span><br/><br/>
-              <span ng-if="event.price"><strong>Price:</strong> {{event.price}}</span><br/>
+              <span class="media-heading">{{question.user.firstname}} <strong>{{question.user.lastname}}</strong></span>
+              <span>{{question.body}}</span>
+            </div>
+          </div>
+        </li>
+        <li>
+          <span>Answers</span>
+        </li>
+        <li ng-repeat="post in question.answers">
+          <div class="media">
+            <a class="pull-left thumb thumb-sm" href="javascript:;">
+              <img class="media-object img-circle" src="{{post.user.avatar}}" alt>
+            </a>
+            <div class="media-body">
+              <span class="media-heading">{{post.user.firstname}} <strong>{{post.user.lastname}}</strong></span>
+              <span>{{post.body}}</span>
             </div>
           </div>
         </li>
       </ul>
+
+      <div class="new-answer" ng-controller="NewAnswerCtrl">
+        <div class="input-group">
+          <input type="text" id="new_answer_input" class="form-control" placeholder="Write your answer here..." ng-model="newAnswer" ng-keypress="keyPress($event)">
+          <span class="input-group-btn"><button class="btn btn-default" type="button" ng-click="submitAnswer()">Answer</button></span>
+        </div>
+      </div>
+
     </div>
+
   </tab>
 
   <tab id="polls">
-    <tab-heading>
+    <tab-heading tooltip="Polls" tooltip-placement="bottom">
       <fa name="bar-chart-o"></fa>
     </tab-heading>
 
@@ -385,101 +374,107 @@
     </div>
   </tab>
 
-  <tab id="questions">
-    <tab-heading>
-      <fa name="question"></fa>
+  <tab id="events">
+    <tab-heading tooltip="Events" tooltip-placement="bottom">
+      <fa name="calendar"></fa>
     </tab-heading>
 
-    <h6>Questions
-      <a class="pull-right" ng-click="newQuestion()" ng-class="{hidden: questionsScope.questionShowed}"><i class="icon-plus"/></a>
-      <a class="pull-right" ng-click="hideQuestion()" ng-class="{hidden: !questionsScope.questionShowed}"><i class="icon-close"/></a>
+    <h6>Events
+      <a class="pull-right" ng-click="newEvent()" ng-class="{hidden: eventsScope.eventShowed}"><i class="icon-plus"/></a>
+      <a class="pull-right" ng-click="hideEvent()" ng-class="{hidden: !eventsScope.eventShowed}"><i class="icon-close"/></a>
     </h6>
 
-    <div ng-if="!questionsScope.questionShowed">
-      <ul class="questions" ng-init="questionsScope.filter={type:'q'};questionsScope.empty=true">
-        <li ng-repeat="post in posts | filter:questionsScope.filter">
-          <div class="media" ng-init="questionsScope.empty=false">
+    <div ng-if="!eventsScope.eventShowed">
+      <ul class="events" ng-init="eventsScope.filter={type:'e'};eventsScope.empty=true">
+        <li ng-repeat="post in posts | filter:eventsScope.filter">
+          <div class="media" ng-init="eventsScope.empty=false">
             <a class="pull-left thumb thumb-sm" href="javascript:;">
               <img class="media-object img-circle" src="{{post.user.avatar}}" alt>
             </a>
             <div class="media-body">
               <span class="media-heading">{{post.user.firstname}} <strong>{{post.user.lastname}}</strong></span>
               <small>{{post.body}}</small><br/>
-              <a class="read-more" ng-click="showQuestion(post)">View more</a>
+              <a class="read-more" ng-click="showEvent(post)">View more</a>
             </div>
           </div>
         </li>
       </ul>
 
-      <span ng-if="questionsScope.empty">There's no questions yet.</span>
-      <div class="new-post"><button type="button" class="btn btn-greensea" ng-click="newQuestion()">Click here to create your question</button></div>
+      <span ng-if="eventsScope.empty">There's no events yet.</span>
+      <div class="new-post"><button type="button" class="btn btn-greensea" ng-click="newEvent()">Click here to create your event</button></div>
+
+      <script type="text/ng-template" id="createEventModalContent.html">
+                <div class="modal-header p-30 pb-0">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h3 class="modal-title custom-font">Create your event</h3>
+                </div>
+                <div class="modal-body p-30">
+                    <div class="mb-10">
+                      <span>Title</span><br/>
+                      <input type="text" class="form-control" ng-model="title">
+                    </div>
+                    <div class="mb-10">
+                      <span>Information about the event</span><br/>
+                      <textarea class="form-control" ng-model="info"></textarea>
+                    </div>
+                    <div class="mb-10">
+                      <span>Location</span><br/>
+                      <input type="text" class="form-control" ng-model="location">
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-4 col-xs-12 mt-5 pt-10" ng-controller="DatepickerCtrl">
+
+                            <span>Date & Time</span><br/>
+                            <p class="input-group">
+                              <input type="text" id="event_date" class="form-control" datepicker-popup="{{format}}" ng-model="$parent.dt" is-open="opened" min-date="minDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                              <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="fa fa-calendar"></i></button>
+                              </span>
+                            </p>
+                      </div>
+
+                      <div class="col-sm-4 col-xs-12" ng-controller="TimepickerCtrl" id="event_timepicker">
+
+                        <timepicker ng-model="$parent.mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+                      </div>
+
+                      <div class="col-sm-4 col-xs-12 mt-5 pt-10">
+                        <span>Price</span><br/>
+                        <button type="button" class="btn btn-default mr-10 mb-10" ng-click="free=(free==true)?false:true"><i class="fa fa-check" ng-if="free==true"/><i class="fa fa-check" ng-if="free==false" style="opacity:0"/></span></button><span class="mr-10 mb-10">Free</span>
+                        <input type="text" class="form-control inline-block" ng-model="price" ng-disabled="free==true" style="width:100px"/>
+                      </div>
+                    </div>
+                </div>
+                <div class="modal-footer pr-30">
+                  <button class="btn btn-greensea btn-lg" ng-click="create()">Create event</button>
+                </div>
+              </script>
     </div>
 
-    <div ng-if="questionsScope.questionShowed">
-      <ul class="q-a">
+    <div ng-if="eventsScope.eventShowed">
+      <ul>
         <li>
           <div class="media">
             <a class="pull-left thumb thumb-sm" href="javascript:;">
-              <img class="media-object img-circle" src="{{question.user.avatar}}" alt>
+              <img class="media-object img-circle" src="{{event.user.avatar}}" alt>
             </a>
             <div class="media-body">
-              <span class="media-heading">{{question.user.firstname}} <strong>{{question.user.lastname}}</strong></span>
-              <span>{{question.body}}</span>
-            </div>
-          </div>
-        </li>
-        <li>
-          <span>Answers</span>
-        </li>
-        <li ng-repeat="post in question.answers">
-          <div class="media">
-            <a class="pull-left thumb thumb-sm" href="javascript:;">
-              <img class="media-object img-circle" src="{{post.user.avatar}}" alt>
-            </a>
-            <div class="media-body">
-              <span class="media-heading">{{post.user.firstname}} <strong>{{post.user.lastname}}</strong></span>
-              <span>{{post.body}}</span>
+              <span class="media-heading">{{event.user.firstname}} <strong>{{event.user.lastname}}</strong></span>
+              <span><strong>Title:</strong> {{event.body}}</span><br/><br/>
+              <span ng-if="event.info"><strong>Info:</strong> <span ng-bind-html="event.info"></span></span><br/><br/>
+              <span ng-if="event.location"><strong>Location:</strong> {{event.location}}</span><br/><br/>
+              <span ng-if="event.date"><strong>Date:</strong> {{event.date}}</span><br/><br/>
+              <span ng-if="event.time"><strong>Time:</strong> {{event.time}}</span><br/><br/>
+              <span ng-if="event.price"><strong>Price:</strong> {{event.price}}</span><br/>
             </div>
           </div>
         </li>
       </ul>
-
-      <div class="new-answer">
-        <div class="input-group">
-          <input type="text" id="new_answer_input" class="form-control" placeholder="Write your answer here..." ng-model="newAnswer">
-          <span class="input-group-btn"><button class="btn btn-default" type="button" ng-click="submitAnswer()">Answer</button></span>
-        </div>
-      </div>
-
     </div>
-
-  </tab>
-
-  <tab id="pinned_items">
-    <tab-heading>
-      <fa name="thumb-tack"></fa>
-    </tab-heading>
-
-    <h6>Pinned Items</h6>
-
-    <ul class="pinned-items" ng-init="pinnedItemsScope.filter={pinned:true};pinnedItemsScope.empty=true">
-      <li ng-repeat="post in posts | filter:pinnedItemsScope.filter">
-        <div class="media" ng-init="pinnedItemsScope.empty=false">
-          <a class="pull-left thumb thumb-sm" href="javascript:;">
-            <img class="media-object img-circle" src="{{post.user.avatar}}" alt>
-          </a>
-          <div class="media-body">
-            <span class="media-heading">{{post.user.firstname}} <strong>{{post.user.lastname}}</strong></span>
-            <small>{{post.body}}</small><br/>
-            <a class="read-more" ng-click="showPinnedItem(post)">View more</a>
-          </div>
-        </div>
-      </li>
-    </ul>
   </tab>
 
   <tab id="sales">
-    <tab-heading>
+    <tab-heading tooltip="Sales" tooltip-placement="bottom">
       <fa name="dollar"></fa>
     </tab-heading>
 
@@ -580,6 +575,29 @@
       <div ng-if="sale.photo" class="p-10 bg-white b-a b-solid"><a href="{{sale.photo}}" class="fresco"><img src="{{sale.photo}}" style="max-width:100%"/></a></div><br/>
       <span ng-if="sale.price"><strong>Price:</strong> {{sale.price}}</span><br/>
     </div>
+  </tab>
+
+  <tab id="pinned_items">
+    <tab-heading tooltip="Pinned Items" tooltip-placement="bottom">
+      <fa name="thumb-tack"></fa>
+    </tab-heading>
+
+    <h6>Pinned Items</h6>
+
+    <ul class="pinned-items" ng-init="pinnedItemsScope.filter={pinned:true};pinnedItemsScope.empty=true">
+      <li ng-repeat="post in posts | filter:pinnedItemsScope.filter">
+        <div class="media" ng-init="pinnedItemsScope.empty=false">
+          <a class="pull-left thumb thumb-sm" href="javascript:;">
+            <img class="media-object img-circle" src="{{post.user.avatar}}" alt>
+          </a>
+          <div class="media-body">
+            <span class="media-heading">{{post.user.firstname}} <strong>{{post.user.lastname}}</strong></span>
+            <small>{{post.body}}</small><br/>
+            <a class="read-more" ng-click="showPinnedItem(post)">View more</a>
+          </div>
+        </div>
+      </li>
+    </ul>
   </tab>
 
   
