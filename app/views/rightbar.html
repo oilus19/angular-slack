@@ -359,18 +359,26 @@
 
     <div ng-if="pollsScope.pollShowed">
       <h5><strong>Question:</strong> {{poll.body}}</h5>
-      <span ng-repeat="option in poll.options">
-        <input type="radio" name="option" ng-model="pollsScope.selectedPollOption" ng-value="$index" class="mr-10"/>{{option.title}}<br/>
-      </span>
-      <hr/>
+      <div ng-if="!pollsScope.answerPoll">
+        <span ng-repeat="option in poll.options">
+          <input type="radio" name="option" disabled="disabled" ng-model="pollsScope.selectedPollOption" ng-value="$index" class="mr-10"/>{{option.title}}<br/>
+        </span>
+        <button type="button" class="btn btn-success btn-rounded btn-sm mt-20" ng-click="answerPoll(poll)">Answer Poll</button>
+      </div>
+      <div ng-if="pollsScope.answerPoll">
+        <span ng-repeat="option in poll.options">
+          <input type="radio" name="option" ng-model="pollsScope.selectedPollOption" ng-value="$index" class="mr-10"/>{{option.title}}<br/>
+        </span>
+        <hr/>
 
-      <h5 class="text-danger">Result of User Votes:</h5>
-      <span ng-repeat="option in poll.options" ng-init="pollsScope.progressbarColorSet=['greensea','warning','danger'];">
-        {{option.title}} ({{Math.round(10000*option.votes/pollsScope.pollTotalVotes)/100}}%)<br/>
-        <progressbar class="progress-xs not-rounded mt-5" value="Math.round(100*option.votes/pollsScope.pollTotalVotes)" type="{{pollsScope.progressbarColorSet[$index%3]}}"></progressbar>
-      </span>
-      <hr/>
-      <button type="button" class="btn btn-success btn-rounded btn-sm" ng-click="submitVote(poll)"><i class="fa fa-bell mr-5"/>Mark Your Vote</button>
+        <h5 class="text-danger">Result of User Votes:</h5>
+        <span ng-repeat="option in poll.options" ng-init="pollsScope.progressbarColorSet=['greensea','warning','danger'];">
+          {{option.title}} ({{Math.round(10000*option.votes/pollsScope.pollTotalVotes)/100}}%)<br/>
+          <progressbar class="progress-xs not-rounded mt-5" value="Math.round(100*option.votes/pollsScope.pollTotalVotes)" type="{{pollsScope.progressbarColorSet[$index%3]}}"></progressbar>
+        </span>
+        <hr/>
+        <button type="button" class="btn btn-success btn-rounded btn-sm" ng-click="submitVote(poll)"><i class="fa fa-bell mr-5"/>Mark Your Vote</button>
+      </div>
     </div>
   </tab>
 

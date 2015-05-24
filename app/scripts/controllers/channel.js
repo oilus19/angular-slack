@@ -133,6 +133,7 @@ angular.module('getnearApp')
         $rootScope.pollsScope.pollTotalVotes = 0;
         $rootScope.pollsScope.selectedPollOption = null;
         $rootScope.pollsScope.pollShowed = true;
+        $rootScope.pollsScope.answerPoll = false;
         $timeout(function(){
           angular.element($("#rightbar .nav-tabs li#polls a")).triggerHandler("click");
           $rootScope.main.settings.rightbarShow = true;
@@ -141,6 +142,11 @@ angular.module('getnearApp')
             if(option.votes == undefined) return;
             $rootScope.pollsScope.pollTotalVotes += option.votes;
         })
+    }
+
+    $rootScope.answerPoll = function(poll){
+        $rootScope.showPoll(poll);
+        $rootScope.pollsScope.answerPoll = true;
     }
 
     $rootScope.hidePoll = function(poll){
