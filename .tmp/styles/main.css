@@ -1880,7 +1880,7 @@ header {
   position: relative;
 }
 #header {
-  background-color: #51445f;
+  background-color: #4E5466;
   z-index: 1001;
   -webkit-transition: right 0.25s cubic-bezier(0.6, 0.04, 0.98, 0.335), padding-right 0.25s cubic-bezier(0.6, 0.04, 0.98, 0.335);
   -moz-transition: right 0.25s cubic-bezier(0.6, 0.04, 0.98, 0.335), padding-right 0.25s cubic-bezier(0.6, 0.04, 0.98, 0.335);
@@ -1972,7 +1972,7 @@ header {
   #header .nav-left {
     margin-bottom: 0; }
   #header .nav-right {
-    background-color: #493D55; }
+    background-color: #292D36; }
     #header .nav-right > li,
     #header .nav-left > li {
       margin-top: 3px;
@@ -2014,7 +2014,7 @@ header {
         padding: 0; }
         #header .nav-right > li.toggle-right-sidebar > a,
         #header .nav-left > li.toggle-right-sidebar > a {
-          background-color: #493d55;
+          background-color: #292D36;
           line-height: 45px;
           padding: 0 15px; }
       #getnear.rightbar-disabled #header .nav-right > li.toggle-right-sidebar,
@@ -2336,7 +2336,7 @@ header {
     #navigation > li.open > i, #navigation > li:hover > i {
       color: white; }
     #navigation > li.active > a {
-      background-color: #16a085;
+      background-color: #de544b;
       color: white; }
     #navigation > li.active > i {
       color: white; }
@@ -2770,7 +2770,7 @@ header {
   bottom: 0;
   right: 0;
   z-index: 100;
-  background-color: #1d2833;
+  background-color: #292D36;
   color: #BFC7CB;
   -webkit-transition: all 0.25s cubic-bezier(0.6, 0.04, 0.98, 0.335);
   -moz-transition: all 0.25s cubic-bezier(0.6, 0.04, 0.98, 0.335);
@@ -2814,7 +2814,6 @@ header {
         padding: 20px 15px; }
   #rightbar .tab-content {
     left: 0;
-    background: #1d2833;
     padding: 63px 15px 5px; }
     #rightbar .tab-content .tab-pane {
       padding: 0; }
@@ -11768,7 +11767,7 @@ hr.line-full {
 }
 
 #header .group-nav > li.active > a {
-  background-color: #16A085;
+  background-color: #de544b;
 }
 
 #header .group-nav > li:hover > a i,
