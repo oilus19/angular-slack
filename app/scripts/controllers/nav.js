@@ -35,7 +35,7 @@ angular.module('getnearApp')
 
       var modalInstance = $modal.open({
         templateUrl: 'selectIconModalContent.html',
-        controller: 'selectIconModalInstanceCtrl',
+        controller: 'SelectIconModalInstanceCtrl',
         size: "lg"
       });
 
@@ -46,7 +46,22 @@ angular.module('getnearApp')
         $log.info('Modal dismissed at: ' + new Date());
       });
     }
+
+    $scope.openDirectMessageModal = function() {
+      var modalInstance = $modal.open({
+        templateUrl: 'selectDirectMessageModalContent.html',
+        controller: 'SelectDirectMessageModalInstanceCtrl',
+        size: "sm"
+      });
+
+      modalInstance.result.then(function (result) {
+
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+    }
   })
+
   .controller('editChannelModalInstanceCtrl', function ($scope, $rootScope, $modalInstance, $modal, $log, items) {
     
     $scope.modalInstance = $modalInstance;
@@ -86,6 +101,8 @@ angular.module('getnearApp')
       $modalInstance.close();
     };
   })
+
+
   .controller('SuggestChannelCtrl', function($scope, $rootScope, $log){
     $scope.status = {
       isopen: false
@@ -118,4 +135,14 @@ angular.module('getnearApp')
       $scope.submitChannel($scope.newChannel);
       $scope.newChannel = "";
     };
+  })
+
+  .controller('SelectDirectMessageModalInstanceCtrl', function ($scope, $rootScope, $modalInstance, $state) {
+    
+    $scope.modalInstance = $modalInstance;
+
+    $scope.chatWith = function(user) {
+      $state.go("app.group.chat",{group: $rootScope.currentGroup.title, user: user.id});
+      $modalInstance.close();
+    }
   });

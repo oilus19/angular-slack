@@ -65,6 +65,7 @@
 
 <script type="text/ng-template" id="selectIconModalContent.html">
   <div class="modal-header p-30 pb-0">
+    <button type="button" class="close" ng-click="modalInstance.dismiss('cancel')">&times;</button>
     <h3 class="modal-title custom-font">{{title}}</h3>
   </div>
   <div class="modal-body p-30">
@@ -76,6 +77,28 @@
   </div>
 </script>
 
+
+
+<script type="text/ng-template" id="selectDirectMessageModalContent.html">
+  <div class="modal-header p-30 pb-0">
+    <button type="button" class="close" ng-click="modalInstance.dismiss('cancel')">&times;</button>
+    <h3 class="modal-title custom-font">Direct Message</h3>
+  </div>
+  <div class="modal-body p-30">
+    <div class="wrap-reset" style="max-height: 400px;overflow:auto;">
+      <div class="media" ng-repeat="user in users" ng-click="chatWith(user)">
+        <div class="pull-left thumb">
+          <img class="media-object img-circle" src="{{user.avatar}}" alt="">
+        </div>
+        <div class="media-body">
+          <i class="fa fa-circle text-success pull-right mt-20"></i>
+          <p class="media-heading mb-0 mt-10">{{user.firstname}} <strong>{{user.lastname}}</strong></p>
+          <small>{{user.id}}</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</script>
 
 
 

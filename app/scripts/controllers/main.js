@@ -122,25 +122,39 @@ angular.module('getnearApp')
 
     $rootScope.users = [{
       id: "benjamin",
-      name: "Wood Walton"
+      firstname: "Wood",
+      lastname: "Walton",
+      avatar: "images/peter-avatar.jpg"
     },{
       id: "bntzio",
-      name: "Mike Stuart"
+      firstname: "Mike",
+      lastname: "Stuart",
+      avatar: "images/arnold-avatar.jpg"
     },{
       id: "fullfathomv",
-      name: "Robin Walls"
+      firstname: "Robin",
+      lastname: "Walls",
+      avatar: "images/george-avatar.jpg"
     },{
       id: "ianc",
-      name: "Peter Kay"
+      firstname: "Peter",
+      lastname: "Kay",
+      avatar: "images/random-avatar1.jpg"
     },{
       id: "joe",
-      name: "George McCain"
+      firstname: "George",
+      lastname: "McCain",
+      avatar: "images/random-avatar2.jpg"
     },{
       id: "kellycatalley",
-      name: "Lucius Cashmere"
+      firstname: "Lucius",
+      lastname: "Cashmere",
+      avatar: "images/random-avatar3.jpg"
     },{
       id: "samhealy",
-      name: "Imrich Kamarel"
+      firstname: "Imrich",
+      lastname: "Kamarel",
+      avatar: "images/random-avatar4.jpg"
     }];
 
     $rootScope.posts = [{
@@ -393,8 +407,9 @@ angular.module('getnearApp')
   })
 
   .controller('SelectIconModalInstanceCtrl', function ($scope, $modalInstance, items) {
-    $scope.title = items.title;
+    
     $scope.modalInstance = $modalInstance;
+    $scope.title = items.title;
     
     $scope.getIconName = function (icon) {
       return icon.substr(3);
