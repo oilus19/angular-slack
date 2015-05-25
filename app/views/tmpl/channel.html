@@ -18,7 +18,7 @@
           <form>
             <div class="input-group">
               <input type="text" id="new_post_input" class="form-control" placeholder="Write your comment here" ng-model="newPost" auto-complete ui-items="suggestions">
-              <span class="input-group-btn"><button class="btn btn-default" type="button" ng-click="submitPost()">Post</button></span>
+              <span class="input-group-btn"><button class="btn btn-default" type="button" ng-click="addImage()"><i class="fa fa-image"/></button><button class="btn btn-default" type="button" ng-click="submitPost()">Post</button></span>
             </div>
             <div class="what-to-do mt-5" style="margin-right:-30px">
               <span class="inline-block mr-20 text-italic">What do you want to do:</span>
@@ -32,7 +32,7 @@
         </div>
       </div>
 
-      <article class="streamline-post" ng-repeat="post in posts | reverse" on-finish-render id="post-{{$index+1}}">
+      <article class="streamline-post" ng-repeat="post in posts | reverse" on-finish-render id="post-{{$index+1}}" ng-controller="PostCtrl">
 
 
         <aside>
@@ -61,21 +61,77 @@
               <span class="text-muted pull-right timeline"><i class="fa fa-clock-o mr-5"></i> {{post.timeline}}</span>
             </div>
             <div class="panel-body">
-              {{post.body}}
+              <ng-embed embed-data="post.body" embed-options="options"></ng-embed>
 
               <p class="mt-10 mb-0">
                 <button type="button" class="btn btn-default btn-xs" ng-if="!post.pinned && post.type" ng-click="setPinned(post)"><i class="fa fa-thumb-tack"/> Pin This</button>
                 <button type="button" class="btn btn-default btn-xs active" ng-if="post.pinned && post.type" ng-click="unsetPinned(post)"><i class="fa fa-thumb-tack text-danger"/> Pinned</button>
                 <button type="button" class="btn btn-default btn-xs" ng-if="post.type=='q'" ng-click="showQuestion(post)"><i class="fa fa-eye"/> Show Answers</button>
-                <button type="button" class="btn btn-default btn-xs" ng-if="post.type=='q'" ng-click="replyQuestion(post)"><i class="fa fa-mail-reply"/> Reply</button>
                 <button type="button" class="btn btn-default btn-xs" ng-if="post.type=='p'" ng-click="answerPoll(post)"><i class="fa fa-bar-chart-o"/> Answer Poll</button>
                 <button type="button" class="btn btn-default btn-xs" ng-if="post.type=='p'" ng-click="showPoll(post)"><i class="fa fa-bar-chart-o"/> View Poll</button>
                 <button type="button" class="btn btn-default btn-xs" ng-if="post.type=='e'" ng-click="showEvent(post)"><i class="fa fa-calendar"/> View Event Details</button>
                 <button type="button" class="btn btn-default btn-xs" ng-if="post.type=='s'" ng-click="showSale(post)"><i class="fa fa-dollar"/> View Sales Details</button>
-                <button type="button" class="btn btn-default btn-xs" ng-if="post.user=='s'" ng-click="editPost(post)"><i class="fa fa-pen"/> Edit</button>
+                <button type="button" class="btn btn-default btn-xs" ng-if="post.user=='s'" ng-click="editPost()"><i class="fa fa-pen"/> Edit</button>
+                <span ng-if="(['e','s','@'].indexOf(post.type)>-1)">
+                  <button type="button" class="btn btn-default btn-xs" ng-click="replyPost()"><i class="fa fa-mail-reply"/> Reply</button>
+                  <button type="button" class="btn btn-default btn-xs" ng-click="viewConversation()" ng-if="!showConversation"><i class="fa fa-comment"/> View Conversation</button>
+                  <button type="button" class="btn btn-default btn-xs" ng-click="hideConversation()" ng-if="showConversation"><i class="fa fa-comment"/> Hide Conversation</button>
+                </span>
+                <button type="button" class="btn btn-default btn-xs" ng-click="addImage()" ng-if="(['q','e','p',''].indexOf(post.type)>-1)"><i class="fa fa-image"/> Add Image</button>
               </p>
             </div>
           </div>
+
+          <ul class="list-unstyled post-replies" ng-class="{empty: post.replies.length==0}" ng-if="showConversation">
+
+            <li ng-if="post == currentChannel.selectedPostToReply" ng-controller="ReplyCtrl">
+
+              <aside>
+                <div class="thumb thumb-sm">
+                  <img class="img-circle" src="images/profile-photo.jpg" alt="">
+                </div>
+              </aside>
+
+              <div style="padding-left:55px">
+                <div class="panel panel-default">
+
+                    <form>
+                      <div class="input-group">
+                        <input type="text" id="reply_post_input" class="form-control" placeholder="Write your comment here" ng-model="newReply">
+                        <span class="input-group-btn"><button class="btn btn-default" type="button" ng-click="submitReply()">Submit</button></span>
+                      </div>
+                    </form>
+
+                </div>
+              </div>
+
+            </li>
+
+            <li ng-repeat="post in post.replies | reverse">
+
+              <aside>
+                <div class="thumb thumb-sm">
+                  <img class="img-circle" src="{{post.user.avatar}}" alt="">
+                </div>
+              </aside>
+
+              <div class="reply-container">
+                <div class="panel panel-default">
+                  <div class="panel-body">
+                    <p>
+                      <strong>{{post.user.firstname + ' ' + post.user.lastname}}</strong>
+                      <span class="text-muted pull-right"><i class="fa fa-clock-o mr-5"></i> {{post.timeline}}</span>
+                    </p>
+
+                    <p class="mb-0 text-small">{{post.body}}</p>
+                  </div>
+                </div>
+              </div>
+
+            </li>
+
+          </ul>
+
         </div>
 
       </article>

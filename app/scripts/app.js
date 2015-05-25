@@ -49,7 +49,8 @@ angular
     'angular-rickshaw',
     'easypiechart',
     'uiGmapgoogle-maps',
-    'ui.calendar'
+    'ui.calendar',
+    'ngEmbed'
   ])
   .run(['$rootScope', '$state', '$stateParams', function($rootScope, $state, $stateParams) {
     $rootScope.$state = $state;

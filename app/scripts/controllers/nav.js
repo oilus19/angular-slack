@@ -9,7 +9,7 @@
  */
 
 angular.module('getnearApp')
-  .controller('NavCtrl', function ($rootScope, $scope, $modal) {
+  .controller('NavCtrl', function ($rootScope, $scope, $modal, $log) {
     $scope.oneAtATime = false;
 
     $scope.status = {

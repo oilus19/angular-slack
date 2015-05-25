@@ -18,26 +18,6 @@ angular.module('getnearApp')
         return post.body;
     }
 
-    $rootScope.editPost = function(post){
-      switch(post.type){
-        case "q":
-          $rootScope.editQuestion(post);
-          break;
-        case "e":
-          $rootScope.editEvent(post);
-          break;
-        case "p":
-          $rootScope.editPoll(post);
-          break;
-        case "s":
-          $rootScope.editSale(post);
-          break;
-        case "@":
-          $rootScope.editMention(post);
-          break;
-      }
-    }
-
     /*  Mentions     */
 
     $rootScope.showMention = function(mention){
@@ -140,15 +120,6 @@ angular.module('getnearApp')
 
     $rootScope.hideQuestion = function(question){
         $rootScope.questionsScope.questionShowed = false;
-    }
-
-    $rootScope.replyQuestion = function(question){
-        $rootScope.showQuestion(question);
-        $timeout(function(){
-            var $target = $('#new_answer_input');
-            $target.focus();
-            $("#sidebar").animate({scrollTop: $target.offset().top}, "slow");
-        },100);
     }
 
 
@@ -677,6 +648,80 @@ angular.module('getnearApp')
     angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
   })
 
+  .controller('PostCtrl', function ($rootScope, $scope, $element) {
+
+    $scope.showConversation = false;
+
+    var post = $scope.post;
+    if(!post.replies) post.replies = [];
+
+    $scope.editPost = function(){
+      switch(post.type){
+        case "q":
+          $rootScope.editQuestion(post);
+          break;
+        case "e":
+          $rootScope.editEvent(post);
+          break;
+        case "p":
+          $rootScope.editPoll(post);
+          break;
+        case "s":
+          $rootScope.editSale(post);
+          break;
+        case "@":
+          $rootScope.editMention(post);
+          break;
+      }
+    }
+
+    $scope.replyPost = function(){
+      $rootScope.currentChannel.selectedPostToReply = post;
+      $scope.viewConversation();
+    }
+
+    $scope.viewConversation = function(){
+      $scope.showConversation = true;
+    }
+
+    $scope.hideConversation = function(){
+      $scope.showConversation = false;
+    }
+
+    $scope.addImage = function() {
+      var image = "http://c4228518.r18.cf2.rackcdn.com/product-original-14402-1052-1328718600-e4d1b83518ee17ee48e2c1019d217b6f.JPG";
+      post.body += "<br/>"+image;
+    }
+  })
+
+  .controller('ReplyCtrl', function ($rootScope, $scope, $element) {
+    $scope.newReply='';
+    $scope.newReplyInput=$element.find("#reply_post_input");
+
+    $scope.newReplyInput.focus();
+
+    $scope.newReplyInput.keypress(function(e) {
+      var key = e.which;
+      if(key==13){
+        $scope.submitReply();
+      }
+    });
+
+    $scope.submitReply = function(){
+      var reply = {
+        body: $scope.newReply,
+        timeline: "Just Now",
+        user: {
+            firstname: 'John',
+            lastname: 'Douey',
+            avatar: 'images/profile-photo.jpg'
+        }
+      }
+      $rootScope.currentChannel.selectedPostToReply.replies.push(reply);
+      $rootScope.currentChannel.selectedPostToReply = null;
+    }
+  })
+
   .controller('AddPostCtrl', function ($rootScope, $scope) {
     $scope.newPost='';
     $scope.selectedNewPostType='';
@@ -722,7 +767,7 @@ angular.module('getnearApp')
         
         var post_input = $scope.newPost;
         var postType = getPostType(post_input);
-        var postBody = postType?getPostBody(post_input):post_input;
+        var postBody = (postType?getPostBody(post_input):post_input)+"<br/>"+$scope.image;
         var postAuthor = getPostAuthor(post_input);
         var post = {
             type: postType,
@@ -754,6 +799,10 @@ angular.module('getnearApp')
 
         $scope.reset();
         scrollTop();
+    }
+
+    $scope.addImage = function() {
+      $scope.image = "http://c4228518.r18.cf2.rackcdn.com/product-original-14402-1052-1328718600-e4d1b83518ee17ee48e2c1019d217b6f.JPG";
     }
 
     $scope.selectMention = function() {

@@ -9601,6 +9601,31 @@ input[type="text"].ui-grid-filter-input {
       cursor: pointer; }
     .streamline .streamline-post:hover .post-container .panel-heading .edit-post + .timeline {
       display: none; }      
+    .streamline .streamline-post .post-replies {
+      position: relative; }
+    .streamline .streamline-post .post-replies > li {
+      z-index: 2;
+      position: relative; }
+    .streamline .streamline-post .post-replies:not(.empty):before {
+      content: "";
+      position: absolute;
+      width: 1px;
+      height: 100%;
+      background-color: #DDD;
+      top: 0px;
+      left: 20px;
+      z-index: 1; }
+    .streamline .streamline-post .post-replies:not(.empty):after {
+      content: '';
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: white;
+      border: 1px solid #ddd;
+      bottom: 0;
+      left: 15px;
+      z-index: 2; }
     .streamline .streamline-post .post-replies > li > aside {
       float: left;
       vertical-align: top; }
@@ -11740,6 +11765,9 @@ hr.line-full {
 
 /* Custom CSS */
 
+.hover-cursor-pointer:hover {
+  cursor: pointer;
+}
 
 #header .group-nav {
   margin: 0;

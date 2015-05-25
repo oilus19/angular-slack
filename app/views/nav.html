@@ -46,7 +46,7 @@
           <span><i class="fa fa-envelope-o" style="color:white"></i><span>DIRECT MESSAGES</span></span>
           <ul style="display:block">
             <li ng-repeat="user in users | limitTo: 5" ng-class="{active: user==chatWith}"><a ui-sref="app.group.chat({group:'{{currentGroup.title}}', user:'{{user.id}}'})"><span class="status"></span><span>{{user.id}}</span></a></li>
-            <li><a ng-click="openDirectMessageModal()"><span>+{{users.lenght()-5}} More...</span></a></li>
+            <li><a ng-click="openDirectMessageModal()" class="hover-pointer-cursor"><span>+{{users.length-5}} More...</span></a></li>
           </ul>
         </li>
       </ul>
