@@ -156,17 +156,6 @@ ul.chats {
       top: 18px;
       right: 36px;
       z-index: 1; }
-  ul.chats > li.send-message-wrapper {
-    position: absolute;
-    width: 100%;
-    z-index: 90;
-    margin: 0 !important;
-  }
-    ul.chats > li.send-message-wrapper .send-message {
-      margin: 0px -30px;
-      padding: 17px 30px 18px !important;
-      background-color: #E7EAEB;
-    }
 
 .chat-form {
   padding: 10px;
@@ -9604,6 +9593,14 @@ input[type="text"].ui-grid-filter-input {
         position: absolute;
         top: 14px;
         left: 50px; }
+    .streamline .streamline-post .post-container .panel-heading .edit-post {
+      display: none; }   
+    .streamline .streamline-post:hover .post-container .panel-heading .edit-post {
+      display: inline-block; }      
+    .streamline .streamline-post .post-container .panel-heading .edit-post:hover {
+      cursor: pointer; }
+    .streamline .streamline-post:hover .post-container .panel-heading .edit-post + .timeline {
+      display: none; }      
     .streamline .streamline-post .post-replies > li > aside {
       float: left;
       vertical-align: top; }
@@ -11775,13 +11772,11 @@ hr.line-full {
   margin-right: 10px;
 }
 
-#header .group-nav > li:hover > a .group-initial,
-#header .group-nav > li.active > a .group-initial {
+#header .group-nav > li:hover > a .group-initial {
   display: none;
 }
 
-#header .group-nav > li:hover > a .group-title,
-#header .group-nav > li.active > a .group-title {
+#header .group-nav > li:hover > a .group-title {
   display: inline-block;
 }
 
@@ -11789,15 +11784,21 @@ hr.line-full {
   vertical-align: top;
 }
 
+
+.page-channel .streamline {
+  margin-top: 130px;
+}
+
 .page-channel .streamline-form-wrapper {
   position: absolute;
   width: 100%;
   z-index: 90;
+  margin-top: -160px;
 }
 
 .page-channel .streamline-form-wrapper .streamline-form {
   margin: 0px -30px;
-  padding: 17px 30px 18px !important;
+  padding: 47px 30px 18px !important;
   background-color: #E7EAEB;
 }
 
@@ -11814,4 +11815,21 @@ hr.line-full {
   background-color: #161D25;
   color: white;
   cursor: pointer;
+}
+
+.page-chat ul.chats {
+  margin-top: 170px;
+}
+
+.page-chat ul.chats > li.send-message-wrapper {
+  position: absolute;
+  width: 100%;
+  z-index: 90;
+  margin: -200px 0 0;
+}
+
+.page-chat ul.chats > li.send-message-wrapper .send-message {
+  margin: 0px -30px;
+  padding: 37px 30px 18px !important;
+  background-color: #E7EAEB;
 }

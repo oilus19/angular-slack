@@ -9,10 +9,30 @@
   <!-- /page header -->
 
   <!-- page content -->
-  <div class="pagecontent p-30" style="margin-bottom: 90px">
+  <div class="pagecontent p-30">
     <div class="streamline">
 
-      <article class="streamline-post" ng-repeat="post in posts" on-finish-render id="post-{{$index+1}}">
+      <div class="streamline-form-wrapper">
+        <div class="streamline-form" ng-controller="AddPostCtrl">
+          <div class="thumb thumb-sm"><img class="img-circle" src="images/profile-photo.jpg" alt=""></div>
+          <form>
+            <div class="input-group">
+              <input type="text" id="new_post_input" class="form-control" placeholder="Write your comment here" ng-model="newPost" auto-complete ui-items="suggestions">
+              <span class="input-group-btn"><button class="btn btn-default" type="button" ng-click="submitPost()">Post</button></span>
+            </div>
+            <div class="what-to-do mt-5" style="margin-right:-30px">
+              <span class="inline-block mr-20 text-italic">What do you want to do:</span>
+              <a tooltip="Mention someone" ng-class="{active: selectedNewPostType=='@'}" ng-click="selectMention()"><i name="at" class="fa fa-at"></i></a>
+              <a tooltip="Event" ng-class="{active: selectedNewPostType=='e'}" ng-click="selectEvent()"><i name="at" class="fa fa-calendar"></i></a>
+              <a tooltip="Poll" ng-class="{active: selectedNewPostType=='p'}" ng-click="selectPoll()"><i name="at" class="fa fa-bar-chart-o"></i></a>
+              <a tooltip="Question" ng-class="{active: selectedNewPostType=='q'}" ng-click="selectQuestion()"><i name="at" class="fa fa-question"></i></a>
+              <a tooltip="Sale" ng-class="{active: selectedNewPostType=='s'}" ng-click="selectSale()"><i name="at" class="fa fa-dollar"></i></a>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <article class="streamline-post" ng-repeat="post in posts | reverse" on-finish-render id="post-{{$index+1}}">
 
 
         <aside>
@@ -31,7 +51,13 @@
               <span class="label bg-success" ng-if="post.type=='e'">Event</span>
               <span class="label bg-warning" ng-if="post.type=='@'">Mention</span>
               <span class="label bg-hotpink" ng-if="post.type=='s'">Sales</span>
-              <span class="text-muted pull-right"><i class="fa fa-clock-o mr-5"></i> {{post.timeline}}</span>
+              <span class="text-muted pull-right edit-post" ng-if="(['q','e','p','s'].indexOf(post.type)>-1)" ng-click="editPost(post)"><i class="fa fa-edit mr-5"></i> Edit your 
+                <span ng-if="post.type=='q'">Question</span>
+                <span ng-if="post.type=='e'">Event</span>
+                <span ng-if="post.type=='p'">Poll</span>
+                <span ng-if="post.type=='s'">Sale</span>
+              </span>
+              <span class="text-muted pull-right timeline"><i class="fa fa-clock-o mr-5"></i> {{post.timeline}}</span>
             </div>
             <div class="panel-body">
               {{post.body}}
@@ -53,25 +79,7 @@
 
       </article>
 
-      <div class="streamline-form-wrapper">
-        <div class="streamline-form" ng-controller="AddPostCtrl">
-          <div class="thumb thumb-sm"><img class="img-circle" src="images/profile-photo.jpg" alt=""></div>
-          <form>
-            <div class="input-group">
-              <input type="text" id="new_post_input" class="form-control" placeholder="Write your comment here" ng-model="newPost" auto-complete ui-items="suggestions">
-              <span class="input-group-btn"><button class="btn btn-default" type="button" ng-click="submitPost()">Post</button></span>
-            </div>
-            <div class="what-to-do mt-5" style="margin-right:-30px">
-              <span class="inline-block mr-20 text-italic">What do you want to do:</span>
-              <a tooltip="Mention someone" ng-class="{active: selectedNewPostType=='@'}" ng-click="selectMention()"><i name="at" class="fa fa-at"></i></a>
-              <a tooltip="Event" ng-class="{active: selectedNewPostType=='e'}" ng-click="selectEvent()"><i name="at" class="fa fa-calendar"></i></a>
-              <a tooltip="Poll" ng-class="{active: selectedNewPostType=='p'}" ng-click="selectPoll()"><i name="at" class="fa fa-bar-chart-o"></i></a>
-              <a tooltip="Question" ng-class="{active: selectedNewPostType=='q'}" ng-click="selectQuestion()"><i name="at" class="fa fa-question"></i></a>
-              <a tooltip="Sale" ng-class="{active: selectedNewPostType=='s'}" ng-click="selectSale()"><i name="at" class="fa fa-dollar"></i></a>
-            </div>
-          </form>
-        </div>
-      </div>
+      
     </div>
 
   </div>

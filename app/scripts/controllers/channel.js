@@ -18,6 +18,22 @@ angular.module('getnearApp')
         return post.body;
     }
 
+    $rootScope.editPost = function(post){
+      switch(post.type){
+        case "q":
+          $rootScope.editQuestion(post);
+          break;
+        case "e":
+          $rootScope.editEvent(post);
+          break;
+        case "p":
+          $rootScope.editPoll(post);
+          break;
+        case "s":
+          $rootScope.editSale(post);
+          break;
+      }
+    }
 
     /*  Mentions     */
 
@@ -40,7 +56,12 @@ angular.module('getnearApp')
       var modalInstance = $modal.open({
         templateUrl: 'createQuestionModalContent.html',
         controller: 'CreateQuestionModalInstanceCtrl',
-        size: 'lg'
+        size: 'lg',
+        resolve: {
+          items: function () {
+            return {};
+          }
+        }
       });
 
       modalInstance.result.then(function (result) {
@@ -61,7 +82,26 @@ angular.module('getnearApp')
           user: getPostAuthor()
         }
         $rootScope.posts.push(question);
-        scrollBottom();
+        scrollTop();
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+    }
+
+    $rootScope.editQuestion = function(question){
+      var modalInstance = $modal.open({
+        templateUrl: 'createQuestionModalContent.html',
+        controller: 'CreateQuestionModalInstanceCtrl',
+        size: 'lg',
+        resolve: {
+          items: function () {
+            return {question: question.body, edit: true};
+          }
+        }
+      });
+
+      modalInstance.result.then(function (result) {
+        question.body = result.question;
       }, function () {
         $log.info('Modal dismissed at: ' + new Date());
       });
@@ -100,7 +140,12 @@ angular.module('getnearApp')
       var modalInstance = $modal.open({
         templateUrl: 'createPollModalContent.html',
         controller: 'CreatePollModalInstanceCtrl',
-        size: 'lg'
+        size: 'lg',
+        resolve: {
+          items: function () {
+            return {};
+          }
+        }
       });
 
       modalInstance.result.then(function (result) {
@@ -122,7 +167,27 @@ angular.module('getnearApp')
           user: getPostAuthor()
         }
         $rootScope.posts.push(poll);
-        scrollBottom();
+        scrollTop();
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+    }
+
+    $rootScope.editPoll = function(poll){
+      var modalInstance = $modal.open({
+        templateUrl: 'createPollModalContent.html',
+        controller: 'CreatePollModalInstanceCtrl',
+        size: 'lg',
+        resolve: {
+          items: function () {
+            return {question: poll.body, options: angular.copy(poll.options), edit: true};
+          }
+        }
+      });
+
+      modalInstance.result.then(function (result) {
+        poll.body = result.question;
+        poll.options = result.options;
       }, function () {
         $log.info('Modal dismissed at: ' + new Date());
       });
@@ -134,6 +199,7 @@ angular.module('getnearApp')
         $rootScope.pollsScope.selectedPollOption = null;
         $rootScope.pollsScope.pollShowed = true;
         $rootScope.pollsScope.answerPoll = false;
+        $rootScope.pollsScope.answeredPoll = false;
         $timeout(function(){
           angular.element($("#rightbar .nav-tabs li#polls a")).triggerHandler("click");
           $rootScope.main.settings.rightbarShow = true;
@@ -147,6 +213,7 @@ angular.module('getnearApp')
     $rootScope.answerPoll = function(poll){
         $rootScope.showPoll(poll);
         $rootScope.pollsScope.answerPoll = true;
+        $rootScope.pollsScope.answeredPoll = false;
     }
 
     $rootScope.hidePoll = function(poll){
@@ -158,6 +225,7 @@ angular.module('getnearApp')
         poll.options[$rootScope.pollsScope.selectedPollOption].votes ++;
         $rootScope.pollsScope.pollTotalVotes ++;
         $rootScope.pollsScope.selectedPollOption = null;
+        $rootScope.pollsScope.answeredPoll = true;
     }
 
     /*  Events     */
@@ -166,7 +234,12 @@ angular.module('getnearApp')
       var modalInstance = $modal.open({
         templateUrl: 'createEventModalContent.html',
         controller: 'CreateEventModalInstanceCtrl',
-        size: 'lg'
+        size: 'lg',
+        resolve: {
+          items: function () {
+            return {};
+          }
+        }
       });
 
       modalInstance.result.then(function (result) {
@@ -192,7 +265,31 @@ angular.module('getnearApp')
           user: getPostAuthor()
         }
         $rootScope.posts.push(event);
-        scrollBottom();
+        scrollTop();
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+    }
+
+    $rootScope.editEvent = function(event){
+      var modalInstance = $modal.open({
+        templateUrl: 'createEventModalContent.html',
+        controller: 'CreateEventModalInstanceCtrl',
+        size: 'lg',
+        resolve: {
+          items: function () {
+            return {title: event.body, info: event.info, location: event.location, date: event.date, time: event.time, price: event.price, edit: true};
+          }
+        }
+      });
+
+      modalInstance.result.then(function (result) {
+        event.body = result.title;
+        event.info = nl2br(result.info);
+        event.location = result.location;
+        event.date = result.date;
+        event.time = result.time;
+        event.price = result.price;
       }, function () {
         $log.info('Modal dismissed at: ' + new Date());
       });
@@ -261,7 +358,12 @@ angular.module('getnearApp')
       var modalInstance = $modal.open({
         templateUrl: 'createSaleModalContent.html',
         controller: 'CreateSaleModalInstanceCtrl',
-        size: 'lg'
+        size: 'lg',
+        resolve: {
+          items: function () {
+            return {};
+          }
+        }
       });
 
       modalInstance.result.then(function (result) {
@@ -284,7 +386,28 @@ angular.module('getnearApp')
           user: getPostAuthor()
         }
         $rootScope.posts.push(sale);
-        scrollBottom();
+        scrollTop();
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+    }
+
+    $rootScope.editSale = function(sale){
+      var modalInstance = $modal.open({
+        templateUrl: 'createSaleModalContent.html',
+        controller: 'CreateSaleModalInstanceCtrl',
+        size: 'lg',
+        resolve: {
+          items: function () {
+            return {title: sale.body, photo: sale.photo, price: sale.price, edit: true};
+          }
+        }
+      });
+
+      modalInstance.result.then(function (result) {
+        sale.body = result.title;
+        sale.photo = result.photo;
+        sale.price = result.price;
       }, function () {
         $log.info('Modal dismissed at: ' + new Date());
       });
@@ -309,7 +432,7 @@ angular.module('getnearApp')
     $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent){
       if($scope.firstPostsLoad){
         $scope.firstPostsLoad=false;
-        scrollBottom();
+        scrollTop();
       }
     })
 
@@ -341,21 +464,27 @@ angular.module('getnearApp')
         }
       }
     }
+  })
+  .filter('reverse', function() {
+    return function(items) {
+      return items.slice().reverse();
+    }
   });
 
 
 angular.module('getnearApp')
 
-  .controller('CreateQuestionModalInstanceCtrl', function ($scope, $modalInstance) {
-    $scope.question = "";
+  .controller('CreateQuestionModalInstanceCtrl', function ($scope, $modalInstance, items) {
+    $scope.question = items.question;
+    $scope.edit = items.edit;
 
     $scope.create = function () {
       $modalInstance.close({question: $scope.question});
     };
   })
 
-  .controller('CreatePollModalInstanceCtrl', function ($scope, $modalInstance) {
-    $scope.question = "";
+  .controller('CreatePollModalInstanceCtrl', function ($scope, $modalInstance, items) {
+    $scope.question = items.question;
     $scope.options = [{
         title: "",
         votes: 0
@@ -363,6 +492,8 @@ angular.module('getnearApp')
         title: "",
         votes: 0
     }];
+    if(items.edit==true) $scope.options = items.options;
+    $scope.edit = items.edit;
 
     $scope.create = function () {
       $modalInstance.close({question: $scope.question, options: $scope.options});
@@ -373,25 +504,31 @@ angular.module('getnearApp')
     }
   })
 
-  .controller('CreateEventModalInstanceCtrl', function ($scope, $modalInstance) {
+  .controller('CreateEventModalInstanceCtrl', function ($scope, $modalInstance, items) {
     
-    $scope.price = "$ ";
-    $scope.free = true;
-    $scope.dt = new Date();
-    $scope.mytime = new Date();
+    $scope.edit = items.edit;
+    $scope.title = items.title;
+    $scope.info = items.info;
+    $scope.location = items.location;
+    $scope.price = (items.price=="free" || items.edit!=true)?"$ ":items.price;
+    $scope.free = (items.price=="free" || items.edit!=true);
+    $scope.dt = items.date;
+    $scope.mytime = items.time;
 
     $scope.create = function () {
-      var date = $scope.dt.toLocaleDateString();
-      var time = $scope.mytime.toLocaleTimeString();
-      $modalInstance.close({title: $scope.title, info: $scope.info, location: $scope.location, date: date, time: time, price: (($scope.free==true)?'free':$scope.price)});
+      $modalInstance.close({title: $scope.title, info: $scope.info, location: $scope.location, date: $scope.dt, time: $scope.mytime, price: (($scope.free==true)?'free':$scope.price)});
     };
   })
 
-  .controller('CreateSaleModalInstanceCtrl', function ($scope, $modalInstance) {
-    $scope.myImage='';
-    $scope.myCroppedImage='';
+  .controller('CreateSaleModalInstanceCtrl', function ($scope, $modalInstance, items) {
+
+    $scope.edit = items.edit;
+    $scope.title = items.title;
+    $scope.myImage=items.photo;
+    $scope.myCroppedImage=items.photo;
     $scope.cropType='circle';
     $scope.price = "$ ";
+    if($scope.edit==true) $scope.price=items.price;
 
     var handleFileSelect=function(evt) {
       var file=evt.currentTarget.files[0];
@@ -578,7 +715,7 @@ angular.module('getnearApp')
         }
 
         $scope.reset();
-        scrollBottom();
+        scrollTop();
     }
 
     $scope.selectMention = function() {

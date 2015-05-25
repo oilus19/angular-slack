@@ -13,16 +13,17 @@ angular.module('getnearApp')
 
 
 function positionNewPostBox(){
+
   var scrollTop = $(window).scrollTop();
-  var height = $(".streamline-form-wrapper").outerHeight(true);
-  var top = $("#content").height()+scrollTop-height-30;
+  var top = scrollTop;
   $(".page-channel .streamline-form-wrapper").css('top', top.toString() + 'px');
+
 }
 
 function positionSendMessageBox(){
+
   var scrollTop = $(window).scrollTop();
-  var height = $(".send-message-wrapper").outerHeight(true);
-  var top = $("#content").height()+scrollTop-height-50;
+  var top = scrollTop;
   $(".page-chat .send-message-wrapper").css('top', top.toString() + 'px');
 }
 
@@ -32,8 +33,8 @@ function positionPageHeader(){
   $(".pageheader").css('top', top.toString() + 'px');
 }
 
-function scrollBottom(){
-  $("html, body").animate({ scrollTop: $(document).height() }, 1000);
+function scrollTop(){
+  $("html, body").animate({ scrollTop: 0 }, 1000);
 }
 
 $(window).bind("load", function() { 

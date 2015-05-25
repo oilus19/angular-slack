@@ -22,46 +22,11 @@
 
       </div>
 
-      <div class="p-30" style="margin-bottom: 130px">
+      <div class="p-30">
 
         <!-- chats -->
         <ul class="chats p-0">
-          <li class="text-center"><a href="javascript:;">Load More...</a></li>
-          <li class="conversation-divider"><span>Conversation started at 26.03.2014</span></li>
-          <li class="in">
-            <div class="media">
-              <div class="pull-left thumb thumb-sm">
-                <img class="media-object img-circle" src="images/random-avatar1.jpg" alt="">
-              </div>
-              <div class="media-body">
-                <p class="media-heading"><a href="#" class="name">Wood Walton </a><span class="datetime">at 12.10.2014</span></p>
-                <span class="body">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</span>
-              </div>
-            </div>
-          </li>
-          <li class="conversation-divider"><span>Today</span></li>
-          <li ng-repeat="message in messages" class="{{message.type}}" on-finish-render>
-            
-            <div class="media" ng-if="message.type=='in'">
-              <div class="pull-left thumb thumb-sm">
-                <img class="media-object img-circle" src="{{message.user.avatar}}" alt="">
-              </div>
-              <div class="media-body">
-                <p class="media-heading"><a href="#" class="name">{{message.user.firstname}} {{message.user.lastname}} </a><span class="datetime">{{message.timeline}}</span></p>
-                <span class="body">{{message.body}}</span>
-              </div>
-            </div>
 
-            <div class="media" ng-if="message.type=='out'">
-              <div class="pull-right thumb thumb-sm">
-                <img class="media-object img-circle" src="images/profile-photo.jpg" alt="">
-              </div>
-              <div class="media-body">
-                <p class="media-heading"><a href="#" class="name">You </a><span class="datetime">{{message.timeline}}</span></p>
-                <span class="body">{{message.body}}</span>
-              </div>
-            </div>
-          </li>
           <li class="out send-message-wrapper">
             <div class="send-message" ng-controller="SendMessageCtrl">
               <div class="media">
@@ -83,6 +48,31 @@
               </div>
             </div>
           </li>
+
+          <li ng-repeat="message in messages | reverse" class="{{message.type}}" on-finish-render>
+            
+            <div class="media" ng-if="message.type=='in'">
+              <div class="pull-left thumb thumb-sm">
+                <img class="media-object img-circle" src="{{message.user.avatar}}" alt="">
+              </div>
+              <div class="media-body">
+                <p class="media-heading"><a href="#" class="name">{{message.user.firstname}} {{message.user.lastname}} </a><span class="datetime">{{message.timeline}}</span></p>
+                <span class="body">{{message.body}}</span>
+              </div>
+            </div>
+
+            <div class="media" ng-if="message.type=='out'">
+              <div class="pull-right thumb thumb-sm">
+                <img class="media-object img-circle" src="images/profile-photo.jpg" alt="">
+              </div>
+              <div class="media-body">
+                <p class="media-heading"><a href="#" class="name">You </a><span class="datetime">{{message.timeline}}</span></p>
+                <span class="body">{{message.body}}</span>
+              </div>
+            </div>
+          </li>
+
+          <li class="text-center"><a href="javascript:;">Load More...</a></li>
 
         </ul>
         <!-- / chats -->

@@ -192,8 +192,8 @@ angular.module('getnearApp')
       body: "Meetup next friday at 19:00",
       info: "Good news, everyone!<br/>Office hours has a new home at http://learn.nycphyhon.org/.<br/>We'll stop posting events to the main NYC phython page after next month.<br/>To RSVP for this event, please go here: http://getnear.co/k23124.",
       location: "34 W. 3rd Ave. 4th floor",
-      date: "Friday 12 of May",
-      time: "19:00",
+      date: new Date(),
+      time: new Date(),
       price: "free",
         timeline: "1 hour ago",
         user: {

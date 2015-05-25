@@ -17,7 +17,7 @@ angular.module('getnearApp')
     $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent){
       if($scope.firstPostsLoad){
         $scope.firstPostsLoad=false;
-        scrollBottom();
+        scrollTop();
       }
     })
 
@@ -36,7 +36,7 @@ angular.module('getnearApp')
         }
         $rootScope.messages.push(message);
         $scope.messageinput = '';
-        scrollBottom();
+        scrollTop();
     }
 
     $scope.$watch(function(scope){return scope.post},

@@ -249,7 +249,7 @@
 
       <script type="text/ng-template" id="createQuestionModalContent.html">
                 <div class="modal-header p-30 pb-0">
-                  <h3 class="modal-title custom-font">Create your question</h3>
+                  <h3 class="modal-title custom-font">{{(edit==true)?'Edit':'Create'}} your question</h3>
                 </div>
                 <div class="modal-body p-30">
                   <ul class="list-unstyled">
@@ -260,7 +260,7 @@
                   </ul>
                 </div>
                 <div class="modal-footer pr-30">
-                  <button class="btn btn-danger btn-lg" ng-click="create()">Create Question</button>
+                  <button class="btn btn-danger btn-lg" ng-click="create()">{{(edit==true)?'Edit':'Create'}} Question</button>
                 </div>
               </script>
     </div>
@@ -336,7 +336,7 @@
 
       <script type="text/ng-template" id="createPollModalContent.html">
                 <div class="modal-header p-30 pb-0">
-                  <h3 class="modal-title custom-font">Create your poll</h3>
+                  <h3 class="modal-title custom-font">{{(edit==true)?'Edit':'Create'}} your poll</h3>
                 </div>
                 <div class="modal-body p-30">
                   <ul class="list-unstyled">
@@ -352,7 +352,7 @@
                   <span class="pull-right">add question<a class="icon icon-default trasparent icon-ef-1 icon-ef-1a" ng-click="addQuestion()"><i class="fa fa-plus"/></a></span>
                 </div>
                 <div class="modal-footer pr-30" style="clear:both">
-                  <button class="btn btn-danger btn-lg" ng-click="create()">Create poll</button>
+                  <button class="btn btn-danger btn-lg" ng-click="create()">{{(edit==true)?'Edit':'Create'}} poll</button>
                 </div>
               </script>
     </div>
@@ -361,7 +361,7 @@
       <h5><strong>Question:</strong> {{poll.body}}</h5>
       <div ng-if="!pollsScope.answerPoll">
         <span ng-repeat="option in poll.options">
-          <input type="radio" name="option" disabled="disabled" ng-model="pollsScope.selectedPollOption" ng-value="$index" class="mr-10"/>{{option.title}}<br/>
+          <input type="radio" disabled="disabled" ng-value="$index" class="mr-10"/>{{option.title}}<br/>
         </span>
         <button type="button" class="btn btn-success btn-rounded btn-sm mt-20" ng-click="answerPoll(poll)">Answer Poll</button>
       </div>
@@ -371,13 +371,16 @@
         </span>
         <hr/>
 
-        <h5 class="text-danger">Result of User Votes:</h5>
-        <span ng-repeat="option in poll.options" ng-init="pollsScope.progressbarColorSet=['greensea','warning','danger'];">
-          {{option.title}} ({{Math.round(10000*option.votes/pollsScope.pollTotalVotes)/100}}%)<br/>
-          <progressbar class="progress-xs not-rounded mt-5" value="Math.round(100*option.votes/pollsScope.pollTotalVotes)" type="{{pollsScope.progressbarColorSet[$index%3]}}"></progressbar>
-        </span>
-        <hr/>
-        <button type="button" class="btn btn-success btn-rounded btn-sm" ng-click="submitVote(poll)"><i class="fa fa-bell mr-5"/>Mark Your Vote</button>
+        <div ng-if="pollsScope.answeredPoll">
+          <h5 class="text-danger">Result of User Votes:</h5>
+          <span ng-repeat="option in poll.options" ng-init="pollsScope.progressbarColorSet=['greensea','warning','danger'];">
+            {{option.title}} ({{Math.round(10000*option.votes/pollsScope.pollTotalVotes)/100}}%)<br/>
+            <progressbar class="progress-xs not-rounded mt-5" value="Math.round(100*option.votes/pollsScope.pollTotalVotes)" type="{{pollsScope.progressbarColorSet[$index%3]}}"></progressbar>
+          </span>
+        </div>
+        <div ng-if="!pollsScope.answeredPoll">
+          <button type="button" class="btn btn-success btn-rounded btn-sm" ng-click="submitVote(poll)"><i class="fa fa-bell mr-5"/>Mark Your Vote</button>
+        </div>
       </div>
     </div>
   </tab>
@@ -414,7 +417,7 @@
       <script type="text/ng-template" id="createEventModalContent.html">
                 <div class="modal-header p-30 pb-0">
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h3 class="modal-title custom-font">Create your event</h3>
+                  <h3 class="modal-title custom-font">{{(edit==true)?"Edit":"Create"}} your event</h3>
                 </div>
                 <div class="modal-body p-30">
                     <div class="mb-10">
@@ -454,7 +457,7 @@
                     </div>
                 </div>
                 <div class="modal-footer pr-30">
-                  <button class="btn btn-danger btn-lg" ng-click="create()">Create event</button>
+                  <button class="btn btn-danger btn-lg" ng-click="create()">{{(edit==true)?"Edit":"Create"}} event</button>
                 </div>
               </script>
     </div>
@@ -471,8 +474,8 @@
               <span><strong>Title:</strong> {{event.body}}</span><br/><br/>
               <span ng-if="event.info"><strong>Info:</strong> <span ng-bind-html="event.info"></span></span><br/><br/>
               <span ng-if="event.location"><strong>Location:</strong> {{event.location}}</span><br/><br/>
-              <span ng-if="event.date"><strong>Date:</strong> {{event.date}}</span><br/><br/>
-              <span ng-if="event.time"><strong>Time:</strong> {{event.time}}</span><br/><br/>
+              <span ng-if="event.date"><strong>Date:</strong> {{event.date.toLocaleDateString()}}</span><br/><br/>
+              <span ng-if="event.time"><strong>Time:</strong> {{event.time.toLocaleTimeString()}}</span><br/><br/>
               <span ng-if="event.price"><strong>Price:</strong> {{event.price}}</span><br/>
             </div>
           </div>
@@ -512,7 +515,7 @@
 
       <script type="text/ng-template" id="createSaleModalContent.html">
                 <div class="modal-header p-30 pb-0">
-                  <h3 class="modal-title custom-font">Create your sale</h3>
+                  <h3 class="modal-title custom-font">{{(edit==true)?'Edit':'Create'}} your sale</h3>
                 </div>
                 <div class="modal-body p-30" ng-init="init()">
                   <ul class="list-unstyled">
@@ -561,7 +564,7 @@
                   </ul>
                 </div>
                 <div class="modal-footer pr-30" style="clear:both">
-                  <button class="btn btn-danger btn-lg" ng-click="create()">Create sale</button>
+                  <button class="btn btn-danger btn-lg" ng-click="create()">{{(edit==true)?'Edit':'Create'}} sale</button>
                 </div>
               </script>
     </div>
