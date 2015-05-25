@@ -11783,6 +11783,67 @@ hr.line-full {
   display: inline-block;
 }
 
+
+#navigation.direct-messages .dropdown > ul {
+  background: none;
+}
+
+#navigation.direct-messages > li > span {
+  padding: 5px 15px;
+  font-weight: 700;
+  display: block;
+}
+
+.sidebar-xs #sidebar #navigation.direct-messages > li > span {
+  padding: 10px 5px;
+}
+
+#navigation.direct-messages > li > span > i {
+  text-align: center;
+  font-size: 14px;
+  width: 20px;
+  line-height: 1;
+  transition: all 0.1s linear 0s;
+  display: none;
+}
+
+.sidebar-sm #sidebar #navigation.direct-messages > li > span > i, 
+.sidebar-xs #sidebar #navigation.direct-messages > li > span > i {
+  display: block;
+  margin: 0px auto 3px;
+  font-size: 22px;
+  display: block;
+}
+
+.sidebar-xs #sidebar #navigation.direct-messages > li > span > i {
+  font-size: 14px;
+}
+
+.sidebar-sm #sidebar #navigation.direct-messages > li > span > span, 
+.sidebar-xs #sidebar #navigation.direct-messages > li > span > span {
+  display: none;
+}
+
+#navigation.direct-messages .dropdown > ul li > a {
+  padding: 5px 15px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.sidebar-xs #sidebar #navigation.direct-messages .dropdown > ul li > a {
+  font-size: 12px;
+}
+
+#navigation.direct-messages .dropdown > ul li.active > a {
+  background-color: #DE544B;
+  color: #FFF;
+}
+
+#navigation.direct-messages .dropdown > ul li:hover > a {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: white; 
+}
+
 .page-group .group-filter > *{
   vertical-align: top;
 }
