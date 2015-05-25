@@ -32,6 +32,9 @@ angular.module('getnearApp')
         case "s":
           $rootScope.editSale(post);
           break;
+        case "@":
+          $rootScope.editMention(post);
+          break;
       }
     }
 
@@ -44,6 +47,25 @@ angular.module('getnearApp')
           angular.element($("#rightbar .nav-tabs li#mentions a")).triggerHandler("click");
           $rootScope.main.settings.rightbarShow = true;
         },0);
+    }
+
+    $rootScope.editMention = function(mention){
+      var modalInstance = $modal.open({
+        templateUrl: 'editMentionModalContent.html',
+        controller: 'EditMentionModalInstanceCtrl',
+        size: 'lg',
+        resolve: {
+          items: function () {
+            return {body: mention.body};
+          }
+        }
+      });
+
+      modalInstance.result.then(function (result) {
+        mention.body = result.body;
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
     }
 
     $rootScope.hideMention = function(mention){
@@ -474,7 +496,19 @@ angular.module('getnearApp')
 
 angular.module('getnearApp')
 
+  .controller('EditMentionModalInstanceCtrl', function ($scope, $modalInstance, items) {
+    
+    $scope.modalInstance = $modalInstance;
+    $scope.body = items.body;
+
+    $scope.create = function () {
+      $modalInstance.close({body: $scope.body});
+    };
+  })
+
   .controller('CreateQuestionModalInstanceCtrl', function ($scope, $modalInstance, items) {
+    
+    $scope.modalInstance = $modalInstance;
     $scope.question = items.question;
     $scope.edit = items.edit;
 
@@ -484,6 +518,8 @@ angular.module('getnearApp')
   })
 
   .controller('CreatePollModalInstanceCtrl', function ($scope, $modalInstance, items) {
+    
+    $scope.modalInstance = $modalInstance;
     $scope.question = items.question;
     $scope.options = [{
         title: "",
@@ -506,6 +542,7 @@ angular.module('getnearApp')
 
   .controller('CreateEventModalInstanceCtrl', function ($scope, $modalInstance, items) {
     
+    $scope.modalInstance = $modalInstance;
     $scope.edit = items.edit;
     $scope.title = items.title;
     $scope.info = items.info;
@@ -522,6 +559,7 @@ angular.module('getnearApp')
 
   .controller('CreateSaleModalInstanceCtrl', function ($scope, $modalInstance, items) {
 
+    $scope.modalInstance = $modalInstance;
     $scope.edit = items.edit;
     $scope.title = items.title;
     $scope.myImage=items.photo;

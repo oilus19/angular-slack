@@ -11767,9 +11767,12 @@ hr.line-full {
   background-color: #de544b;
 }
 
-#header .group-nav > li:hover > a i,
-#header .group-nav > li.active > a i {
+#header .group-nav > li:hover > a i {
   margin-right: 10px;
+}
+
+#header .group-nav > li:first-child:hover > a i {
+  margin-right: 0px;
 }
 
 #header .group-nav > li:hover > a .group-initial {

@@ -51,11 +51,12 @@
               <span class="label bg-success" ng-if="post.type=='e'">Event</span>
               <span class="label bg-warning" ng-if="post.type=='@'">Mention</span>
               <span class="label bg-hotpink" ng-if="post.type=='s'">Sales</span>
-              <span class="text-muted pull-right edit-post" ng-if="(['q','e','p','s'].indexOf(post.type)>-1)" ng-click="editPost(post)"><i class="fa fa-edit mr-5"></i> Edit your 
+              <span class="text-muted pull-right edit-post" ng-if="(['q','e','p','s','@'].indexOf(post.type)>-1)" ng-click="editPost(post)"><i class="fa fa-edit mr-5"></i> Edit your 
                 <span ng-if="post.type=='q'">Question</span>
                 <span ng-if="post.type=='e'">Event</span>
                 <span ng-if="post.type=='p'">Poll</span>
                 <span ng-if="post.type=='s'">Sale</span>
+                <span ng-if="post.type=='@'">Mention</span>
               </span>
               <span class="text-muted pull-right timeline"><i class="fa fa-clock-o mr-5"></i> {{post.timeline}}</span>
             </div>

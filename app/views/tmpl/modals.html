@@ -1,0 +1,281 @@
+<script type="text/ng-template" id="createGroupModalContent.html">
+  <div class="modal-header p-30 pb-0">
+    <button type="button" class="close" ng-click="modalInstance.dismiss('cancel')">&times;</button>
+    <h3 class="modal-title custom-font">Create an group</h3>
+  </div>
+  <div class="modal-body p-30">
+      <span class="block mb-20">Create button will be enable after completing form.</span>
+      <div class="mb-10">
+        <span>Title</span><br/>
+        <input type="text" class="form-control" ng-model="title">
+      </div>
+      <div class="mb-10">
+        <span>Category</span><br/>
+        <ui-select ng-model="selected.category"  ng-disabled="disabled">
+          <ui-select-match placeholder="Click to view the categories and select">{{$select.selected.title}}</ui-select-match>
+          <ui-select-choices repeat="category in groupCategories | filter: $select.search">
+            <span ng-bind-html="category.title | highlight: $select.search"></span>
+          </ui-select-choices>
+        </ui-select>
+      </div>
+      <div class="mb-10">
+        <span>Sub-Category</span><br/>
+        <ui-select ng-model="selected.subcategory"  ng-disabled="disabled">
+          <ui-select-match placeholder="Click to view the sub-categories and select">{{$select.selected.title}}</ui-select-match>
+          <ui-select-choices repeat="subcategory in selected.category.subcategories | filter: $select.search">
+            <span ng-bind-html="subcategory.title | highlight: $select.search"></span>
+          </ui-select-choices>
+        </ui-select>
+      </div>
+      <div class="mb-10 row">
+        <div class="col-sm-4 col-xs-12">
+          <div class="mb-10">
+            <span>Status</span><br/>
+            <ui-select ng-model="selected.status"  ng-disabled="disabled">
+              <ui-select-match placeholder="">{{$select.selected.title}}</ui-select-match>
+              <ui-select-choices repeat="status in groupStatus | filter: $select.search">
+                <span ng-bind-html="status.title | highlight: $select.search"></span>
+              </ui-select-choices>
+            </ui-select>
+          </div>
+
+          <div class="mb-10">
+            <span>Icon</span><br/>
+            <button class="btn btn-default mb-10" style="width:160px" ng-click="selectIcon()">select your icon</button><br/>
+            <button class="btn btn-default disabled" style="width:160px;height:160px;max-width:100%"><i class="fa {{icon}}" style="font-size:60px"/></button>
+          </div>
+        </div>
+
+        <div class="col-sm-8 col-xs-12">
+          <div class="mb-10">
+            <span>About the group</span><br/>
+            <textarea class="form-control" ng-model="about" style="height:270px"></textarea>
+          </div>
+        </div>
+      </div>
+  </div>
+  <div class="modal-footer pr-30">
+    <button class="btn btn-danger" ng-click="cancel()">Cancel</button>
+    <button class="btn btn-greensea" ng-click="create()">Create group</button>
+  </div>
+</script>
+
+
+
+
+<script type="text/ng-template" id="selectIconModalContent.html">
+  <div class="modal-header p-30 pb-0">
+    <h3 class="modal-title custom-font">{{title}}</h3>
+  </div>
+  <div class="modal-body p-30">
+    <div class="row icons-list">
+      <div class="col-md-3 col-sm-4 col-xs-6" ng-repeat="icon in icons">
+        <span ng-click="select(icon)"><i class="fa {{icon}}"/>{{getIconName(icon)}}</span>
+      </div>
+    </div>
+  </div>
+</script>
+
+
+
+
+<script type="text/ng-template" id="editChannelModalContent.html">
+  <div class="modal-header p-30 pb-0">
+    <button type="button" class="close" ng-click="modalInstance.dismiss('cancel')">&times;</button>
+    <h3 class="modal-title custom-font">Edit Channel</h3>
+  </div>
+  <div class="modal-body p-30">
+      <div class="mb-10">
+        <span>Title</span><br/>
+        <input type="text" class="form-control" ng-model="title">
+      </div>
+      <div class="mb-10 row">
+        <div class="col-sm-4 col-xs-12">
+          <div class="mb-10">
+            <span>Icon</span><br/>
+            <button class="btn btn-default mb-10" style="width:160px" ng-click="selectIcon()">select your icon</button><br/>
+            <button class="btn btn-default disabled" style="width:160px;height:160px;max-width:100%"><i class="fa {{icon}}" style="font-size:60px"/></button>
+          </div>
+        </div>
+
+        <div class="col-sm-8 col-xs-12"></div>
+      </div>
+  </div>
+  <div class="modal-footer pr-30">
+    <button class="btn btn-danger" ng-click="delete()">Delete</button>
+    <button class="btn btn-greensea" ng-click="update()">Update channel</button>
+  </div>
+</script>
+
+
+
+<script type="text/ng-template" id="editMentionModalContent.html">
+  <div class="modal-header p-30 pb-0">
+    <button type="button" class="close" ng-click="modalInstance.dismiss('cancel')">&times;</button>
+    <h3 class="modal-title custom-font">Edit your Mention</h3>
+  </div>
+  <div class="modal-body p-30">
+    <ul class="list-unstyled">
+      <li class="mb-10">
+        <span>Mention</span><br/>
+        <textarea class="form-control" ng-model="body" />
+      </li>
+    </ul>
+  </div>
+  <div class="modal-footer pr-30">
+    <button class="btn btn-danger btn-lg" ng-click="create()">Edit Mention</button>
+  </div>
+</script>
+
+
+
+<script type="text/ng-template" id="createQuestionModalContent.html">
+  <div class="modal-header p-30 pb-0">
+    <button type="button" class="close" ng-click="modalInstance.dismiss('cancel')">&times;</button>
+    <h3 class="modal-title custom-font">{{(edit==true)?'Edit':'Create'}} your question</h3>
+  </div>
+  <div class="modal-body p-30">
+    <ul class="list-unstyled">
+      <li class="mb-10">
+        <span>Question</span><br/>
+        <input type="text" class="form-control" ng-model="question">
+      </li>
+    </ul>
+  </div>
+  <div class="modal-footer pr-30">
+    <button class="btn btn-danger btn-lg" ng-click="create()">{{(edit==true)?'Edit':'Create'}} Question</button>
+  </div>
+</script>
+
+
+
+
+<script type="text/ng-template" id="createPollModalContent.html">
+  <div class="modal-header p-30 pb-0">
+    <button type="button" class="close" ng-click="modalInstance.dismiss('cancel')">&times;</button>
+    <h3 class="modal-title custom-font">{{(edit==true)?'Edit':'Create'}} your poll</h3>
+  </div>
+  <div class="modal-body p-30">
+    <ul class="list-unstyled">
+      <li class="mb-10">
+        <span>Question</span><br/>
+        <input type="text" class="form-control" ng-model="question">
+      </li>
+      <li ng-repeat="option in options" class="mb-10">
+        <span>Option {{$index+1}}</span><br/>
+        <input type="text" class="form-control" ng-model="option.title">
+      </li>
+    </ul>
+    <span class="pull-right">add question<a class="icon icon-default trasparent icon-ef-1 icon-ef-1a" ng-click="addQuestion()"><i class="fa fa-plus"/></a></span>
+  </div>
+  <div class="modal-footer pr-30" style="clear:both">
+    <button class="btn btn-danger btn-lg" ng-click="create()">{{(edit==true)?'Edit':'Create'}} poll</button>
+  </div>
+</script>
+
+
+
+<script type="text/ng-template" id="createEventModalContent.html">
+  <div class="modal-header p-30 pb-0">
+    <button type="button" class="close" ng-click="modalInstance.dismiss('cancel')">&times;</button>
+    <h3 class="modal-title custom-font">{{(edit==true)?"Edit":"Create"}} your event</h3>
+  </div>
+  <div class="modal-body p-30">
+      <div class="mb-10">
+        <span>Title</span><br/>
+        <input type="text" class="form-control" ng-model="title">
+      </div>
+      <div class="mb-10">
+        <span>Information about the event</span><br/>
+        <textarea class="form-control" ng-model="info"></textarea>
+      </div>
+      <div class="mb-10">
+        <span>Location</span><br/>
+        <input type="text" class="form-control" ng-model="location">
+      </div>
+      <div class="row">
+        <div class="col-sm-4 col-xs-12 mt-5 pt-10" ng-controller="DatepickerCtrl">
+
+              <span>Date & Time</span><br/>
+              <p class="input-group">
+                <input type="text" id="event_date" class="form-control" datepicker-popup="{{format}}" ng-model="$parent.dt" is-open="opened" min-date="minDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="open($event)"><i class="fa fa-calendar"></i></button>
+                </span>
+              </p>
+        </div>
+
+        <div class="col-sm-4 col-xs-12" ng-controller="TimepickerCtrl" id="event_timepicker">
+
+          <timepicker ng-model="$parent.mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+        </div>
+
+        <div class="col-sm-4 col-xs-12 mt-5 pt-10">
+          <span>Price</span><br/>
+          <button type="button" class="btn btn-default mr-10 mb-10" ng-click="free=(free==true)?false:true"><i class="fa fa-check" ng-if="free==true"/><i class="fa fa-check" ng-if="free==false" style="opacity:0"/></span></button><span class="mr-10 mb-10">Free</span>
+          <input type="text" class="form-control inline-block" ng-model="price" ng-disabled="free==true" style="width:100px"/>
+        </div>
+      </div>
+  </div>
+  <div class="modal-footer pr-30">
+    <button class="btn btn-danger btn-lg" ng-click="create()">{{(edit==true)?"Edit":"Create"}} event</button>
+  </div>
+</script>
+
+
+
+<script type="text/ng-template" id="createSaleModalContent.html">
+  <div class="modal-header p-30 pb-0">
+    <button type="button" class="close" ng-click="modalInstance.dismiss('cancel')">&times;</button>
+    <h3 class="modal-title custom-font">{{(edit==true)?'Edit':'Create'}} your sale</h3>
+  </div>
+  <div class="modal-body p-30" ng-init="init()">
+    <ul class="list-unstyled">
+      <li class="mb-10">
+        <span>Title</span><br/>
+        <input type="text" class="form-control" ng-model="title">
+      </li>
+      
+      <li class="mb-10">
+        <span>Price</span><br/>
+        <input type="text" class="form-control" ng-model="price">
+      </li>
+      
+      <li class="mb-10">
+        <span>Photo</span><br/>
+        <input ui-jq="filestyle" type="file" class="filestyle" ui-options="{
+          buttonText: 'Select image',
+          iconName: 'fa fa-file-image-o'
+        }" id="salePhotoInput">
+
+        <div class="btn-group mt-20">
+          <label class="btn btn-default" ng-model="cropType" btn-radio="'circle'">Circle</label>
+          <label class="btn btn-default" ng-model="cropType" btn-radio="'square'">Square</label>
+        </div>
+
+        <div class="row">
+          <div class="col-md-8">
+
+            <div class="p-10 bg-white b-a b-solid" style="height:320px">
+              <img-crop
+                image="myImage"
+                result-image="myCroppedImage"
+                result-image-size="160"
+                area-type="{{cropType}}"
+              ></img-crop>
+            </div>
+
+          </div>
+          <div class="col-md-4">
+            <div class="p-10 bg-white b-a b-solid inline-block">
+              <img ng-src="{{myCroppedImage}}" />
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="modal-footer pr-30" style="clear:both">
+    <button class="btn btn-danger btn-lg" ng-click="create()">{{(edit==true)?'Edit':'Create'}} sale</button>
+  </div>
+</script>

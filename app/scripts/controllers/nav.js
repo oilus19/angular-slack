@@ -49,6 +49,7 @@ angular.module('getnearApp')
   })
   .controller('editChannelModalInstanceCtrl', function ($scope, $rootScope, $modalInstance, $modal, $log, items) {
     
+    $scope.modalInstance = $modalInstance;
     $scope.icon = items.channel.icon;
     $scope.title = items.channel.title;
 

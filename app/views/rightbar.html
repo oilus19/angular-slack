@@ -246,23 +246,6 @@
 
       <span ng-if="questionsScope.empty">There's no questions yet.</span>
       <div class="new-post"><button type="button" class="btn btn-danger" ng-click="newQuestion()">Click here to create your question</button></div>
-
-      <script type="text/ng-template" id="createQuestionModalContent.html">
-                <div class="modal-header p-30 pb-0">
-                  <h3 class="modal-title custom-font">{{(edit==true)?'Edit':'Create'}} your question</h3>
-                </div>
-                <div class="modal-body p-30">
-                  <ul class="list-unstyled">
-                    <li class="mb-10">
-                      <span>Question</span><br/>
-                      <input type="text" class="form-control" ng-model="question">
-                    </li>
-                  </ul>
-                </div>
-                <div class="modal-footer pr-30">
-                  <button class="btn btn-danger btn-lg" ng-click="create()">{{(edit==true)?'Edit':'Create'}} Question</button>
-                </div>
-              </script>
     </div>
 
     <div ng-if="questionsScope.questionShowed">
@@ -333,28 +316,6 @@
 
       <span ng-if="pollsScope.empty">There's no polls yet.</span>
       <div class="new-post"><button type="button" class="btn btn-danger" ng-click="newPoll()">Click here to create your poll</button></div>
-
-      <script type="text/ng-template" id="createPollModalContent.html">
-                <div class="modal-header p-30 pb-0">
-                  <h3 class="modal-title custom-font">{{(edit==true)?'Edit':'Create'}} your poll</h3>
-                </div>
-                <div class="modal-body p-30">
-                  <ul class="list-unstyled">
-                    <li class="mb-10">
-                      <span>Question</span><br/>
-                      <input type="text" class="form-control" ng-model="question">
-                    </li>
-                    <li ng-repeat="option in options" class="mb-10">
-                      <span>Option {{$index+1}}</span><br/>
-                      <input type="text" class="form-control" ng-model="option.title">
-                    </li>
-                  </ul>
-                  <span class="pull-right">add question<a class="icon icon-default trasparent icon-ef-1 icon-ef-1a" ng-click="addQuestion()"><i class="fa fa-plus"/></a></span>
-                </div>
-                <div class="modal-footer pr-30" style="clear:both">
-                  <button class="btn btn-danger btn-lg" ng-click="create()">{{(edit==true)?'Edit':'Create'}} poll</button>
-                </div>
-              </script>
     </div>
 
     <div ng-if="pollsScope.pollShowed">
@@ -413,53 +374,6 @@
 
       <span ng-if="eventsScope.empty">There's no events yet.</span>
       <div class="new-post"><button type="button" class="btn btn-danger" ng-click="newEvent()">Click here to create your event</button></div>
-
-      <script type="text/ng-template" id="createEventModalContent.html">
-                <div class="modal-header p-30 pb-0">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h3 class="modal-title custom-font">{{(edit==true)?"Edit":"Create"}} your event</h3>
-                </div>
-                <div class="modal-body p-30">
-                    <div class="mb-10">
-                      <span>Title</span><br/>
-                      <input type="text" class="form-control" ng-model="title">
-                    </div>
-                    <div class="mb-10">
-                      <span>Information about the event</span><br/>
-                      <textarea class="form-control" ng-model="info"></textarea>
-                    </div>
-                    <div class="mb-10">
-                      <span>Location</span><br/>
-                      <input type="text" class="form-control" ng-model="location">
-                    </div>
-                    <div class="row">
-                      <div class="col-sm-4 col-xs-12 mt-5 pt-10" ng-controller="DatepickerCtrl">
-
-                            <span>Date & Time</span><br/>
-                            <p class="input-group">
-                              <input type="text" id="event_date" class="form-control" datepicker-popup="{{format}}" ng-model="$parent.dt" is-open="opened" min-date="minDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
-                              <span class="input-group-btn">
-                                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="fa fa-calendar"></i></button>
-                              </span>
-                            </p>
-                      </div>
-
-                      <div class="col-sm-4 col-xs-12" ng-controller="TimepickerCtrl" id="event_timepicker">
-
-                        <timepicker ng-model="$parent.mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
-                      </div>
-
-                      <div class="col-sm-4 col-xs-12 mt-5 pt-10">
-                        <span>Price</span><br/>
-                        <button type="button" class="btn btn-default mr-10 mb-10" ng-click="free=(free==true)?false:true"><i class="fa fa-check" ng-if="free==true"/><i class="fa fa-check" ng-if="free==false" style="opacity:0"/></span></button><span class="mr-10 mb-10">Free</span>
-                        <input type="text" class="form-control inline-block" ng-model="price" ng-disabled="free==true" style="width:100px"/>
-                      </div>
-                    </div>
-                </div>
-                <div class="modal-footer pr-30">
-                  <button class="btn btn-danger btn-lg" ng-click="create()">{{(edit==true)?"Edit":"Create"}} event</button>
-                </div>
-              </script>
     </div>
 
     <div ng-if="eventsScope.eventShowed">
@@ -512,61 +426,6 @@
 
       <span ng-if="salesScope.empty">There's no sales yet.</span>
       <div class="new-post"><button type="button" class="btn btn-danger" ng-click="newSale()">Click here to create your sale</button></div>
-
-      <script type="text/ng-template" id="createSaleModalContent.html">
-                <div class="modal-header p-30 pb-0">
-                  <h3 class="modal-title custom-font">{{(edit==true)?'Edit':'Create'}} your sale</h3>
-                </div>
-                <div class="modal-body p-30" ng-init="init()">
-                  <ul class="list-unstyled">
-                    <li class="mb-10">
-                      <span>Title</span><br/>
-                      <input type="text" class="form-control" ng-model="title">
-                    </li>
-                    
-                    <li class="mb-10">
-                      <span>Price</span><br/>
-                      <input type="text" class="form-control" ng-model="price">
-                    </li>
-                    
-                    <li class="mb-10">
-                      <span>Photo</span><br/>
-                      <input ui-jq="filestyle" type="file" class="filestyle" ui-options="{
-                        buttonText: 'Select image',
-                        iconName: 'fa fa-file-image-o'
-                      }" id="salePhotoInput">
-
-                      <div class="btn-group mt-20">
-                        <label class="btn btn-default" ng-model="cropType" btn-radio="'circle'">Circle</label>
-                        <label class="btn btn-default" ng-model="cropType" btn-radio="'square'">Square</label>
-                      </div>
-
-                      <div class="row">
-                        <div class="col-md-8">
-
-                          <div class="p-10 bg-white b-a b-solid" style="height:320px">
-                            <img-crop
-                              image="myImage"
-                              result-image="myCroppedImage"
-                              result-image-size="160"
-                              area-type="{{cropType}}"
-                            ></img-crop>
-                          </div>
-
-                        </div>
-                        <div class="col-md-4">
-                          <div class="p-10 bg-white b-a b-solid inline-block">
-                            <img ng-src="{{myCroppedImage}}" />
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-                <div class="modal-footer pr-30" style="clear:both">
-                  <button class="btn btn-danger btn-lg" ng-click="create()">{{(edit==true)?'Edit':'Create'}} sale</button>
-                </div>
-              </script>
     </div>
 
     <div ng-if="salesScope.saleShowed">

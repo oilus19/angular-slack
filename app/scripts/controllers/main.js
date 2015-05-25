@@ -356,6 +356,7 @@ angular.module('getnearApp')
     $scope.groupCategories = items.groupCategories;
     $scope.icon = "fa-users";
     $scope.selected = {};
+    $scope.modalInstance = $modalInstance;
 
     $scope.create = function () {
       $modalInstance.close({title: $scope.title, category: $scope.selected.category.title, subcategory: $scope.selected.subcategory.title, status: $scope.selected.status.title, icon: $scope.icon, about: $scope.about});
@@ -393,6 +394,7 @@ angular.module('getnearApp')
 
   .controller('SelectIconModalInstanceCtrl', function ($scope, $modalInstance, items) {
     $scope.title = items.title;
+    $scope.modalInstance = $modalInstance;
     
     $scope.getIconName = function (icon) {
       return icon.substr(3);
