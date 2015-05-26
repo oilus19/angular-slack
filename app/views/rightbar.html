@@ -395,6 +395,23 @@
           </div>
         </li>
       </ul>
+
+      <ul class="mt-40" ng-if="event.replies.length>0">
+        <li>
+          <span>Comments</span>
+        </li>
+        <li ng-repeat="post in event.replies">
+          <div class="media">
+            <a class="pull-left thumb thumb-sm" href="javascript:;">
+              <img class="media-object img-circle" src="{{post.user.avatar}}" alt>
+            </a>
+            <div class="media-body">
+              <span class="media-heading">{{post.user.firstname}} <strong>{{post.user.lastname}}</strong></span>
+              <span>{{post.body}}</span>
+            </div>
+          </div>
+        </li>
+      </ul>
     </div>
   </tab>
 
@@ -444,6 +461,24 @@
       </ul>
       <div ng-if="sale.photo" class="p-10 bg-white b-a b-solid"><a href="{{sale.photo}}" class="fresco"><img src="{{sale.photo}}" style="max-width:100%"/></a></div><br/>
       <span ng-if="sale.price"><strong>Price:</strong> {{sale.price}}</span><br/>
+
+
+      <ul class="mt-40" ng-if="sale.replies.length>0">
+        <li>
+          <span>Comments</span>
+        </li>
+        <li ng-repeat="post in sale.replies">
+          <div class="media">
+            <a class="pull-left thumb thumb-sm" href="javascript:;">
+              <img class="media-object img-circle" src="{{post.user.avatar}}" alt>
+            </a>
+            <div class="media-body">
+              <span class="media-heading">{{post.user.firstname}} <strong>{{post.user.lastname}}</strong></span>
+              <span>{{post.body}}</span>
+            </div>
+          </div>
+        </li>
+      </ul>
     </div>
   </tab>
 

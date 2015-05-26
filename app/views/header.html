@@ -4,7 +4,7 @@
 
     <li class="dropdown" dropdown on-toggle="toggled(open)">
 
-      <a href class="dropdown-toggle" dropdown-toggle>
+      <a href class="dropdown-toggle" dropdown-toggle ng-click="clickPlusButton()">
         <fa name="plus"></fa>
       </a>
 
@@ -23,6 +23,21 @@
     </li>
     <li ng-repeat="group in joinedGroup" ng-class="{active: group==currentGroup}"><a ui-sref="app.group.channel({group: '{{group.title}}', channel: 'General'})"><span class="group-initial" ng-if="!group.icon || group.icon==''">{{group.initial}}</span><i class="fa {{group.icon}}" ng-if="group.icon"/><span class="group-title">{{group.title}}</span></a></li>
   </ul>
+
+        
+        <div class="off-canvas-sidebar b-r" ng-init="setOffCanvasSidebar()">
+          <div class="list-group no-radius no-border">
+            <a ui-sref-active="active" ui-sref="app.grouplist" class="list-group-item">
+              Join a Group
+            </a>
+            <a ng-click="newGroup()" class="list-group-item hover-cursor-pointer">
+              Create a Group
+            </a>
+            <a ng-repeat="group in joinedGroup" ng-class="{active: group==currentGroup}" ui-sref="app.group.channel({group: '{{group.title}}', channel: 'General'})" class="list-group-item"><i class="fa {{group.icon}}" ng-if="group.icon"/> {{group.title}}</a>
+          </div>
+        </div>
+
+
 
   <!-- Right-side navigation -->
   <ul class="nav-right pull-right list-inline">

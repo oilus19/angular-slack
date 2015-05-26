@@ -14,7 +14,10 @@ angular.module('getnearApp')
       resize();
     }
 
-
+    $rootScope.$watch(function(scope){return scope.main.settings.rightbarShow},
+      function(){
+        resize();
+      });
 
   })
   .controller('NewAnswerCtrl', function ($rootScope, $scope) {

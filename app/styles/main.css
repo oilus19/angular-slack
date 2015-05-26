@@ -2046,6 +2046,7 @@ header {
       left: 0;
       top: 0;
       width: 120px; }
+    
     #getnear.sidebar-xs #header .nav-left {
       position: absolute;
       right: 0;
@@ -2061,14 +2062,8 @@ header {
         #getnear.sidebar-xs #header .nav-left .settings .dropdown-menu.with-arrow:after {
           right: 13px;
           left: auto; }
-    #getnear.sidebar-xs #header .nav-right {
-      float: left !important;
-      padding-left: 10px; }
-      #getnear.sidebar-xs #header .nav-right .nav-profile {
-        position: absolute;
-        bottom: 0;
-        right: 40px; }
-        #getnear.sidebar-xs #header .nav-right .nav-profile > a > span {
+
+        #getnear.sidebar-xs #header .nav-right .nav-profile .dropdown-toggle span {
           display: none; }
         #getnear.sidebar-xs #header .nav-right .nav-profile .dropdown-menu {
           left: auto;
@@ -2079,10 +2074,6 @@ header {
           #getnear.sidebar-xs #header .nav-right .nav-profile .dropdown-menu.with-arrow:after {
             right: 13px;
             left: auto; }
-      #getnear.sidebar-xs #header .nav-right .toggle-right-sidebar {
-        position: absolute;
-        bottom: 0;
-        right: 0; }
       #getnear.sidebar-xs #header .nav-right .users .dropdown-menu,
       #getnear.sidebar-xs #header .nav-right .messages .dropdown-menu,
       #getnear.sidebar-xs #header .nav-right .notifications .dropdown-menu {
@@ -2119,8 +2110,6 @@ header {
 @media only screen and (max-width: 420px) {
   #getnear.sidebar-xs #header .nav-right > li {
     position: static !important; }
-    #getnear.sidebar-xs #header .nav-right > li.toggle-right-sidebar {
-      position: absolute !important; }
     #getnear.sidebar-xs #header .nav-right > li .dropdown-menu {
       left: 0 !important;
       right: 0 !important; }
@@ -9618,6 +9607,16 @@ input[type="text"].ui-grid-filter-input {
       bottom: 0;
       left: 15px;
       z-index: 2; }
+     
+    .streamline .streamline-post .reply-container .edit-comment {
+      display: none; }   
+    .streamline .streamline-post .reply-container:hover .edit-comment {
+      display: inline-block; }      
+    .streamline .streamline-post .reply-container .edit-comment:hover {
+      cursor: pointer; }
+    .streamline .streamline-post .reply-container:hover .edit-comment + .timeline {
+      display: none; }       
+
     .streamline .streamline-post .post-replies > li > aside {
       float: left;
       vertical-align: top; }
@@ -11874,7 +11873,7 @@ hr.line-full {
 }
 
 .page-channel .streamline-form-wrapper {
-  position: fixed;
+  position: absolute;
   width: 100%;
   z-index: 90;
   margin-top: -160px;
@@ -11916,4 +11915,51 @@ hr.line-full {
   margin: 0px -30px;
   padding: 37px 30px 18px !important;
   background-color: #E7EAEB;
+}
+
+
+.off-canvas-sidebar {
+  position: fixed;
+  top: 45px;
+  height: 100%;
+  width: 250px;
+  background-color: #1C2B36 !important;
+  display: none;
+}
+
+@media only screen and (min-width: 769px) {
+
+  #getnear .off-canvas-sidebar {
+    display: none !important;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  #getnear #header .group-nav .dropdown-menu,
+  #getnear #header .group-nav > li:not(.dropdown) {
+    display: none;
+  }
+}
+
+.off-canvas-sidebar .list-group-item {
+  background: none;
+  border: 0;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.off-canvas-sidebar .list-group-item:hover,
+.off-canvas-sidebar .list-group-item:focus {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: #FFF;
+}
+
+.off-canvas-sidebar .list-group-item:hover i,
+.off-canvas-sidebar .list-group-item:focus i,
+.off-canvas-sidebar .list-group-item.active i {
+  color: #FFF;
+}
+
+.off-canvas-sidebar .list-group-item.active {
+  background-color: #DE544B;
+  color: #FFF;
 }

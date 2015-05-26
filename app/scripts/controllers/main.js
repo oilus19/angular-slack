@@ -8,7 +8,7 @@
  * Controller of the getnearApp
  */
 angular.module('getnearApp')
-  .controller('MainCtrl', function ($rootScope, $scope, $http, $modal, $log, $resource) {
+  .controller('MainCtrl', function ($rootScope, $scope, $http, $modal, $log, $resource, $state) {
 
     $rootScope.main = {
       title: 'getnear',
@@ -423,8 +423,33 @@ angular.module('getnearApp')
         };
 
         $rootScope.groups.push(group);
+        $rootScope.joinGroup(group);
       }, function () {
         $log.info('Modal dismissed at: ' + new Date());
+      });
+    }
+
+    $rootScope.joinGroup = function(group) {
+        $rootScope.joinedGroup.push(group);
+        $state.go("app.group.channel",{group: group.title, channel: 'General'});
+    }
+
+    $rootScope.clickPlusButton = function(){
+      if($(window).width()>768) {
+        return;
+      }
+      var effect='slide';
+      var options = {direction: 'left'};
+      var duration = 500;
+      $('.off-canvas-sidebar').toggle(effect,options,duration);
+    }
+
+    $rootScope.setOffCanvasSidebar = function(){
+      $(".off-canvas-sidebar").click(function(){
+        var effect='slide';
+        var options = {direction: 'left'};
+        var duration = 500;
+        $(this).hide(effect,options,duration);
       });
     }
 

@@ -51,20 +51,26 @@
               <span class="label bg-success" ng-if="post.type=='e'">Event</span>
               <span class="label bg-warning" ng-if="post.type=='@'">Mention</span>
               <span class="label bg-hotpink" ng-if="post.type=='s'">Sales</span>
-              <span class="text-muted pull-right edit-post" ng-if="(['q','e','p','s','@'].indexOf(post.type)>-1)" ng-click="editPost(post)"><i class="fa fa-edit mr-5"></i> Edit your 
-                <span ng-if="post.type=='q'">Question</span>
-                <span ng-if="post.type=='e'">Event</span>
-                <span ng-if="post.type=='p'">Poll</span>
-                <span ng-if="post.type=='s'">Sale</span>
-                <span ng-if="post.type=='@'">Mention</span>
+              <span class="edit-post pull-right text-muted">
+                <span ng-if="(['q','e','p','s','@','g'].indexOf(post.type)>-1)" ng-click="editPost()" class="mr-10">
+                  <i class="fa fa-edit mr-5"></i> Edit your 
+                  <span ng-if="post.type=='q'">Question</span>
+                  <span ng-if="post.type=='e'">Event</span>
+                  <span ng-if="post.type=='p'">Poll</span>
+                  <span ng-if="post.type=='s'">Sale</span>
+                  <span ng-if="post.type=='@'">Mention</span>
+                  <span ng-if="post.type=='g'">Post</span>
+                </span>
+                <span ng-click="deletePost()"><i class="fa fa-eraser mr-5" /> Delete</span>
               </span>
+              
               <span class="text-muted pull-right timeline"><i class="fa fa-clock-o mr-5"></i> {{post.timeline}}</span>
             </div>
             <div class="panel-body">
               <div class="body-container"></div>
 
               <p class="mt-10 mb-0">
-                <button type="button" class="btn btn-default btn-xs" ng-if="!post.pinned && post.type" ng-click="setPinned(post)"><i class="fa fa-thumb-tack"/> Pin This</button>
+                <button type="button" class="btn btn-default btn-xs" ng-if="!post.pinned && post.type!='g'" ng-click="setPinned(post)"><i class="fa fa-thumb-tack"/> Pin This</button>
                 <button type="button" class="btn btn-default btn-xs active" ng-if="post.pinned && post.type" ng-click="unsetPinned(post)"><i class="fa fa-thumb-tack text-danger"/> Pinned</button>
                 <button type="button" class="btn btn-default btn-xs" ng-if="post.type=='q'" ng-click="showQuestion(post)"><i class="fa fa-eye"/> Show Answers</button>
                 <button type="button" class="btn btn-default btn-xs" ng-if="post.type=='p'" ng-click="answerPoll(post)"><i class="fa fa-bar-chart-o"/> Answer Poll</button>
@@ -77,7 +83,7 @@
                   <button type="button" class="btn btn-default btn-xs" ng-click="viewConversation()" ng-if="!showConversation"><i class="fa fa-comment"/> View Conversation</button>
                   <button type="button" class="btn btn-default btn-xs" ng-click="hideConversation()" ng-if="showConversation"><i class="fa fa-comment"/> Hide Conversation</button>
                 </span>
-                <button type="button" class="btn btn-default btn-xs" ng-click="addImage()" ng-if="(['q','e','p'].indexOf(post.type)>-1) || !post.type"><i class="fa fa-image"/> Add Image</button><div id="container"></div>
+                <button type="button" class="btn btn-default btn-xs" ng-click="addImage()" ng-if="(['q','e','p','g'].indexOf(post.type)>-1)"><i class="fa fa-image"/> Add Image</button><div id="container"></div>
               </p>
             </div>
           </div>
@@ -107,7 +113,7 @@
 
             </li>
 
-            <li ng-repeat="post in post.replies | reverse">
+            <li ng-repeat="post in post.replies | reverse" ng-controller="CommentCtrl">
 
               <aside>
                 <div class="thumb thumb-sm">
@@ -120,10 +126,14 @@
                   <div class="panel-body">
                     <p>
                       <strong>{{post.user.firstname + ' ' + post.user.lastname}}</strong>
-                      <span class="text-muted pull-right"><i class="fa fa-clock-o mr-5"></i> {{post.timeline}}</span>
+                      <span class="text-muted pull-right edit-comment">
+                        <span ng-click="editComment()" class="mr-10"><i class="fa fa-edit mr-5"></i> Edit your comment</span>
+                        <span ng-click="deleteComment()"><i class="fa fa-eraser mr-5" /> Delete</span>
+                      </span>
+                      <span class="text-muted pull-right timeline"><i class="fa fa-clock-o mr-5"></i> {{post.timeline}}</span>
                     </p>
 
-                    <p class="mb-0 text-small">{{post.body}}</p>
+                    <p class="mb-0 text-small comment-container">{{post.body}}</p>
                   </div>
                 </div>
               </div>

@@ -18,6 +18,27 @@ angular.module('getnearApp')
         return post.body;
     }
 
+    $rootScope.editGeneralPost = function(post){
+      var modalInstance = $modal.open({
+        templateUrl: 'editGeneralPostModalContent.html',
+        controller: 'EditGeneralPostModalInstanceCtrl',
+        size: 'lg',
+        resolve: {
+          items: function () {
+            return {body: post.body, title: "Edit your General Post"};
+          }
+        }
+      });
+
+      modalInstance.result.then(function (result) {
+        post.body = result.body;
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+    }
+
+    
+
     /*  Mentions     */
 
     $rootScope.showMention = function(mention){
@@ -31,12 +52,12 @@ angular.module('getnearApp')
 
     $rootScope.editMention = function(mention){
       var modalInstance = $modal.open({
-        templateUrl: 'editMentionModalContent.html',
-        controller: 'EditMentionModalInstanceCtrl',
+        templateUrl: 'editGeneralPostModalContent.html',
+        controller: 'EditGeneralPostModalInstanceCtrl',
         size: 'lg',
         resolve: {
           items: function () {
-            return {body: mention.body};
+            return {body: mention.body, title: "Edit your Mention"};
           }
         }
       });
@@ -467,10 +488,11 @@ angular.module('getnearApp')
 
 angular.module('getnearApp')
 
-  .controller('EditMentionModalInstanceCtrl', function ($scope, $modalInstance, items) {
+  .controller('EditGeneralPostModalInstanceCtrl', function ($scope, $modalInstance, items) {
     
     $scope.modalInstance = $modalInstance;
     $scope.body = items.body;
+    $scope.title = items.title;
 
     $scope.create = function () {
       $modalInstance.close({body: $scope.body});
@@ -651,6 +673,7 @@ angular.module('getnearApp')
   .controller('PostCtrl', function ($rootScope, $scope, $element, $compile) {
 
     $scope.showConversation = false;
+    $scope.currentPost = $scope.post;
 
     var post = $scope.post;
     if(!post.replies) post.replies = [];
@@ -658,12 +681,20 @@ angular.module('getnearApp')
     updateBody();
     function updateBody(){
       var element = document.createElement('ng-embed');
-      element.setAttribute("embed-data", "post.body");
+      $scope.body = getPostBody();
+      element.setAttribute("embed-data", "body");
       element.setAttribute("embed-options", "options");
       var angularelement = angular.element(element);
       var el = $compile(angularelement)($scope);
       $element.find(".body-container").html(angularelement);
       $scope.insertHere = el;
+    }
+
+    function getPostBody(){
+      var body = post.body;
+      if(post.type=='s')
+        body += '<br/>'+post.photo;
+      return body;
     }
 
     $scope.editPost = function(){
@@ -683,7 +714,16 @@ angular.module('getnearApp')
         case "@":
           $rootScope.editMention(post);
           break;
+        case "g":
+          $rootScope.editGeneralPost(post);
+          break;
       }
+    }
+
+    $scope.deletePost = function(){
+      var index = $rootScope.posts.indexOf(post);
+      if(index>-1)
+        $rootScope.posts.splice(index, 1);
     }
 
     $scope.replyPost = function(){
@@ -713,6 +753,52 @@ angular.module('getnearApp')
       };
       Dropbox.choose(options);
 
+    }
+
+    $scope.$watch(function(scope){return scope.post.body},
+      function(){
+        updateBody();
+      });
+  })
+
+  .controller('CommentCtrl', function ($rootScope, $scope, $element, $compile, $modal, $log) {
+
+    var post = $scope.post;
+
+    updateBody();
+    function updateBody(){
+      var element = document.createElement('ng-embed');
+      element.setAttribute("embed-data", "post.body");
+      element.setAttribute("embed-options", "options");
+      var angularelement = angular.element(element);
+      var el = $compile(angularelement)($scope);
+      $element.find(".comment-container").html(angularelement);
+      $scope.insertHere = el;
+    }
+
+    $scope.editComment = function(){
+      var modalInstance = $modal.open({
+        templateUrl: 'editGeneralPostModalContent.html',
+        controller: 'EditGeneralPostModalInstanceCtrl',
+        size: 'lg',
+        resolve: {
+          items: function () {
+            return {body: post.body, title: "Edit your Comment"};
+          }
+        }
+      });
+
+      modalInstance.result.then(function (result) {
+        post.body = result.body;
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+    }
+
+    $scope.deleteComment = function(){
+      var index = $scope.$parent.currentPost.replies.indexOf(post);
+      if(index>-1)
+        $scope.$parent.currentPost.replies.splice(index, 1);
     }
 
     $scope.$watch(function(scope){return scope.post.body},
@@ -776,6 +862,7 @@ angular.module('getnearApp')
             if(post.indexOf('e:') === 0) return 'e';
             if(post.indexOf('p:') === 0) return 'p';
             if(post.indexOf('s:') === 0) return 's';
+            return 'g';
         }
 
         function getPostBody(post){

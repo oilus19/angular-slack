@@ -49,10 +49,12 @@ function resize(){
   var content_width = $(window).width()-$('#sidebar').width()-width;
   $("#content").css('right', width.toString()+"px");
 
-  positionPageHeader();
-  positionSendMessageBox();
-  positionNewPostBox();
-  positionNewPostButton();
+  setTimeout(function(){ 
+    positionPageHeader();
+    positionSendMessageBox();
+    positionNewPostBox();
+    positionNewPostButton();
+  }, 100);
 }
 
 $(window).bind("load", function() { 
