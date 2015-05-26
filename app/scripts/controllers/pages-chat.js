@@ -26,17 +26,43 @@ angular.module('getnearApp')
   .controller('SendMessageCtrl', function ($rootScope, $scope, $timeout) {
 
     $scope.post = false;
+    $scope.image = '';
+    $scope.imageAttached = false;
 
     $scope.sendMessage = function(){
         var body = $scope.messageinput;
+        if($scope.imageAttached)
+            body += "<br/>" + $scope.image;
+
         var message = {
             type: 'out',
             body: body,
             timeline: 'Just now'
         }
         $rootScope.messages.push(message);
-        $scope.messageinput = '';
+        $scope.reset();
         scrollTop();
+    }
+
+    $scope.reset = function(){
+      $scope.messageinput = '';
+      $scope.image = '';
+      $scope.imageAttached = false;
+    }
+
+    $scope.addImage = function() {
+      var options = {
+        success: function(files) {
+          var image = files[0].link;
+          $scope.image = image;
+          $scope.imageAttached = true;
+          $scope.$apply();
+        },
+        linkType: "direct", // or "direct"
+        multiselect: false, // or true
+        extensions: ['images'],
+      };
+      Dropbox.choose(options);
     }
 
     $scope.$watch(function(scope){return scope.post},

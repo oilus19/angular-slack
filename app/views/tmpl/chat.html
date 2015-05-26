@@ -5,21 +5,22 @@
 
       <div class="pageheader p-15 bg-white b-b">
 
-        <div class="btn-toolbar pull-right">
-          <div class="btn-group">
-            <button class="btn btn-default btn-sm br-2"><i class="fa fa-plus"></i> New Message</button>
+        <div class="pageheader-inner">
+          <div class="btn-toolbar pull-right">
+            <div class="btn-group">
+              <button class="btn btn-default btn-sm br-2"><i class="fa fa-plus"></i> New Message</button>
+            </div>
+            <div class="btn-group">
+              <button class="btn btn-default btn-sm br-2"><i class="fa fa-cog"></i> Settings</button>
+            </div>
+            <div class="btn-group">
+              <button class="btn btn-default btn-sm br-2"><i class="fa fa-search"></i></button>
+            </div>
           </div>
-          <div class="btn-group">
-            <button class="btn btn-default btn-sm br-2"><i class="fa fa-cog"></i> Settings</button>
-          </div>
-          <div class="btn-group">
-            <button class="btn btn-default btn-sm br-2"><i class="fa fa-search"></i></button>
-          </div>
+
+
+          <h3 class="custom-font m-0 mr-5 inline-block">{{chatWith.firstname}} {{chatWith.lastname}}</h3>
         </div>
-
-
-        <h3 class="custom-font m-0 mr-5 inline-block">{{chatWith.firstname}} {{chatWith.lastname}}</h3>
-
       </div>
 
       <div class="p-30">
@@ -41,7 +42,8 @@
                     <textarea class="form-control b-0" ng-model="messageinput"></textarea>
                     <div class="panel-footer text-left">
                       <button class="btn btn-link text-default pull-right" ng-click="post=!post"><i class="fa fa-trash-o"></i></button>
-                      <button class="btn btn-greensea btn-ef btn-ef-7 btn-ef-7b b-0 br-2" ng-click="sendMessage()"><i class="fa fa-envelope"></i> Send Message</button>
+                      <button class="btn btn-greensea btn-ef btn-ef-7 btn-ef-7b br-2 mr-10" ng-click="sendMessage()"><i class="fa fa-envelope"></i> Send Message</button>
+                      <button class="btn btn-default btn-ef btn-ef-7 btn-ef-7b br-2" ng-click="addImage()" ng-class="{active: imageAttached==true}"><i class="fa fa-image"></i> Add Image</button>
                     </div>
                   </div>
                 </div>
@@ -67,7 +69,7 @@
               </div>
               <div class="media-body">
                 <p class="media-heading"><a href="#" class="name">You </a><span class="datetime">{{message.timeline}}</span></p>
-                <span class="body">{{message.body}}</span>
+                <ng-embed embed-data="message.body" embed-options="options"></ng-embed>
               </div>
             </div>
           </li>

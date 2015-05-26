@@ -13,37 +13,50 @@ angular.module('getnearApp')
 
 
 function positionNewPostBox(){
-
-  var scrollTop = $(window).scrollTop();
-  var top = scrollTop;
-  $(".page-channel .streamline-form-wrapper").css('top', top.toString() + 'px');
-
+  $(".page-channel .streamline-form-wrapper").width($("#content").width()-60);
 }
 
 function positionSendMessageBox(){
-
-  var scrollTop = $(window).scrollTop();
-  var top = scrollTop;
-  $(".page-chat .send-message-wrapper").css('top', top.toString() + 'px');
+  $(".page-chat .send-message-wrapper").width($("#content").width()-60);
 }
 
 function positionPageHeader(){
-  var scrollTop = $(window).scrollTop();
-  var top = scrollTop;
-  $(".pageheader").css('top', top.toString() + 'px');
+  $(".pageheader-inner").width($("#content").width()-30);
 }
 
 function scrollTop(){
   $("html, body").animate({ scrollTop: 0 }, 1000);
 }
 
+
+function positionNewPostButton () {
+  var $new_post = $("#rightbar .tab-content .tab-pane.active .new-post");
+
+  var new_post_height = $new_post.height();
+
+  if ( ($('#rightbar .ng-isolate-scope').height()+new_post_height) < $('#rightbar').height()) {
+     $new_post.removeClass('static');
+  } else {
+     $new_post.addClass('static');
+  }
+       
+};
+
+function resize(){
+  var width = ($(window).width()-$('#sidebar').width())*0.3;
+  width = (width<280) ? 280: width;
+  $("#rightbar").width(width);
+  var content_width = $(window).width()-$('#sidebar').width()-width;
+  $("#content").css('right', width.toString()+"px");
+
+  positionPageHeader();
+  positionSendMessageBox();
+  positionNewPostBox();
+  positionNewPostButton();
+}
+
 $(window).bind("load", function() { 
 
   $(window)
-    .scroll(positionNewPostBox)
-    .scroll(positionSendMessageBox)
-    .scroll(positionPageHeader)
-    .resize(positionNewPostBox)
-    .resize(positionSendMessageBox);
-
+    .resize(resize);
 });

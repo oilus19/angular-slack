@@ -648,12 +648,23 @@ angular.module('getnearApp')
     angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
   })
 
-  .controller('PostCtrl', function ($rootScope, $scope, $element) {
+  .controller('PostCtrl', function ($rootScope, $scope, $element, $compile) {
 
     $scope.showConversation = false;
 
     var post = $scope.post;
     if(!post.replies) post.replies = [];
+
+    updateBody();
+    function updateBody(){
+      var element = document.createElement('ng-embed');
+      element.setAttribute("embed-data", "post.body");
+      element.setAttribute("embed-options", "options");
+      var angularelement = angular.element(element);
+      var el = $compile(angularelement)($scope);
+      $element.find(".body-container").html(angularelement);
+      $scope.insertHere = el;
+    }
 
     $scope.editPost = function(){
       switch(post.type){
@@ -689,9 +700,25 @@ angular.module('getnearApp')
     }
 
     $scope.addImage = function() {
-      var image = "http://c4228518.r18.cf2.rackcdn.com/product-original-14402-1052-1328718600-e4d1b83518ee17ee48e2c1019d217b6f.JPG";
-      post.body += "<br/>"+image;
+
+      var options = {
+        success: function(files) {
+          var image = files[0].link;
+          post.body += "<br/>"+image;
+          $scope.$apply();
+        },
+        linkType: "direct", // or "direct"
+        multiselect: false, // or true
+        extensions: ['images'],
+      };
+      Dropbox.choose(options);
+
     }
+
+    $scope.$watch(function(scope){return scope.post.body},
+      function(){
+        updateBody();
+      });
   })
 
   .controller('ReplyCtrl', function ($rootScope, $scope, $element) {
@@ -723,9 +750,10 @@ angular.module('getnearApp')
   })
 
   .controller('AddPostCtrl', function ($rootScope, $scope) {
-    $scope.newPost='';
-    $scope.selectedNewPostType='';
-    $scope.newPostInput=$("#new_post_input");
+    $scope.newPost = '';
+    $scope.selectedNewPostType = '';
+    $scope.newPostInput = $("#new_post_input");
+    $scope.imageAttached = false;
 
     $scope.newPostInput.keypress(function(e) {
       var key = e.which;
@@ -737,6 +765,8 @@ angular.module('getnearApp')
     $scope.reset = function(){
       $scope.newPost = '';
       $scope.selectedNewPostType = '';
+      $scope.image = '';
+      $scope.imageAttached = false;
     }
 
     $scope.submitPost = function(){
@@ -749,7 +779,16 @@ angular.module('getnearApp')
         }
 
         function getPostBody(post){
-            return post.substr(post.indexOf(':')+1).trim();
+          var body = '';
+          if(getPostType(post)) 
+            body = post.substr(post.indexOf(':')+1).trim();
+          else
+            body = post;
+
+          if($scope.imageAttached)
+            body += "<br/>" + $scope.image;
+
+          return body;
         }
 
         function getPostAuthor(post){
@@ -767,7 +806,7 @@ angular.module('getnearApp')
         
         var post_input = $scope.newPost;
         var postType = getPostType(post_input);
-        var postBody = (postType?getPostBody(post_input):post_input)+"<br/>"+$scope.image;
+        var postBody = getPostBody(post_input);
         var postAuthor = getPostAuthor(post_input);
         var post = {
             type: postType,
@@ -802,7 +841,18 @@ angular.module('getnearApp')
     }
 
     $scope.addImage = function() {
-      $scope.image = "http://c4228518.r18.cf2.rackcdn.com/product-original-14402-1052-1328718600-e4d1b83518ee17ee48e2c1019d217b6f.JPG";
+      var options = {
+        success: function(files) {
+          var image = files[0].link;
+          $scope.image = image;
+          $scope.imageAttached = true;
+          $scope.$apply();
+        },
+        linkType: "direct", // or "direct"
+        multiselect: false, // or true
+        extensions: ['images'],
+      };
+      Dropbox.choose(options);
     }
 
     $scope.selectMention = function() {

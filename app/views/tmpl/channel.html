@@ -18,7 +18,7 @@
           <form>
             <div class="input-group">
               <input type="text" id="new_post_input" class="form-control" placeholder="Write your comment here" ng-model="newPost" auto-complete ui-items="suggestions">
-              <span class="input-group-btn"><button class="btn btn-default" type="button" ng-click="addImage()"><i class="fa fa-image"/></button><button class="btn btn-default" type="button" ng-click="submitPost()">Post</button></span>
+              <span class="input-group-btn"><button class="btn btn-default" type="button" ng-click="addImage()" ng-class="{active: imageAttached==true}"><i class="fa fa-image"/></button><button class="btn btn-default" type="button" ng-click="submitPost()">Post</button></span>
             </div>
             <div class="what-to-do mt-5" style="margin-right:-30px">
               <span class="inline-block mr-20 text-italic">What do you want to do:</span>
@@ -61,7 +61,7 @@
               <span class="text-muted pull-right timeline"><i class="fa fa-clock-o mr-5"></i> {{post.timeline}}</span>
             </div>
             <div class="panel-body">
-              <ng-embed embed-data="post.body" embed-options="options"></ng-embed>
+              <div class="body-container"></div>
 
               <p class="mt-10 mb-0">
                 <button type="button" class="btn btn-default btn-xs" ng-if="!post.pinned && post.type" ng-click="setPinned(post)"><i class="fa fa-thumb-tack"/> Pin This</button>
@@ -77,7 +77,7 @@
                   <button type="button" class="btn btn-default btn-xs" ng-click="viewConversation()" ng-if="!showConversation"><i class="fa fa-comment"/> View Conversation</button>
                   <button type="button" class="btn btn-default btn-xs" ng-click="hideConversation()" ng-if="showConversation"><i class="fa fa-comment"/> Hide Conversation</button>
                 </span>
-                <button type="button" class="btn btn-default btn-xs" ng-click="addImage()" ng-if="(['q','e','p',''].indexOf(post.type)>-1)"><i class="fa fa-image"/> Add Image</button>
+                <button type="button" class="btn btn-default btn-xs" ng-click="addImage()" ng-if="(['q','e','p'].indexOf(post.type)>-1) || !post.type"><i class="fa fa-image"/> Add Image</button><div id="container"></div>
               </p>
             </div>
           </div>
