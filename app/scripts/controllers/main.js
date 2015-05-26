@@ -25,7 +25,7 @@ angular.module('getnearApp')
 
     $scope.options = {
       link             : true,      //convert links into anchor tags
-      linkTarget       : '_self',   //_blank|_self|_parent|_top|framename
+      linkTarget       : '_blank',   //_blank|_self|_parent|_top|framename
       pdf              : {
         embed: true                 //to show pdf viewer.
       },
@@ -36,13 +36,13 @@ angular.module('getnearApp')
         embed: true                 //to allow embedding audio player if link to
       },
       basicVideo       : false,     //to allow embedding of mp4/ogg format videos
-      gdevAuth         :'xxxxxxxx', // Google developer auth key for youtube data api
+      gdevAuth         :'AIzaSyD4Vn5bZAh0jlGpdmJqjuCU4eDY3r_7ZqA', // Google developer auth key for youtube data api
       video            : {
-          embed           : false,    //to allow youtube/vimeo video embedding
+          embed           : true,    //to allow youtube/vimeo video embedding
           width           : null,     //width of embedded player
           height          : null,     //height of embedded player
           ytTheme         : 'dark',   //youtube player theme (light/dark)
-          details         : false,    //to show video details (like title, description etc.)
+          details         : true,    //to show video details (like title, description etc.)
       },
       tweetEmbed       : true,
       tweetOptions     : {
@@ -281,7 +281,16 @@ angular.module('getnearApp')
             firstname: 'Robin',
             lastname: 'Wills',
             avatar: 'images/random-avatar3.jpg'
+        },
+      replies: [{
+        body: "These cases are perfectly simple and easy to distinguish.",
+        timeline: "10 minutes ago",
+        user: {
+            firstname: 'Robin',
+            lastname: 'Wills',
+            avatar: 'images/random-avatar3.jpg'
         }
+      }]
     },{
       type: "s",
       body: "Black Mini Dress",
@@ -292,7 +301,16 @@ angular.module('getnearApp')
             firstname: 'Robin',
             lastname: 'Wills',
             avatar: 'images/random-avatar3.jpg'
+        },
+      replies: [{
+        body: "These cases are perfectly simple and easy to distinguish.",
+        timeline: "10 minutes ago",
+        user: {
+            firstname: 'Robin',
+            lastname: 'Wills',
+            avatar: 'images/random-avatar3.jpg'
         }
+      }]
     },{
       type: "@",
       to: 'John Douey',
@@ -306,8 +324,46 @@ angular.module('getnearApp')
     },{
       type: "@",
       to: 'John Douey',
-      body: "Est fatalis habitio, cesaris.Sunt :) ususes manifestum audax, domesticus burguses.Ventuss prarere in tubinga!Sunt menses examinare alter, emeritis advenaes. https://ideone.com/n2GYdv Eheu, regius resistentia!Nunquam quaestio lactea.Ecce, placidus usus!",
+      body: "Pol.Idoleums mori!Cum bromium favere, omnes lumenes imperium lotus, castus eraes. https://gist.github.com/ritz078/75c238ffa59244ae8e1a A falsis, valebat magnum cobaltum.Tatas unda, tanquam albus lamia.Pulchritudine volares, tanquam barbatus silva.",
         timeline: "29 minutes ago",
+        user: {
+            firstname: 'Imrich',
+            lastname: 'Kamarel',
+            avatar: 'images/random-avatar4.jpg'
+        },
+      replies: [{
+        body: "These cases are perfectly simple and easy to distinguish.",
+        timeline: "10 minutes ago",
+        user: {
+            firstname: 'Robin',
+            lastname: 'Wills',
+            avatar: 'images/random-avatar3.jpg'
+        }
+      }]
+    },{
+      type: "@",
+      to: 'John Douey',
+      body: "Naviss credere!Orgia de germanus repressor, gratia rumor!Nunquam pugna axona.Cur orexis peregrinationes?Sunt abactores pugna gratis, germanus lamiaes.Cur lanista cantare?Est castus bromium, cesaris.Tabess velum, tanquam https://vimeo.com/92066734 germanus musa.Cur lacta prarere? :smile: Assimilant aegre ducunt ad magnum advena.Emeritis, fidelis menss interdum examinare de varius, lotus detrius.",
+        timeline: "19 minutes ago",
+        user: {
+            firstname: 'Imrich',
+            lastname: 'Kamarel',
+            avatar: 'images/random-avatar4.jpg'
+        },
+      replies: [{
+        body: "These cases are perfectly simple and easy to distinguish.",
+        timeline: "10 minutes ago",
+        user: {
+            firstname: 'Robin',
+            lastname: 'Wills',
+            avatar: 'images/random-avatar3.jpg'
+        }
+      }]
+    },{
+      type: "g",
+      to: 'John Douey',
+      body: "Naviss credere!Orgia de germanus :) repressor, gratia rumor!Nunquam pugna axona.Cur orexis peregrinationes?Sunt abactores pugna gratis, germanus lamiaes.Cur lanista cantare?Est castus bromium, cesaris.Tabess velum, tanquam https://www.youtube.com/watch?v=QHulaj5ZxbI germanus musa.Cur lacta prarere? :smile: Assimilant aegre ducunt ad magnum advena.Emeritis, fidelis menss interdum examinare de varius, lotus detrius.",
+        timeline: "9 minutes ago",
         user: {
             firstname: 'Imrich',
             lastname: 'Kamarel',
@@ -326,7 +382,7 @@ angular.module('getnearApp')
 
     $rootScope.messages = [{
       type: "in",
-      body: "Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.",
+      body: "Donec pede justo, fringilla vel, aliquet nec,  vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.",
       timeline: "2 hours ago",
       user: {
         firstname: 'Wood',
@@ -352,7 +408,7 @@ angular.module('getnearApp')
       timeline: "40 minutes ago"
     },{
       type: "in",
-      body: "Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue.",
+      body: "Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. https://vimeo.com/92066734 Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue.",
       timeline: "20 minutes ago",
       user: {
         firstname: 'Wood',
@@ -361,7 +417,7 @@ angular.module('getnearApp')
       }
     },{
       type: "out",
-      body: "Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.",
+      body: "Donec pede justo, fringilla vel, aliquet nec, vulputate eget, https://www.youtube.com/watch?v=QHulaj5ZxbI  arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.",
       timeline: "10 minutes ago"
     }];
 

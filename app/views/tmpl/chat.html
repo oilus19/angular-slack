@@ -59,7 +59,7 @@
               </div>
               <div class="media-body">
                 <p class="media-heading"><a href="#" class="name">{{message.user.firstname}} {{message.user.lastname}} </a><span class="datetime">{{message.timeline}}</span></p>
-                <span class="body">{{message.body}}</span>
+                <ng-embed embed-data="message.body" embed-options="options"></ng-embed>
               </div>
             </div>
 
@@ -69,7 +69,7 @@
               </div>
               <div class="media-body">
                 <p class="media-heading"><a href="#" class="name">You </a><span class="datetime">{{message.timeline}}</span></p>
-                <ng-embed embed-data="message.body" embed-options="options"></ng-embed>
+                <ng-embed embed-data="message.body" embed-template-url="views/tmpl/embed-template.html" embed-options="options"></ng-embed>
               </div>
             </div>
           </li>

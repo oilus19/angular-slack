@@ -683,6 +683,7 @@ angular.module('getnearApp')
       var element = document.createElement('ng-embed');
       $scope.body = getPostBody();
       element.setAttribute("embed-data", "body");
+      element.setAttribute("embed-template-url", "views/tmpl/embed-template.html");
       element.setAttribute("embed-options", "options");
       var angularelement = angular.element(element);
       var el = $compile(angularelement)($scope);
@@ -744,7 +745,7 @@ angular.module('getnearApp')
       var options = {
         success: function(files) {
           var image = files[0].link;
-          post.body += "<br/>"+image;
+          post.body += '<br/><a href="'+image+'">link to original</a>'+image;
           $scope.$apply();
         },
         linkType: "direct", // or "direct"
@@ -769,6 +770,7 @@ angular.module('getnearApp')
     function updateBody(){
       var element = document.createElement('ng-embed');
       element.setAttribute("embed-data", "post.body");
+      element.setAttribute("embed-template-url", "views/tmpl/embed-template.html");
       element.setAttribute("embed-options", "options");
       var angularelement = angular.element(element);
       var el = $compile(angularelement)($scope);
@@ -830,7 +832,9 @@ angular.module('getnearApp')
             avatar: 'images/profile-photo.jpg'
         }
       }
-      $rootScope.currentChannel.selectedPostToReply.replies.push(reply);
+      $scope.post.replies.push(reply);
+      $scope.newReply = '';
+      $scope.$apply();
       $rootScope.currentChannel.selectedPostToReply = null;
     }
   })

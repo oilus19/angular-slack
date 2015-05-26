@@ -396,7 +396,7 @@
         </li>
       </ul>
 
-      <ul class="mt-40" ng-if="event.replies.length>0">
+      <ul class="mt-40">
         <li>
           <span>Comments</span>
         </li>
@@ -410,6 +410,14 @@
               <span>{{post.body}}</span>
             </div>
           </div>
+        </li>
+        <li ng-controller="ReplyCtrl" ng-init="post=event">
+
+              <div class="input-group">
+                <input id="reply_post_input" class="form-control ng-pristine ng-untouched ng-valid" placeholder="Write your comment here..." ng-model="newReply" type="text">
+                <span class="input-group-btn"><button class="btn btn-default" type="button" ng-click="submitReply()">Submit</button></span>
+              </div>
+
         </li>
       </ul>
     </div>
@@ -463,7 +471,7 @@
       <span ng-if="sale.price"><strong>Price:</strong> {{sale.price}}</span><br/>
 
 
-      <ul class="mt-40" ng-if="sale.replies.length>0">
+      <ul class="mt-40">
         <li>
           <span>Comments</span>
         </li>
@@ -477,6 +485,14 @@
               <span>{{post.body}}</span>
             </div>
           </div>
+        </li>
+        <li ng-controller="ReplyCtrl" ng-init="post=sale">
+
+              <div class="input-group">
+                <input id="reply_post_input" class="form-control ng-pristine ng-untouched ng-valid" placeholder="Write your comment here..." ng-model="newReply" type="text">
+                <span class="input-group-btn"><button class="btn btn-default" type="button" ng-click="submitReply()">Submit</button></span>
+              </div>
+
         </li>
       </ul>
     </div>

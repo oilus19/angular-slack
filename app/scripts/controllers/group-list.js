@@ -10,5 +10,6 @@
 angular.module('getnearApp')
     .controller('GroupListCtrl', function ($rootScope, $scope, $timeout, $modal, $state) {
         $rootScope.groupfilter = {};
+    	$rootScope.currentGroup = {};
   });
 
