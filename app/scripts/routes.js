@@ -4,13 +4,16 @@ angular
   .module('getnearApp')
   .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
 
+    $locationProvider.html5Mode(true);
+
+
     $urlRouterProvider.otherwise('/');
 
     $stateProvider
 
     //login
     .state('login', {
-      url: '',
+      url: '/',
       controller: 'LoginCtrl',
       templateUrl: 'views/tmpl/pages/login.html'
     })
@@ -60,15 +63,9 @@ angular
     })
     //group
     .state('app.group', {
-      url: '',
+      url: '/groups',
       controller: 'GroupCtrl',
       templateUrl: 'views/tmpl/group.html'
-    })
-    //chat
-    .state('app.group.chat', {
-      url: '/:group/chat/:user',
-      controller: 'ChatCtrl',
-      templateUrl: 'views/tmpl/chat.html'
     })
     //channel
     .state('app.group.channel', {
@@ -82,5 +79,12 @@ angular
           ]);
         }]
       }
+    })
+    //chat
+    .state('app.group.chat', {
+      url: '/:group/chat/:user',
+      controller: 'ChatCtrl',
+      templateUrl: 'views/tmpl/chat.html'
     });
+
   }]);

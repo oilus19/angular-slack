@@ -21,7 +21,7 @@
       </div>
 
     </li>
-    <li ng-repeat="group in joinedGroup" ng-class="{active: group==currentGroup}"><a ui-sref="app.group.channel({group: '{{group.title}}', channel: 'General'})"><span class="group-initial" ng-if="!group.icon || group.icon==''">{{group.initial}}</span><i class="fa {{group.icon}}" ng-if="group.icon"/><span class="group-title">{{group.title}}</span></a></li>
+    <li ng-repeat="group in joinedGroup" ng-class="{active: group==currentGroup}"><a ui-sref="app.group.channel({group: '{{group.slug}}', channel: 'general'})"><span class="group-initial" ng-if="!group.icon || group.icon==''">{{group.initial}}</span><i class="fa {{group.icon}}" ng-if="group.icon"/><span class="group-title">{{group.title}}</span></a></li>
   </ul>
 
         
@@ -33,7 +33,7 @@
             <a ng-click="newGroup()" class="list-group-item hover-cursor-pointer">
               Create a Group
             </a>
-            <a ng-repeat="group in joinedGroup" ng-class="{active: group==currentGroup}" ui-sref="app.group.channel({group: '{{group.title}}', channel: 'General'})" class="list-group-item"><i class="fa {{group.icon}}" ng-if="group.icon"/> {{group.title}}</a>
+            <a ng-repeat="group in joinedGroup" ng-class="{active: group==currentGroup}" ui-sref="app.group.channel({group: '{{group.slug}}', channel: 'general'})" class="list-group-item"><i class="fa {{group.icon}}" ng-if="group.icon"/> {{group.title}}</a>
           </div>
         </div>
 

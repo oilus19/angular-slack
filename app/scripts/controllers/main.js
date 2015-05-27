@@ -98,12 +98,15 @@ angular.module('getnearApp')
 
     $rootScope.joinedGroup = [{
       title: "Android Developers",
+      slug: "android_developers",
       initial: "A"
     },{
       title: "Mongo Developers",
+      slug: "mongo_developers",
       initial: "M"
     },{
       title: "Python Developers",
+      slug: "python_developers",
       initial: "P"
     }];
 
@@ -155,34 +158,42 @@ angular.module('getnearApp')
 
     $rootScope.channels = [{
       title: "General",
+      slug: "general",
       initial: "G",
       icon: "fa-adjust"
     },{
       title: "Nightlife",
+      slug: "nightlife",
       initial: "N",
       icon: "fa-anchor"
     },{
       title: "Grocery Shopping",
+      slug: "grocery_shopping",
       initial: "G",
       icon: "fa-asterisk"
     },{
       title: "Shopping",
+      slug: "shopping",
       initial: "S",
       icon: "fa-dollar"
     },{
       title: "JustGirls",
+      slug: "justgirls",
       initial: "J",
       icon: "fa-coffee"
     },{
       title: "JustGuys",
+      slug: "justguys",
       initial: "J",
       icon: "fa-car"
     },{
       title: "Restaurants",
+      slug: "Restaurants",
       initial: "R",
       icon: "fa-eye"
     },{
       title: "Deals",
+      slug: "deals",
       initial: "D",
       icon: "fa-glass"
     }];
@@ -293,8 +304,8 @@ angular.module('getnearApp')
       }]
     },{
       type: "s",
-      body: "Black Mini Dress",
-      photo: "http://arasar.hanathemes.com/wp-content/uploads/2013/12/982-400x560.jpg",
+      body: "Casual Shirt",
+      photo: "http://images.shopmadeinchina.com/9ABAACE1CDF4E37EE040007F01006991/345/6605345/VANCL-Soft-Peached-Cotton-Casual-Shirt-Lake-Blue_6605345.bak.jpg",
       price: "$99",
         timeline: "39 minutes ago",
         user: {
@@ -429,17 +440,17 @@ angular.module('getnearApp')
     $rootScope.salesScope = {};
     $scope.Math = window.Math;
 
-    $rootScope.getGroup = function(title){
+    $rootScope.getGroup = function(slug){
       for(var i=0; i<$rootScope.joinedGroup.length; i++){
-        if($rootScope.joinedGroup[i].title==title){
+        if($rootScope.joinedGroup[i].slug==slug){
           return $rootScope.joinedGroup[i];
         }
       }
     }
 
-    $rootScope.getChannel = function(title){
+    $rootScope.getChannel = function(slug){
       for(var i=0; i<$rootScope.channels.length; i++){
-        if($rootScope.channels[i].title==title){
+        if($rootScope.channels[i].slug==slug){
           return $rootScope.channels[i];
         }
       }
@@ -469,6 +480,7 @@ angular.module('getnearApp')
 
         var group = {
             title: result.title,
+            slug: slug(result.title),
             category: result.category,
             initial: result.title.charAt(0).toUpperCase(),
             status: result.status,
@@ -487,7 +499,7 @@ angular.module('getnearApp')
 
     $rootScope.joinGroup = function(group) {
         $rootScope.joinedGroup.push(group);
-        $state.go("app.group.channel",{group: group.title, channel: 'General'});
+        $state.go("app.group.channel",{group: group.slug, channel: 'general'});
     }
 
     $rootScope.clickPlusButton = function(){
@@ -583,4 +595,13 @@ angular.module('getnearApp')
 function nl2br (str, is_xhtml) {   
     var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br>';    
     return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1'+ breakTag +'$2');
+}
+
+var slug = function(str) {
+    var $slug = '';
+    var trimmed = $.trim(str);
+    $slug = trimmed.replace(/[^a-z0-9-]/gi, '-').
+    replace(/-+/g, '-').
+    replace(/^-|-$/g, '');
+    return $slug.toLowerCase();
 }

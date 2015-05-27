@@ -1,8 +1,10 @@
 {
   "name": "getnear",
   "version": "1.2.0",
-  "dependencies": {},
+  "dependencies": {
+  },
   "devDependencies": {
+    "connect-modrewrite": "^0.8.1",
     "grunt": "^0.4.1",
     "grunt-autoprefixer": "^0.7.3",
     "grunt-concurrent": "^0.5.0",

@@ -96,7 +96,7 @@ angular.module('getnearApp')
 
     $scope.delete = function () {
       $rootScope.channels = $rootScope.channels.filter(function(el){
-        return el.title !== items.channel.title;
+        return el.slug !== items.channel.slug;
       });
       $modalInstance.close();
     };
@@ -124,6 +124,7 @@ angular.module('getnearApp')
     $scope.submitChannel = function(title){
         var channel = {
             title: title,
+            slug: slug(title),
             initial: title.charAt(0).toUpperCase(),
             icon: "fa-adjust"
         }
@@ -142,7 +143,7 @@ angular.module('getnearApp')
     $scope.modalInstance = $modalInstance;
 
     $scope.chatWith = function(user) {
-      $state.go("app.group.chat",{group: $rootScope.currentGroup.title, user: user.id});
+      $state.go("app.group.chat",{group: $rootScope.currentGroup.slug, user: user.id});
       $modalInstance.close();
     }
   });

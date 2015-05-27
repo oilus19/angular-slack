@@ -9,7 +9,7 @@
  */
 angular.module('getnearApp')
   .controller('ChatCtrl', function ($rootScope, $scope, $resource, $stateParams) {
-	$rootScope.currentGroup = $rootScope.getGroup($stateParams.group);
+	 $rootScope.currentGroup = $rootScope.getGroup($stateParams.group);
     $rootScope.chatWith = $rootScope.getUser($stateParams.user);
 
     $scope.firstPostsLoad = true;
