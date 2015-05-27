@@ -1,0 +1,46 @@
+@media only screen and (max-width: 1200px) {
+  .page-channel {
+  	.streamline-form {
+  		.what-to-do {
+  			a {
+    			width: 25px;
+    		}
+    	}
+    }
+  }
+}
+
+.page-channel {
+	.streamline {
+	  margin-top: 130px;
+	}
+
+	.streamline-form-wrapper {
+	  position: fixed;
+	  width: 100%;
+	  z-index: 90;
+	  margin-top: -160px;
+
+	  .streamline-form {
+		  margin: 0px -30px;
+		  padding: 47px 30px 18px !important;
+		  background-color: #E7EAEB;
+
+		  .what-to-do a {
+			  color: #80919B;
+			  width: 40px;
+			  text-align: center;
+			  display: inline-block;
+			  padding: 2px 0 4px;
+
+			  &:hover,
+				&.active {
+				  background-color: #161D25;
+				  color: white;
+				  cursor: pointer;
+				}
+			}
+		}
+	}
+}
+	

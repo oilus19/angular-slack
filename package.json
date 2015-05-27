@@ -1,8 +1,7 @@
 {
   "name": "getnear",
   "version": "1.2.0",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "connect-modrewrite": "^0.8.1",
     "grunt": "^0.4.1",
@@ -16,6 +15,7 @@
     "grunt-contrib-htmlmin": "^0.3.0",
     "grunt-contrib-imagemin": "^0.7.0",
     "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-sass": "^0.9.2",
     "grunt-contrib-uglify": "^0.4.0",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-filerev": "^0.2.1",
