@@ -78,7 +78,7 @@
                 <button type="button" class="btn btn-default btn-xs" ng-if="post.type=='e'" ng-click="showEvent(post)"><i class="fa fa-calendar"/> View Event Details</button>
                 <button type="button" class="btn btn-default btn-xs" ng-if="post.type=='s'" ng-click="showSale(post)"><i class="fa fa-dollar"/> View Sales Details</button>
                 <button type="button" class="btn btn-default btn-xs" ng-if="post.user=='s'" ng-click="editPost()"><i class="fa fa-pen"/> Edit</button>
-                <span ng-if="(['e','s','@'].indexOf(post.type)>-1)">
+                <span ng-if="(['e','s','@','p'].indexOf(post.type)>-1)">
                   <button type="button" class="btn btn-default btn-xs" ng-click="replyPost()"><i class="fa fa-mail-reply"/> Reply</button>
                   <button type="button" class="btn btn-default btn-xs" ng-click="viewConversation()" ng-if="!showConversation"><i class="fa fa-comment"/> View Conversation</button>
                   <button type="button" class="btn btn-default btn-xs" ng-click="hideConversation()" ng-if="showConversation"><i class="fa fa-comment"/> Hide Conversation</button>
