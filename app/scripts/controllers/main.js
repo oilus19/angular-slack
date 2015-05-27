@@ -304,7 +304,8 @@ angular.module('getnearApp')
       }]
     },{
       type: "s",
-      body: "Casual Shirt",
+      title: "Casual Shirt",
+      body: "Pol.Idoleums mori!Cum bromium favere, omnes lumenes imperium lotus, castus eraes. ",
       photo: "http://images.shopmadeinchina.com/9ABAACE1CDF4E37EE040007F01006991/345/6605345/VANCL-Soft-Peached-Cotton-Casual-Shirt-Lake-Blue_6605345.bak.jpg",
       price: "$99",
         timeline: "39 minutes ago",

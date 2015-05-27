@@ -393,7 +393,8 @@ angular.module('getnearApp')
 
         var sale = {
           type: "s",
-          body: result.title,
+          title: result.title,
+          body: result.body,
           photo: result.photo,
           price: result.price,
           timeline: "Just now",
@@ -413,13 +414,14 @@ angular.module('getnearApp')
         size: 'lg',
         resolve: {
           items: function () {
-            return {title: sale.body, photo: sale.photo, price: sale.price, edit: true};
+            return {title: sale.title, body: sale.body, photo: sale.photo, price: sale.price, edit: true};
           }
         }
       });
 
       modalInstance.result.then(function (result) {
-        sale.body = result.title;
+        sale.title = result.title;
+        sale.body = result.body;
         sale.photo = result.photo;
         sale.price = result.price;
       }, function () {
@@ -554,30 +556,30 @@ angular.module('getnearApp')
 
     $scope.modalInstance = $modalInstance;
     $scope.edit = items.edit;
+    $scope.body = items.body;
     $scope.title = items.title;
-    $scope.myImage=items.photo;
-    $scope.myCroppedImage=items.photo;
-    $scope.cropType='circle';
+    $scope.photo=items.photo;
     $scope.price = "$ ";
     if($scope.edit==true) $scope.price=items.price;
 
-    var handleFileSelect=function(evt) {
-      var file=evt.currentTarget.files[0];
-      var reader = new FileReader();
-      reader.onload = function (evt) {
-        $scope.$apply(function($scope){
-          $scope.myImage=evt.target.result;
-        });
-      };
-      reader.readAsDataURL(file);
-    };
+    $scope.addImage = function() {
 
-    $scope.init = function() {
-        angular.element(document.querySelector('#salePhotoInput')).on('change',handleFileSelect);
+      var options = {
+        success: function(files) {
+          var image = files[0].link;
+          $scope.photo = image;
+          $scope.$apply();
+        },
+        linkType: "direct", // or "direct"
+        multiselect: false, // or true
+        extensions: ['images'],
+      };
+      Dropbox.choose(options);
+
     }
 
     $scope.create = function () {
-      $modalInstance.close({title: $scope.title, price: $scope.price, photo: $scope.myCroppedImage});
+      $modalInstance.close({title: $scope.title, body: $scope.body, price: $scope.price, photo: $scope.photo});
     };
   })
 
@@ -652,23 +654,6 @@ angular.module('getnearApp')
     };
   })
 
-  .controller('ImageCropCtrl', function ($scope) {
-    $scope.myImage='';
-    $scope.myCroppedImage='';
-    $scope.cropType='circle';
-
-    var handleFileSelect=function(evt) {
-      var file=evt.currentTarget.files[0];
-      var reader = new FileReader();
-      reader.onload = function (evt) {
-        $scope.$apply(function($scope){
-          $scope.myImage=evt.target.result;
-        });
-      };
-      reader.readAsDataURL(file);
-    };
-    angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
-  })
 
   .controller('PostCtrl', function ($rootScope, $scope, $element, $compile) {
 
@@ -693,8 +678,9 @@ angular.module('getnearApp')
 
     function getPostBody(){
       var body = post.body;
-      if(post.type=='s')
-        body += '<br/>'+post.photo;
+      if(post.type=='s'){
+        body = post.title+'<br/><br/>'+post.photo+'<br/>'+body;
+      }
       return body;
     }
 

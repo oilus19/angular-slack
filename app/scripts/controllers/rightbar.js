@@ -61,4 +61,30 @@ angular.module('getnearApp')
       }
     }
 
+  })
+
+
+  .controller('SaleCtrl', function ($rootScope, $scope, $element, $compile) {
+
+    $scope.post = $rootScope.sale;
+    if(!$scope.post.replies) $scope.post.replies = [];
+
+    updateBody();
+    function updateBody(){
+      var element = document.createElement('ng-embed');
+      $scope.body = getPostBody();
+      element.setAttribute("embed-data", "body");
+      element.setAttribute("embed-template-url", "views/tmpl/embed-template.html");
+      element.setAttribute("embed-options", "options");
+      var angularelement = angular.element(element);
+      var el = $compile(angularelement)($scope);
+      $element.find(".body-container").html(angularelement);
+      $scope.insertHere = el;
+    }
+
+    function getPostBody(){
+      var body = $scope.post.body;
+      body = $scope.post.photo+'<br/>'+body;
+      return body;
+    }
   });

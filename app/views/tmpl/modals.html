@@ -265,36 +265,18 @@
       </li>
       
       <li class="mb-10">
+        <span>Description</span><br/>
+        <textarea class="form-control" ng-model="body"></textarea>
+      </li>
+      
+      <li class="mb-10">
         <span>Photo</span><br/>
-        <input ui-jq="filestyle" type="file" class="filestyle" ui-options="{
-          buttonText: 'Select image',
-          iconName: 'fa fa-file-image-o'
-        }" id="salePhotoInput">
-
-        <div class="btn-group mt-20">
-          <label class="btn btn-default" ng-model="cropType" btn-radio="'circle'">Circle</label>
-          <label class="btn btn-default" ng-model="cropType" btn-radio="'square'">Square</label>
-        </div>
-
-        <div class="row">
-          <div class="col-md-8">
-
-            <div class="p-10 bg-white b-a b-solid" style="height:320px">
-              <img-crop
-                image="myImage"
-                result-image="myCroppedImage"
-                result-image-size="160"
-                area-type="{{cropType}}"
-              ></img-crop>
-            </div>
-
-          </div>
-          <div class="col-md-4">
-            <div class="p-10 bg-white b-a b-solid inline-block">
-              <img ng-src="{{myCroppedImage}}" />
-            </div>
-          </div>
-        </div>
+        <p class="input-group">
+          <input type="text" class="form-control" ng-model="photo" ng-disabled="true" />
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="addImage()"><i class="fa fa-image"/> Add Image</button> 
+          </span>
+        </p>  
       </li>
     </ul>
   </div>
