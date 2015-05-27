@@ -745,7 +745,7 @@ angular.module('getnearApp')
       var options = {
         success: function(files) {
           var image = files[0].link;
-          post.body += '<br/><a href="'+image+'">link to original</a>'+image;
+          post.body += '<br/>'+image;
           $scope.$apply();
         },
         linkType: "direct", // or "direct"
@@ -871,7 +871,7 @@ angular.module('getnearApp')
 
         function getPostBody(post){
           var body = '';
-          if(getPostType(post)) 
+          if(getPostType(post)!='g') 
             body = post.substr(post.indexOf(':')+1).trim();
           else
             body = post;
