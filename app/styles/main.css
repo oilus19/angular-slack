@@ -11873,7 +11873,7 @@ hr.line-full {
 }
 
 .page-channel .streamline-form-wrapper {
-  position: absolute;
+  position: fixed;
   width: 100%;
   z-index: 90;
   margin-top: -160px;
